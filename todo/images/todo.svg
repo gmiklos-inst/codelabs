@@ -1,0 +1,859 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:pencil="http://www.evolus.vn/Namespace/Pencil"
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="573.91833"
+   height="304.21371"
+   id="exportedSVG"
+   version="1.1"
+   pencil:version="1.2.2"
+   sodipodi:docname="todo.svg"
+   inkscape:version="0.92.2 5c3e80d, 2017-08-06"
+   inkscape:export-filename="/Users/gmiklos/Desktop/todo.png"
+   inkscape:export-xdpi="300.10483"
+   inkscape:export-ydpi="300.10483">
+  <metadata
+     id="metadata77">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs75" />
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1628"
+     inkscape:window-height="1005"
+     id="namedview73"
+     showgrid="false"
+     inkscape:zoom="1.3018017"
+     inkscape:cx="358.88884"
+     inkscape:cy="153.75787"
+     inkscape:window-x="52"
+     inkscape:window-y="0"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="layer_untitled_page"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0"
+     showguides="true"
+     inkscape:guide-bbox="true">
+    <sodipodi:guide
+       position="616.06925,-93.101016"
+       orientation="1,0"
+       id="guide944"
+       inkscape:locked="false" />
+  </sodipodi:namedview>
+  <g
+     inkscape:label="Untitled Page"
+     inkscape:groupmode="layer"
+     id="layer_untitled_page"
+     transform="translate(28.385815,63.074929)">
+    <g
+       id="g69">
+      <rect
+         x="0"
+         y="0"
+         width="390"
+         height="178"
+         id="rect2"
+         style="fill:none" />
+      <g
+         pencil:type="Shape"
+         pencil:def="nz.nwatson.Bootstrap:textInput"
+         id="35ebf3188cc148799e0caed7246c6e15"
+         transform="translate(1)">
+        <pencil:metadata>
+          <pencil:property
+             name="box">389,34</pencil:property>
+          <pencil:property
+             name="radius">4,0</pencil:property>
+          <pencil:property
+             name="focused">false</pencil:property>
+          <pencil:property
+             name="textContent">What needs to be done?</pencil:property>
+          <pencil:property
+             name="textFont">&quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif|400|normal|14px|none</pencil:property>
+          <pencil:property
+             name="textColor">#545454FF</pencil:property>
+          <pencil:property
+             name="textAlign">0,1</pencil:property>
+          <pencil:property
+             name="fillColor">#FFFFFFFF</pencil:property>
+          <pencil:property
+             name="strokeColor">#CCCCCCFF</pencil:property>
+          <pencil:property
+             name="activeColor">#66AFE9FF</pencil:property>
+          <pencil:property
+             name="strokeStyle">1|</pencil:property>
+          <pencil:property
+             name="position">none</pencil:property>
+        </pencil:metadata>
+        <defs
+           id="defs11">
+          <filter
+             height="1.5"
+             y="-0.2"
+             pencil:name="glowBlur"
+             id="8a8e83ed7137423cb1af6ed3eea0a43d">
+            <feGaussianBlur
+               stdDeviation="4"
+               id="feGaussianBlur4" />
+          </filter>
+          <linearGradient
+             x1="-0.14978617"
+             y1="-1.6690459"
+             x2="-0.14978617"
+             y2="115.16417"
+             pencil:name="shadowFill"
+             id="3f5fae336fb34d90803eaeb23b040310"
+             gradientTransform="scale(3.3380918,0.29957234)"
+             gradientUnits="userSpaceOnUse">
+            <stop
+               offset="0"
+               style="stop-color: rgb(242, 242, 242); stop-opacity: 1;"
+               pencil:name="stop1"
+               id="4ed37190345d403eba37482a48b7e357" />
+            <stop
+               offset="0.09999999999999999"
+               style="stop-color:#FFFFFF;stop-opacity:1"
+               pencil:name="stop2"
+               id="7f56322d07a143eead1750c9b25e2016" />
+          </linearGradient>
+          <path
+             pencil:name="bg"
+             id="aaf520756e7c47e283a9e42dffc1a352"
+             d="m 4,0 h 381 a 4,4 0 0 1 4,4 v 26 a 4,4 0 0 1 -4,4 H 4 A 4,4 0 0 1 0,30 V 4 A 4,4 0 0 1 4,0 Z"
+             inkscape:connector-curvature="0" />
+        </defs>
+        <use
+           xlink:href="#aaf520756e7c47e283a9e42dffc1a352"
+           pencil:heavy="true"
+           pencil:filter="url(#8a8e83ed7137423cb1af6ed3eea0a43d)"
+           style="display:none;visibility:hidden;opacity:0.6;fill:#66afe9;fill-opacity:1"
+           pencil:name="glow"
+           id="ddcbeedb9b064ebea1e090e56e77820c"
+           x="0"
+           y="0"
+           width="100%"
+           height="100%" />
+        <use
+           xlink:href="#aaf520756e7c47e283a9e42dffc1a352"
+           style="fill:url(#3f5fae336fb34d90803eaeb23b040310);stroke:#cccccc;stroke-width:1;stroke-opacity:1"
+           pencil:name="bgActual"
+           id="53a962fa920d486f9b6118f6b6e468ad"
+           x="0"
+           y="0"
+           width="100%"
+           height="100%" />
+        <text
+           pencil:name="text"
+           id="5a01176ef8e241a4975ceb911eb89a88"
+           transform="translate(12,22)"
+           style="font-style:normal;font-weight:400;font-size:14px;font-family:'Helvetica Neue', Helvetica, Arial, sans-serif;text-decoration:none;text-decoration-line:none;fill:#545454;fill-opacity:1">
+          <tspan
+             x="0"
+             y="0"
+             id="tspan15">What needs to be done?</tspan>
+        </text>
+      </g>
+      <g
+         pencil:type="Shape"
+         pencil:def="nz.nwatson.Bootstrap:Checkbox"
+         id="765dfd2f509b42d8a8cb173c98df0f48"
+         transform="translate(1,48)">
+        <pencil:metadata>
+          <pencil:property
+             name="box">90,16</pencil:property>
+          <pencil:property
+             name="textContent">Walk the dog</pencil:property>
+          <pencil:property
+             name="textFont">&quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif|400|normal|14px|none</pencil:property>
+          <pencil:property
+             name="textColor">#545454FF</pencil:property>
+          <pencil:property
+             name="textAlign">0,1</pencil:property>
+          <pencil:property
+             name="fillColor">#FFFFFF00</pencil:property>
+          <pencil:property
+             name="checkColor">#545454FF</pencil:property>
+          <pencil:property
+             name="checked">false</pencil:property>
+          <pencil:property
+             name="strokeColor">#CCCCCCFF</pencil:property>
+          <pencil:property
+             name="strokeStyle">1|</pencil:property>
+        </pencil:metadata>
+        <rect
+           width="16"
+           height="16"
+           rx="2"
+           ry="2"
+           pencil:name="box"
+           id="1f5337767304425a8367130500bc6b6b"
+           y="0"
+           style="fill:#ffffff;fill-opacity:0;stroke:#cccccc;stroke-width:1;stroke-opacity:1"
+           x="0" />
+        <path
+           d="M 10,0 4,6.0137 1.333,3.3478 0,4.6778 l 4,4 7.336,-7.3466 z"
+           pencil:name="tick"
+           id="3e32c90ed76a4f638fa655dc91e728c2"
+           transform="translate(2.5,3.5)"
+           style="display:none;visibility:hidden;fill:#545454;fill-opacity:1"
+           inkscape:connector-curvature="0" />
+        <text
+           pencil:name="text"
+           id="33a0d5e04e794659862ef4aef2709b2b"
+           transform="translate(22,13)"
+           style="font-style:normal;font-weight:400;font-size:14px;font-family:'Helvetica Neue', Helvetica, Arial, sans-serif;text-decoration:none;text-decoration-line:none;fill:#545454;fill-opacity:1">Walk the dog</text>
+      </g>
+      <g
+         pencil:type="Shape"
+         pencil:def="nz.nwatson.Bootstrap:Checkbox"
+         id="0edeae30b088418099bc0d5fb4cdd46c"
+         transform="translate(0,81)">
+        <pencil:metadata>
+          <pencil:property
+             name="box">90,16</pencil:property>
+          <pencil:property
+             name="textContent">Buy some ice cream &amp; waffles</pencil:property>
+          <pencil:property
+             name="textFont">&quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif|400|normal|14px|none</pencil:property>
+          <pencil:property
+             name="textColor">#545454FF</pencil:property>
+          <pencil:property
+             name="textAlign">0,1</pencil:property>
+          <pencil:property
+             name="fillColor">#FFFFFF00</pencil:property>
+          <pencil:property
+             name="checkColor">#545454FF</pencil:property>
+          <pencil:property
+             name="checked">false</pencil:property>
+          <pencil:property
+             name="strokeColor">#CCCCCCFF</pencil:property>
+          <pencil:property
+             name="strokeStyle">1|</pencil:property>
+        </pencil:metadata>
+        <rect
+           width="16"
+           height="16"
+           rx="2"
+           ry="2"
+           pencil:name="box"
+           id="5c517c24212645d7a12c3fa43651deca"
+           y="0"
+           style="fill:#ffffff;fill-opacity:0;stroke:#cccccc;stroke-width:1;stroke-opacity:1"
+           x="0" />
+        <path
+           d="M 10,0 4,6.0137 1.333,3.3478 0,4.6778 l 4,4 7.336,-7.3466 z"
+           pencil:name="tick"
+           id="1938ce1d4c1347aeabb7ef045847619c"
+           transform="translate(2.5,3.5)"
+           style="display:none;visibility:hidden;fill:#545454;fill-opacity:1"
+           inkscape:connector-curvature="0" />
+        <text
+           pencil:name="text"
+           id="6a979b0fbf7c4a4abec0b263d6af3223"
+           transform="translate(22,13)"
+           style="font-style:normal;font-weight:400;font-size:14px;font-family:'Helvetica Neue', Helvetica, Arial, sans-serif;text-decoration:none;text-decoration-line:none;fill:#545454;fill-opacity:1">Buy some ice cream &amp; waffles</text>
+      </g>
+      <g
+         pencil:type="Shape"
+         pencil:def="nz.nwatson.Bootstrap:Checkbox"
+         id="e4a8b55449954bd399fcf44626107160"
+         transform="translate(1,114)">
+        <pencil:metadata>
+          <pencil:property
+             name="box">90,16</pencil:property>
+          <pencil:property
+             name="textContent">Help the elderly cross the road</pencil:property>
+          <pencil:property
+             name="textFont">&quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif|400|normal|14px|none</pencil:property>
+          <pencil:property
+             name="textColor">#545454FF</pencil:property>
+          <pencil:property
+             name="textAlign">0,1</pencil:property>
+          <pencil:property
+             name="fillColor">#FFFFFF00</pencil:property>
+          <pencil:property
+             name="checkColor">#545454FF</pencil:property>
+          <pencil:property
+             name="checked">false</pencil:property>
+          <pencil:property
+             name="strokeColor">#CCCCCCFF</pencil:property>
+          <pencil:property
+             name="strokeStyle">1|</pencil:property>
+        </pencil:metadata>
+        <rect
+           width="16"
+           height="16"
+           rx="2"
+           ry="2"
+           pencil:name="box"
+           id="0d186c6ab2954c4c9151216ce70982f9"
+           y="0"
+           style="fill:#ffffff;fill-opacity:0;stroke:#cccccc;stroke-width:1;stroke-opacity:1"
+           x="0" />
+        <path
+           d="M 10,0 4,6.0137 1.333,3.3478 0,4.6778 l 4,4 7.336,-7.3466 z"
+           pencil:name="tick"
+           id="98c3a10407de4a5d98a92f7bcfe2c16c"
+           transform="translate(2.5,3.5)"
+           style="display:none;visibility:hidden;fill:#545454;fill-opacity:1"
+           inkscape:connector-curvature="0" />
+        <text
+           pencil:name="text"
+           id="473c24803aee4932a263e6dc54e4dabf"
+           transform="translate(22,13)"
+           style="font-style:normal;font-weight:400;font-size:14px;font-family:'Helvetica Neue', Helvetica, Arial, sans-serif;text-decoration:none;text-decoration-line:none;fill:#545454;fill-opacity:1">Help the elderly cross the road</text>
+      </g>
+      <g
+         pencil:type="Shape"
+         pencil:def="nz.nwatson.Bootstrap:Button"
+         pencil:sc="Button (primary)"
+         id="0add865d6920423d94e6f849410f7963"
+         transform="translate(360,42)">
+        <pencil:metadata>
+          <pencil:property
+             name="box">30,26</pencil:property>
+          <pencil:property
+             name="smartColor">true</pencil:property>
+          <pencil:property
+             name="radius">4,0</pencil:property>
+          <pencil:property
+             name="textContent">x</pencil:property>
+          <pencil:property
+             name="textFont">&quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif|400|normal|14px|none</pencil:property>
+          <pencil:property
+             name="textColor">#FFFFFFFF</pencil:property>
+          <pencil:property
+             name="textAlign">1,1</pencil:property>
+          <pencil:property
+             name="fillColor">#337AB7FF</pencil:property>
+          <pencil:property
+             name="strokeColor">#CCCCCCFF</pencil:property>
+          <pencil:property
+             name="strokeStyle">1|</pencil:property>
+          <pencil:property
+             name="dropdown">none</pencil:property>
+          <pencil:property
+             name="dropdownDirection">1</pencil:property>
+          <pencil:property
+             name="position">none</pencil:property>
+        </pencil:metadata>
+        <path
+           pencil:name="bg"
+           id="7df1665bd1af4fef97d9fd554db50674"
+           d="m 4,0 h 22 a 4,4 0 0 1 4,4 v 18 a 4,4 0 0 1 -4,4 H 4 A 4,4 0 0 1 0,22 V 4 A 4,4 0 0 1 4,0 Z"
+           style="fill:#337ab7;fill-opacity:1;stroke:#2e6ca3;stroke-width:1;stroke-opacity:1"
+           inkscape:connector-curvature="0" />
+        <text
+           pencil:name="text"
+           id="938758fa5e0e492ea3080bbcffbc634b"
+           transform="translate(12,18)"
+           style="font-style:normal;font-weight:400;font-size:14px;font-family:'Helvetica Neue', Helvetica, Arial, sans-serif;text-decoration:none;text-decoration-line:none;fill:#ffffff;fill-opacity:1">
+          <tspan
+             x="-0.625"
+             y="0"
+             id="tspan32">x</tspan>
+        </text>
+        <path
+           style="display:none;visibility:hidden;opacity:1;fill:#ffffff;fill-opacity:1;stroke:none"
+           pencil:name="arrow"
+           id="e9b88d6222804033bdb22b8667e5fa27"
+           d="m 10,11 h 8 l -4,4 z"
+           inkscape:connector-curvature="0" />
+        <path
+           style="display:none;visibility:hidden;opacity:1;fill:#000000;fill-opacity:1;stroke:#2e6ca3;stroke-width:1;stroke-opacity:1"
+           pencil:name="split"
+           id="60eba588cca94d87b247d8d0b4aa3302"
+           d="M 4,0 V 26"
+           inkscape:connector-curvature="0" />
+      </g>
+      <g
+         pencil:type="Shape"
+         pencil:def="nz.nwatson.Bootstrap:Button"
+         pencil:sc="Button (primary)"
+         id="b862997216874056a0ed166e6d09c3f6"
+         transform="translate(360,75)">
+        <pencil:metadata>
+          <pencil:property
+             name="box">30,26</pencil:property>
+          <pencil:property
+             name="smartColor">true</pencil:property>
+          <pencil:property
+             name="radius">4,0</pencil:property>
+          <pencil:property
+             name="textContent">x</pencil:property>
+          <pencil:property
+             name="textFont">&quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif|400|normal|14px|none</pencil:property>
+          <pencil:property
+             name="textColor">#FFFFFFFF</pencil:property>
+          <pencil:property
+             name="textAlign">1,1</pencil:property>
+          <pencil:property
+             name="fillColor">#337AB7FF</pencil:property>
+          <pencil:property
+             name="strokeColor">#CCCCCCFF</pencil:property>
+          <pencil:property
+             name="strokeStyle">1|</pencil:property>
+          <pencil:property
+             name="dropdown">none</pencil:property>
+          <pencil:property
+             name="dropdownDirection">1</pencil:property>
+          <pencil:property
+             name="position">none</pencil:property>
+        </pencil:metadata>
+        <path
+           pencil:name="bg"
+           id="7b359c828000452e8d8b05b33c7e4f46"
+           d="m 4,0 h 22 a 4,4 0 0 1 4,4 v 18 a 4,4 0 0 1 -4,4 H 4 A 4,4 0 0 1 0,22 V 4 A 4,4 0 0 1 4,0 Z"
+           style="fill:#337ab7;fill-opacity:1;stroke:#2e6ca3;stroke-width:1;stroke-opacity:1"
+           inkscape:connector-curvature="0" />
+        <text
+           pencil:name="text"
+           id="7d04ddaf725048eabaf11fdf6651f5a4"
+           transform="translate(12,18)"
+           style="font-style:normal;font-weight:400;font-size:14px;font-family:'Helvetica Neue', Helvetica, Arial, sans-serif;text-decoration:none;text-decoration-line:none;fill:#ffffff;fill-opacity:1">
+          <tspan
+             x="-0.625"
+             y="0"
+             id="tspan39">x</tspan>
+        </text>
+        <path
+           style="display:none;visibility:hidden;opacity:1;fill:#ffffff;fill-opacity:1;stroke:none"
+           pencil:name="arrow"
+           id="9d656895dc254a23b791f845fa3fd3b6"
+           d="m 10,11 h 8 l -4,4 z"
+           inkscape:connector-curvature="0" />
+        <path
+           style="display:none;visibility:hidden;opacity:1;fill:#000000;fill-opacity:1;stroke:#2e6ca3;stroke-width:1;stroke-opacity:1"
+           pencil:name="split"
+           id="e8ea0189606546e9bdef78340e8d846d"
+           d="M 4,0 V 26"
+           inkscape:connector-curvature="0" />
+      </g>
+      <g
+         pencil:type="Shape"
+         pencil:def="nz.nwatson.Bootstrap:Button"
+         pencil:sc="Button (primary)"
+         id="2a7cf46d1b0a482e96148c4fffdfd0f6"
+         transform="translate(360,108)">
+        <pencil:metadata>
+          <pencil:property
+             name="box">30,26</pencil:property>
+          <pencil:property
+             name="smartColor">true</pencil:property>
+          <pencil:property
+             name="radius">4,0</pencil:property>
+          <pencil:property
+             name="textContent">x</pencil:property>
+          <pencil:property
+             name="textFont">&quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif|400|normal|14px|none</pencil:property>
+          <pencil:property
+             name="textColor">#FFFFFFFF</pencil:property>
+          <pencil:property
+             name="textAlign">1,1</pencil:property>
+          <pencil:property
+             name="fillColor">#337AB7FF</pencil:property>
+          <pencil:property
+             name="strokeColor">#CCCCCCFF</pencil:property>
+          <pencil:property
+             name="strokeStyle">1|</pencil:property>
+          <pencil:property
+             name="dropdown">none</pencil:property>
+          <pencil:property
+             name="dropdownDirection">1</pencil:property>
+          <pencil:property
+             name="position">none</pencil:property>
+        </pencil:metadata>
+        <path
+           pencil:name="bg"
+           id="a287a38ba9f64c429f2b73aa6b373530"
+           d="m 4,0 h 22 a 4,4 0 0 1 4,4 v 18 a 4,4 0 0 1 -4,4 H 4 A 4,4 0 0 1 0,22 V 4 A 4,4 0 0 1 4,0 Z"
+           style="fill:#337ab7;fill-opacity:1;stroke:#2e6ca3;stroke-width:1;stroke-opacity:1"
+           inkscape:connector-curvature="0" />
+        <text
+           pencil:name="text"
+           id="046240b1d0964632add222472d20c056"
+           transform="translate(12,18)"
+           style="font-style:normal;font-weight:400;font-size:14px;font-family:'Helvetica Neue', Helvetica, Arial, sans-serif;text-decoration:none;text-decoration-line:none;fill:#ffffff;fill-opacity:1">
+          <tspan
+             x="-0.625"
+             y="0"
+             id="tspan46">x</tspan>
+        </text>
+        <path
+           style="display:none;visibility:hidden;opacity:1;fill:#ffffff;fill-opacity:1;stroke:none"
+           pencil:name="arrow"
+           id="3f2dffc67af7414e86b5c95c0daaa303"
+           d="m 10,11 h 8 l -4,4 z"
+           inkscape:connector-curvature="0" />
+        <path
+           style="display:none;visibility:hidden;opacity:1;fill:#000000;fill-opacity:1;stroke:#2e6ca3;stroke-width:1;stroke-opacity:1"
+           pencil:name="split"
+           id="d18a2a753a0343e99b8fc2650a216907"
+           d="M 4,0 V 26"
+           inkscape:connector-curvature="0" />
+      </g>
+      <g
+         pencil:type="Shape"
+         pencil:def="nz.nwatson.Bootstrap:Radio"
+         id="299dc83c4729499196f20d912e471c25"
+         transform="translate(173,155)">
+        <pencil:metadata>
+          <pencil:property
+             name="box">67,23</pencil:property>
+          <pencil:property
+             name="textContent">All</pencil:property>
+          <pencil:property
+             name="textFont">&quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif|400|normal|14px|none</pencil:property>
+          <pencil:property
+             name="textColor">#545454FF</pencil:property>
+          <pencil:property
+             name="textAlign">0,1</pencil:property>
+          <pencil:property
+             name="fillColor">#FFFFFF00</pencil:property>
+          <pencil:property
+             name="checkColor">#545454FF</pencil:property>
+          <pencil:property
+             name="checked">false</pencil:property>
+          <pencil:property
+             name="strokeColor">#CCCCCCFF</pencil:property>
+          <pencil:property
+             name="strokeStyle">1|</pencil:property>
+        </pencil:metadata>
+        <circle
+           cx="8"
+           cy="11.5"
+           pencil:name="box"
+           id="97a854925b9242b68ce424b57d6e4728"
+           style="fill:#ffffff;fill-opacity:0;stroke:#cccccc;stroke-width:1;stroke-opacity:1"
+           r="8" />
+        <circle
+           cx="8"
+           cy="11.5"
+           pencil:name="tick"
+           id="3104d1379017430a89f6f6c65e3ff860"
+           style="display:none;visibility:hidden;fill:#545454;fill-opacity:1"
+           r="3.5" />
+        <text
+           pencil:name="text"
+           id="68498fe54beb48248b76950cfe55c7ca"
+           transform="translate(22,17)"
+           style="font-style:normal;font-weight:400;font-size:14px;font-family:'Helvetica Neue', Helvetica, Arial, sans-serif;text-decoration:none;text-decoration-line:none;fill:#545454;fill-opacity:1">All</text>
+      </g>
+      <g
+         pencil:type="Shape"
+         pencil:def="nz.nwatson.Bootstrap:Radio"
+         id="c46e85b1b2e549adaae9a4eab82b0490"
+         transform="translate(225,155)">
+        <pencil:metadata>
+          <pencil:property
+             name="box">72,23</pencil:property>
+          <pencil:property
+             name="textContent">Active</pencil:property>
+          <pencil:property
+             name="textFont">&quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif|400|normal|14px|none</pencil:property>
+          <pencil:property
+             name="textColor">#545454FF</pencil:property>
+          <pencil:property
+             name="textAlign">0,1</pencil:property>
+          <pencil:property
+             name="fillColor">#FFFFFF00</pencil:property>
+          <pencil:property
+             name="checkColor">#545454FF</pencil:property>
+          <pencil:property
+             name="checked">false</pencil:property>
+          <pencil:property
+             name="strokeColor">#CCCCCCFF</pencil:property>
+          <pencil:property
+             name="strokeStyle">1|</pencil:property>
+        </pencil:metadata>
+        <circle
+           cx="8"
+           cy="11.5"
+           pencil:name="box"
+           id="9d8f18ed2e4a4440a7ef2a9535d04db6"
+           style="fill:#ffffff;fill-opacity:0;stroke:#cccccc;stroke-width:1;stroke-opacity:1"
+           r="8" />
+        <circle
+           cx="8"
+           cy="11.5"
+           pencil:name="tick"
+           id="1f4c009af7db4559b622652647f72c1a"
+           style="display:none;visibility:hidden;fill:#545454;fill-opacity:1"
+           r="3.5" />
+        <text
+           pencil:name="text"
+           id="fb817538c2ec469a80892f16b4b21fe0"
+           transform="translate(22,17)"
+           style="font-style:normal;font-weight:400;font-size:14px;font-family:'Helvetica Neue', Helvetica, Arial, sans-serif;text-decoration:none;text-decoration-line:none;fill:#545454;fill-opacity:1">Active</text>
+      </g>
+      <g
+         pencil:type="Shape"
+         pencil:def="nz.nwatson.Bootstrap:Radio"
+         id="3e679e82ccbc4c4fbcfeab7054d49952"
+         transform="translate(298,155)">
+        <pencil:metadata>
+          <pencil:property
+             name="box">90,23</pencil:property>
+          <pencil:property
+             name="textContent">Completed</pencil:property>
+          <pencil:property
+             name="textFont">&quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif|400|normal|14px|none</pencil:property>
+          <pencil:property
+             name="textColor">#545454FF</pencil:property>
+          <pencil:property
+             name="textAlign">0,1</pencil:property>
+          <pencil:property
+             name="fillColor">#FFFFFF00</pencil:property>
+          <pencil:property
+             name="checkColor">#545454FF</pencil:property>
+          <pencil:property
+             name="checked">false</pencil:property>
+          <pencil:property
+             name="strokeColor">#CCCCCCFF</pencil:property>
+          <pencil:property
+             name="strokeStyle">1|</pencil:property>
+        </pencil:metadata>
+        <circle
+           cx="8"
+           cy="11.5"
+           pencil:name="box"
+           id="33213a4f742e4b5499eb578ec4cbbf17"
+           style="fill:#ffffff;fill-opacity:0;stroke:#cccccc;stroke-width:1;stroke-opacity:1"
+           r="8" />
+        <circle
+           cx="8"
+           cy="11.5"
+           pencil:name="tick"
+           id="b7c83dbc904d480798c231da1aaa9875"
+           style="display:none;visibility:hidden;fill:#545454;fill-opacity:1"
+           r="3.5" />
+        <text
+           pencil:name="text"
+           id="515078c76d7c4c8781a01daa049ac1a5"
+           transform="translate(22,17)"
+           style="font-style:normal;font-weight:400;font-size:14px;font-family:'Helvetica Neue', Helvetica, Arial, sans-serif;text-decoration:none;text-decoration-line:none;fill:#545454;fill-opacity:1">Completed</text>
+      </g>
+      <g
+         pencil:type="Shape"
+         pencil:def="nz.nwatson.Bootstrap:Label"
+         id="803699c74963448f9ed867e7072851ac"
+         transform="translate(1,156)">
+        <pencil:metadata>
+          <pencil:property
+             name="box">118,21</pencil:property>
+          <pencil:property
+             name="radius">2,0</pencil:property>
+          <pencil:property
+             name="textContent">2 items left</pencil:property>
+          <pencil:property
+             name="textFont">&quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif|bold|normal|10px|none</pencil:property>
+          <pencil:property
+             name="textColor">#FFFFFFFF</pencil:property>
+          <pencil:property
+             name="textAlign">1,1</pencil:property>
+          <pencil:property
+             name="fillColor">#777777FF</pencil:property>
+          <pencil:property
+             name="strokeColor">#CCCCCCFF</pencil:property>
+          <pencil:property
+             name="strokeStyle">0|</pencil:property>
+        </pencil:metadata>
+        <rect
+           pencil:name="bg"
+           id="ec09f696522d4c8285fa9a725d856063"
+           rx="2"
+           ry="2"
+           style="fill:#777777;fill-opacity:1;stroke:#cccccc;stroke-width:0;stroke-opacity:1"
+           width="118"
+           height="21"
+           x="0"
+           y="0" />
+        <text
+           pencil:name="text"
+           id="eed7668a3f944c9da2db8573afa76089"
+           transform="translate(6,15)"
+           style="font-style:normal;font-weight:bold;font-size:10px;font-family:'Helvetica Neue', Helvetica, Arial, sans-serif;text-decoration:none;text-decoration-line:none;fill:#ffffff;fill-opacity:1">
+          <tspan
+             x="26.726562"
+             y="0"
+             id="tspan65">2 items left</tspan>
+        </text>
+      </g>
+    </g>
+    <rect
+       style="fill:none;stroke:#00a300;stroke-width:3.04132867;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect884"
+       width="407.58792"
+       height="117.30589"
+       x="-6.734436"
+       y="33.525322" />
+    <rect
+       style="fill:none;stroke:#ef0000;stroke-width:2.98826909;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect890"
+       width="396.60617"
+       height="36.842937"
+       x="-1.0058655"
+       y="103.99413" />
+    <path
+       style="display:inline;fill:#00a300;fill-opacity:1;fill-rule:evenodd;stroke:#00a300;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 400.67712,80.228412 456.531,70.82403"
+       id="path892"
+       inkscape:connector-type="polyline"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:21.33333397px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+       x="468.58136"
+       y="75.065742"
+       id="text900"><tspan
+         sodipodi:role="line"
+         id="tspan898"
+         x="468.58136"
+         y="75.065742"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Marker Felt';-inkscape-font-specification:'Marker Felt'">TodoList</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:21.33333397px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+       x="470.88583"
+       y="151.11418"
+       id="text904"><tspan
+         sodipodi:role="line"
+         id="tspan902"
+         x="470.88583"
+         y="151.11418"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Marker Felt';-inkscape-font-specification:'Marker Felt'">TodoItem</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:21.33333397px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+       x="23.044985"
+       y="239.45329"
+       id="text908"><tspan
+         sodipodi:role="line"
+         x="23.044985"
+         y="239.45329"
+         id="tspan910"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Marker Felt';-inkscape-font-specification:'Marker Felt'">TodoStatus</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:21.33333397px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+       x="247.3495"
+       y="-40.159184"
+       id="text916"><tspan
+         sodipodi:role="line"
+         id="tspan914"
+         x="247.3495"
+         y="-40.159184"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Marker Felt';-inkscape-font-specification:'Marker Felt'">TodoInput</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:21.33333397px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+       x="350.28375"
+       y="240.22147"
+       id="text920"><tspan
+         sodipodi:role="line"
+         id="tspan918"
+         x="350.28375"
+         y="240.22147"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Marker Felt';-inkscape-font-specification:'Marker Felt'">TodoFilter</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:21.33333397px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+       x="0.76816517"
+       y="-45.536343"
+       id="text924"><tspan
+         sodipodi:role="line"
+         id="tspan922"
+         x="0.76816517"
+         y="-45.536343"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Marker Felt';-inkscape-font-specification:'Marker Felt'">TodoApp</tspan></text>
+    <rect
+       style="fill:none;fill-opacity:1;stroke:#ffcc00;stroke-width:3;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect926"
+       width="133.6609"
+       height="29.190313"
+       x="-6.9134951"
+       y="153.41869" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#ffcc00;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 64.525956,181.07266 3.072664,36.87198"
+       id="path928"
+       inkscape:connector-type="polyline"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc" />
+    <rect
+       style="fill:none;fill-opacity:1;stroke:#00ffff;stroke-width:3;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect930"
+       width="222.53978"
+       height="23.044983"
+       x="167.46022"
+       y="154.95502" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#00ffff;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.47843137"
+       d="m 370.25608,175.6955 1.53633,44.55364"
+       id="path932"
+       inkscape:connector-type="polyline"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#ef0000;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 394.8374,120.38754 72.97578,21.50865"
+       id="path934"
+       inkscape:connector-type="polyline"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc" />
+    <rect
+       style="fill:none;fill-opacity:1;stroke:#ff00ff;stroke-width:3;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect936"
+       width="443.23187"
+       height="213.55019"
+       x="-26.885815"
+       y="-16.346033" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#ff00ff;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.47843137"
+       d="M 55.307962,-17.882366 49.930799,-35.550187"
+       id="path938"
+       inkscape:connector-type="polyline"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc" />
+    <rect
+       style="fill:none;fill-opacity:1;stroke:#c87137;stroke-width:3;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.47843137"
+       id="rect940"
+       width="409.30331"
+       height="29.130869"
+       x="-7.6816611"
+       y="-1.2872093" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#ca8252;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.58235294"
+       d="M 291.51906,-1.7508771 292.6713,-34.782021"
+       id="path942"
+       inkscape:connector-type="polyline"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc" />
+  </g>
+</svg>

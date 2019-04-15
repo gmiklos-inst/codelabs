@@ -110,6 +110,43 @@ I suggest putting this in a file called ```index.html``` in your workspace. Most
 
 SASS is very similar to CSS as it is a superset of the former. We do not need anything fancy for now - just create an empty file named `styles.scss` in your workspace root.
 
+### Setting up Babel
+
+Babel needs some additional setup so that it correctly transpiles our source files. Create a file named `.babelrc` in your workspace root with the following contents:
+
+```json
+{
+  "presets": [
+    "@babel/react",
+    "@babel/env"
+  ],
+  "plugins": ["@babel/plugin-proposal-class-properties"]
+}
+```
+
+The `@babel/react` preset makes it possible to use the JS extensions (JSX) provided by React for convenience while developing applications. While its use is not mandatory including it makes it considerably easier to create React elements inline in your code like this:
+
+```jsx
+const element = <h1>Hello, world!</h1>;
+```
+
+The `@babel/env` preset contains a set of transformations that enable you to use more modern Javascript while developing your appication.
+
+As mentioned previously, the `class-properties` plugin enables the use of static member methods and fields in classes like this:
+
+```js
+class SomeClass {
+
+	static somevar = 1
+	
+	static somefun() {}
+
+}
+```
+
+This is purely for convenience sake and is not a hard requirement.
+
+
 ### Create the application entry point JS file
 
 Below is the necessary machinery to get React and Instructure UI running. It does not do anything spectacular yet but it should give as a general idea on how we will build our application. I suggest naming this file `app.js` and putting it in your workspace root.
