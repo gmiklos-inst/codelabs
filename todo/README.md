@@ -1,8 +1,8 @@
 ### Front-End - Steps
 
-### 1. [Setup React project](./1-setting-up-a-react-developer-environment.md)
+### 1. [Setting up your React project](./1-setting-up-a-react-developer-environment.md)
 
-### 2. [Setup React project](./2-planning-our-components.md)
+### 2. [Planning our components](./2-planning-our-components.md)
 
 ### 3. Imlement the first component TodoInput
 
