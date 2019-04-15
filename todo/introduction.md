@@ -69,6 +69,14 @@ As for the development environment we have the following suggestions for you:
 * IntelliJ IDEA Ultimate (Paid, trial available) or Community (Free, lacks Spring support but works)
 * Eclipse STS (Free)
 
+### PostgreSQL
+
+We will store our ToDo items in a local PostgreSQL database.
+
+For Mac users, one way to install Postgres is by the [Postgres.app](https://postgresapp.com/)
+
+Otherwise you can just run Postgres from a [Docker image](https://hub.docker.com/_/postgres)
+
 ### Heroku
 
 You can register a developer account for free which includes 750 hours for running your application. 	Credit card not required. Free account applications get automatically suspended but that only means they will enter a hibernation-like state until you visit the application again. Thawing from this state usually takes a couple of seconds.
