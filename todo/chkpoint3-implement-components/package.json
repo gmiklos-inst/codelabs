@@ -1,0 +1,30 @@
+{
+  "name": "todo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.4.3",
+    "@babel/plugin-proposal-class-properties": "^7.4.0",
+    "@babel/preset-env": "^7.4.3",
+    "@babel/preset-react": "^7.0.0"
+  },
+  "dependencies": {
+    "@inst/bridge-ui-components": "^13.0.1",
+    "@inst/bridge-ui-components.buc-utils": "^13.1.0",
+    "@inst/bridge-ui-components.format-message": "^13.1.0",
+    "@inst/bridge-ui-components.icon": "^13.1.0",
+    "@inst/bridge-ui-components.svg-props": "^13.1.0",
+    "@inst/bridge-ui-components.text-input": "^13.1.0",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6"
+  },
+  "alias": {
+    "buc/format-message": "@inst/bridge-ui-components.format-message"
+  }
+}
