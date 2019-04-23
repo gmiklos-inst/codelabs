@@ -66,7 +66,7 @@ Our development dependencies include:
 All of the dependencies can be installed using the following command:
 
 ```
-npm install --save-dev @babel/core @babel/plugin-proposal-class-properties @babel/preset-env @babel/preset-react sass
+npm install --save-dev @babel/core @babel/plugin-proposal-class-properties @babel/preset-env @babel/preset-react @babel/preset-typescript @types/react @types/react-dom sass
 ```
 
 Most developers will go with one of the Babel presets available. The ```env``` preset will let us to use modern Javascript features (ES2015 and up) while the ```react``` preset contains everything for compiling JSX code. Apart from the presets you can also use additional plugins that enable even more language features - ```plugin-proposal-class-properties``` makes it possible to use static class properties (not required for React to work but we will include it for convenience).
@@ -79,7 +79,7 @@ Application dependencies we are going to work with:
 Application dependencies can be installed with the following command:
 
 ```
-npm install --save @instructure/ui-elements @instructure/ui-layout @instructure/ui-themes react react-dom
+npm install --save @instructure/ui-elements @instructure/ui-layout react react-dom
 ```
 
 Both commands should go smoothly without any errors. Now that you got your the correct dependencies we can begin developing our application.
@@ -99,7 +99,7 @@ The following is the HTML code for the entry point for our application:
   <body>
     <div id="app-container"></div> <!-- This is the container that React uses to render our application -->
 
-    <script src="app.js" charset="utf-8"></script> <!-- Parcel will automatically pick up and compile this file. This is where most of our work will be done. -->
+    <script src="app.tsx" charset="utf-8"></script> <!-- Parcel will automatically pick up and compile this file. This is where most of our work will be done. -->
   </body>
 </html>
 ```
@@ -118,7 +118,8 @@ Babel needs some additional setup so that it correctly transpiles our source fil
 {
   "presets": [
     "@babel/react",
-    "@babel/env"
+    "@babel/env",
+    "@babel/typescript"
   ],
   "plugins": ["@babel/plugin-proposal-class-properties"]
 }
@@ -149,18 +150,14 @@ This is purely for convenience sake and is not a hard requirement.
 
 ### Create the application entry point JS file
 
-Below is the necessary machinery to get React and Instructure UI running. It does not do anything spectacular yet but it should give as a general idea on how we will build our application. I suggest naming this file `app.js` and putting it in your workspace root.
+Below is the necessary machinery to get React and Instructure UI running. It does not do anything spectacular yet but it should give as a general idea on how we will build our application. I suggest naming this file `app.tsx` and putting it in your workspace root.
 
-```javascript
+```typescript
 import './styles.scss' // parcel will automatically pick up, compile and include this file
 
 // Import key React components
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
-
-// Apply the base theme shipping with Instructure UI
-import theme from '@instructure/ui-themes/lib/canvas/base'
-theme.use()
 
 // This is our root component that will get rendered first and bring in all the other components
 class App extends Component {
@@ -177,7 +174,7 @@ class App extends Component {
 const $container = document.getElementById('app-container');
 
 // ... and begin rendering our app
-ReactDOM.render(React.createElement(App), $container);
+ReactDOM.render(<App />, $container);
 ```
 
 ### Set up the development server

@@ -13,10 +13,13 @@
     "@babel/plugin-proposal-class-properties": "^7.4.0",
     "@babel/preset-env": "^7.4.3",
     "@babel/preset-react": "^7.0.0",
-    "sass": "^1.18.0"
+    "@babel/preset-typescript": "^7.3.3",
+    "@types/react": "^16.8.14",
+    "@types/react-dom": "^16.8.4",
+    "sass": "^1.18.0",
+    "typescript": "^3.4.4"
   },
   "dependencies": {
-    "@instructure/ui-themes": "^5.52.1",
     "react": "^16.8.6",
     "react-dom": "^16.8.6"
   }
