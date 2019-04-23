@@ -7,7 +7,7 @@ A great way to get started with a Spring boot application is by visiting the [ht
 * Spring Boot: `2.1.4`
 * Group: `com.instructure.budapest`
 * Artifact: `codelabs`
-* Dependencies: `Web, JPA, PostgreSQL`
+* Dependencies: `Web`
 
 Click `Generate Project` and save/extract the downloaded zip file.
 
@@ -18,6 +18,7 @@ Locate your `build.gradle` file and add the following dependencies:
     testImplementation('org.junit.jupiter:junit-jupiter-params:5.2.0')
     testImplementation "org.mockito:mockito-core:2.+"
     testImplementation('org.mockito:mockito-junit-jupiter:2.18.3')
+	testImplementation('io.kotlintest:kotlintest-assertions:3.3.2')
     testRuntime('org.junit.jupiter:junit-jupiter-engine:5.2.0')
 ```
 
