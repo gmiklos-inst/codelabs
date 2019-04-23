@@ -11,7 +11,7 @@ Designate a directory as a workspace for your project. This directory can be any
 In order to be able to properly use npm - which is the package manager for Node - you need to initialize your project as such. Starting by issuing the command ```npm init``` in your workspace directory:
 
 ```shell
-# npm init
+shell> npm init
 This utility will walk you through creating a package.json file.
 It only covers the most common items, and tries to guess sensible defaults.
 
