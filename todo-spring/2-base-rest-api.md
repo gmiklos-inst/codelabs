@@ -1,7 +1,7 @@
 # Creating the rest API
 
-As a first step, we need to plan how our REST API should look like. For this workshop, we will go with an API defined by this [Swagger file](swagger_api.md).
-`TODO add swagger file`
+As a first step, we need to plan how our REST API should look like. For this workshop, we will go 
+with an API defined by this [Swagger file](https://app.swaggerhub.com/apis/henko/todo/1.0.0#/).
 
 ## RestController base class
 
@@ -27,7 +27,8 @@ In this section, we are not concerned with database access, thus our `Service` w
 
 ## GET
 Let's create our first method, that receives a `GET` request and returns all the `TodoItemDto`s. 
-Since this workshop is written in the spirit of TDD, take a brief moment to figure out what kinds of tests we need in order to implement this functionality.
+Since this workshop is written in the spirit of TDD, take a brief moment to figure out what kinds of 
+tests we need in order to implement this functionality.
 We will need annotations like `RequestMapping` and `GetMapping`. 
 
 A possible way to write the tests and the corresponding implementation is the following:
@@ -71,7 +72,7 @@ class TodoItemControllerIntegrationTest {
     lateinit var testRestTemplate: TestRestTemplate
 
     @Test
-    fun `test GET`() {
+    fun `test GET all todoItems`() {
         testRestTemplate.getForEntity("/todos", Any::class.java).statusCodeValue shouldBe 200
     }
 }
@@ -92,8 +93,51 @@ class TodoItemController {
 }
 ```
 
+## Jackson configuration
+If we call our `GET /todos` endpoint with a rest client, we get the following response:
+```json
+[{
+        "id": "1",
+        "title": "title1",
+        "completed": true,
+        "createdAt": 1556091928.889,
+        "updatedAt": null,
+        "completedAt": null
+}]
+```
+
+We have the following problems with the format of the response json:
+* It is not in snake_case
+* DateTimes are not serialized correctly
+* Null values are sent
+
+### Configuration to the rescue
+In order to make adjustments to how Jackson serializes json output with an `ObjectMapper`, 
+we need to provide our own, custom configured `ObjectMapperBuilder`. 
+We can use a `@Configuration` annotated class with a `@Bean` annotated
+method to define such a 3rd party dependency.
+
+As a hint, the following code snippet gets the job done. Make sure to write your implementation
+in TDD. If you need some inspiration, feel free to check the `WebConfigurationTest` test class.
+```kotlin
+package com.instructure.bp.codelabs.configuration
+
+@Configuration
+class WebConfiguration {
+
+    @Bean
+    fun jacksonBuilder() = Jackson2ObjectMapperBuilder().apply {
+        propertyNamingStrategy(PropertyNamingStrategy.SNAKE_CASE)
+        serializationInclusion(JsonInclude.Include.NON_NULL)
+        featuresToDisable(
+                SerializationFeature.WRITE_DATES_AS_TIMESTAMPS
+        )
+    }
+}
+```
+
 ## Other endpoints
-Implement the other endpoints (`POST`, `PUT`, `DELETE`), similarly to the `GET` implementation.
+Implement the other endpoints similarly to the `GET allTodoItems` implementation.
 
 We will handle errors, authorization and filtering in following checkpoint.
 
@@ -102,4 +146,5 @@ Before advancing to the next checkpoint, please make sure that you:
 * Implemented the basic REST API with a Spring `RestController`
 * You have a `TodoItem` data transfer object that models a TodoItem
 * You have a Service for business logic and it is injected into the `RestController`
+* Configured Jackson serialization to conform to the Swagger documentation
 * You have tests to make sure that current requirements are met

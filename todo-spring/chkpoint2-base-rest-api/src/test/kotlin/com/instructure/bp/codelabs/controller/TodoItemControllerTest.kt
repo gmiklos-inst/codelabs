@@ -1,5 +1,6 @@
 package com.instructure.bp.codelabs.controller
 
+import com.instructure.bp.codelabs.dto.SaveTodoItemDto
 import com.instructure.bp.codelabs.dto.TodoItemDto
 import com.instructure.bp.codelabs.service.TodoItemService
 import io.kotlintest.shouldBe
@@ -12,6 +13,7 @@ import org.mockito.Mockito.*
 import org.mockito.junit.jupiter.MockitoExtension
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
+import java.time.OffsetDateTime
 
 @ExtendWith(MockitoExtension::class)
 class TodoItemControllerTest {
@@ -45,12 +47,23 @@ class TodoItemControllerTest {
     }
 
     @Test
-    fun `addTodoItem returns the created todoItem`() {
-        val requestTodoItem = TodoItemDto("", "title", false)
-        val expectedTodoItem = requestTodoItem.copy(id = "12345")
-        `when`(todoItemService.createTodoItem(requestTodoItem)).thenReturn(expectedTodoItem)
+    fun `getTodoItem returns the todoItem`() {
+        val id = "id"
+        val expectedTodoItem = TodoItemDto("id", "expectedTitle", true)
+        `when`(todoItemService.getTodoItem(id)).thenReturn(expectedTodoItem)
 
-        val actualResponse = todoItemController.addTodoItem(requestTodoItem)
+        val actualTodoItem = todoItemController.getTodoItem(id)
+
+        actualTodoItem shouldBe expectedTodoItem
+    }
+
+    @Test
+    fun `createTodoItem returns the created todoItem`() {
+        val saveTodoItem = SaveTodoItemDto("title", false)
+        val expectedTodoItem = TodoItemDto("12345", saveTodoItem.title, saveTodoItem.completed, OffsetDateTime.now())
+        `when`(todoItemService.createTodoItem(saveTodoItem)).thenReturn(expectedTodoItem)
+
+        val actualResponse = todoItemController.addTodoItem(saveTodoItem)
         val expectedResponse = ResponseEntity.status(HttpStatus.CREATED).body(expectedTodoItem)
 
         actualResponse shouldBe expectedResponse

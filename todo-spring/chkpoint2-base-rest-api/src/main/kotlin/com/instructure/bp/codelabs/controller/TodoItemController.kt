@@ -1,5 +1,6 @@
 package com.instructure.bp.codelabs.controller
 
+import com.instructure.bp.codelabs.dto.SaveTodoItemDto
 import com.instructure.bp.codelabs.dto.TodoItemDto
 import com.instructure.bp.codelabs.service.TodoItemService
 import org.springframework.beans.factory.annotation.Autowired
@@ -17,8 +18,11 @@ class TodoItemController {
     @GetMapping
     fun getTodoItems(): List<TodoItemDto> = todoItemService.getAllTodoItems()
 
+    @GetMapping("/{id}")
+    fun getTodoItem(@PathVariable("id") id: String): TodoItemDto = todoItemService.getTodoItem(id)
+
     @PostMapping
-    fun addTodoItem(@RequestBody todoItemDto: TodoItemDto): ResponseEntity<TodoItemDto> {
+    fun addTodoItem(@RequestBody todoItemDto: SaveTodoItemDto): ResponseEntity<TodoItemDto> {
         val createdTodoItem = todoItemService.createTodoItem(todoItemDto)
         return ResponseEntity.status(HttpStatus.CREATED).body(createdTodoItem)
     }
@@ -29,7 +33,8 @@ class TodoItemController {
             @RequestBody todoItemDto: TodoItemDto): TodoItemDto = todoItemService.updateTodoItem(id, todoItemDto)
 
     @DeleteMapping("/{id}")
-    fun deleteTodoItem(@PathVariable("id") id: String) {
+    fun deleteTodoItem(@PathVariable("id") id: String): ResponseEntity<Nothing> {
         todoItemService.deleteTodoItem(id)
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).body(null)
     }
 }
