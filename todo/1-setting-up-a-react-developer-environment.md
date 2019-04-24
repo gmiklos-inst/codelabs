@@ -37,7 +37,7 @@ About to write to package.json:
   "name": "todo",
   "version": "1.0.0",
   "description": "",
-  "main": "app.js",
+  "main": "app.tsx",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

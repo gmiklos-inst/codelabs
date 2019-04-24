@@ -19,3 +19,13 @@ Now, let's add a `TextInput` to our application:
 ```javascript
 import 
 ```
+
+
+Add ‘check-types’ command
+
+In package.json:
+```json
+"scripts": {
+	"check-types": "tsc"
+}
+```
