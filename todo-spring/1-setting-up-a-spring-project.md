@@ -31,13 +31,21 @@ test {
 
 Now you have your base `SpringBootApplication` set up with all the required dependencies in your `build.gradle` file.
 
-## Checkpoint acceptance criteria
-Run the tests with `./gradlew test` and afterwards run the application with `./gradlew bootRun` to confirm you have everything set up correctly. You should get a similar output:
+## Build, test, run
+```bash
+$ ./gradlew build
+
+BUILD SUCCESSFUL in 0s
+6 actionable tasks: 6 executed
+
+```
 ```bash
 $ ./gradlew test
+
 BUILD SUCCESSFUL in 1s
 4 actionable tasks: 4 up-to-date
-
+```
+```bash
 $ ./gradlew bootRun
 > Task :bootRun
 
@@ -63,3 +71,13 @@ $ ./gradlew bootRun
 > :bootRun
 
 ```
+
+Alternatively, you can run your `jar` file directly and get the same output as with `./gradlew bootRun`.
+```bash
+$ java -jar build/libs/codelabs-0.0.1-SNAPSHOT.jar 
+```
+
+## Checkpoint acceptance criteria
+By the end of this checkpoint:
+* You should have an empty Spring project
+* You should be familiar with how to build, tests and run your application
