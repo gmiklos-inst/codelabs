@@ -16,10 +16,14 @@ class TodoItemController {
     private lateinit var todoItemService: TodoItemService
 
     @GetMapping
-    fun getTodoItems(): List<TodoItemDto> = todoItemService.getAllTodoItems()
+    fun getTodoItems(): List<TodoItemDto> {
+        return todoItemService.getAllTodoItems()
+    }
 
     @GetMapping("/{id}")
-    fun getTodoItem(@PathVariable("id") id: String): TodoItemDto = todoItemService.getTodoItem(id)
+    fun getTodoItem(@PathVariable("id") id: String): TodoItemDto {
+        return todoItemService.getTodoItem(id)
+    }
 
     @PostMapping
     fun addTodoItem(@RequestBody todoItemDto: SaveTodoItemDto): ResponseEntity<TodoItemDto> {
@@ -30,7 +34,9 @@ class TodoItemController {
     @PutMapping("/{id}")
     fun updateTodoItem(
             @PathVariable("id") id: String,
-            @RequestBody todoItemDto: TodoItemDto): TodoItemDto = todoItemService.updateTodoItem(id, todoItemDto)
+            @RequestBody todoItemDto: TodoItemDto): TodoItemDto {
+        return todoItemService.updateTodoItem(id, todoItemDto)
+    }
 
     @DeleteMapping("/{id}")
     fun deleteTodoItem(@PathVariable("id") id: String): ResponseEntity<Nothing> {

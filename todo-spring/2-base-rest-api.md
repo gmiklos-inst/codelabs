@@ -150,7 +150,7 @@ We will handle errors, authorization and filtering in following checkpoint.
 ## Swagger API
 Wouldn't it be great if we could serve the Swagger documentation for our `RestController`? We can do it with SpringFox!
 
-First, let's add the corresponding dependencis to our `build.gradle` file's `dependencies` block:
+First, let's add the corresponding dependencies to our `build.gradle` file's `dependencies` block:
 ```groovy
 	implementation "io.springfox:springfox-swagger2:2.9.2"
 	implementation "io.springfox:springfox-swagger-ui:2.9.2"
