@@ -1,3 +1,9 @@
+---
+title: Implementing a REST API
+parent: Spring Boot & Kotlin
+nav_order: 3
+---
+
 # Creating the rest API
 
 As a first step, we need to plan how our REST API should look like. For this workshop, we will go 

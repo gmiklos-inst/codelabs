@@ -1,3 +1,9 @@
+---
+title: Prerequisites
+parent: Spring Boot & Kotlin
+nav_order: 2
+---
+
 # Setting up your Spring project
 
 ## Spring Initializr

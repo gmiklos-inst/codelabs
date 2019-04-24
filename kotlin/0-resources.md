@@ -1,3 +1,9 @@
+---
+title: Resources
+parent: Spring Boot & Kotlin
+nav_order: 1
+---
+
 # Resources
 
 groovy, gradle
