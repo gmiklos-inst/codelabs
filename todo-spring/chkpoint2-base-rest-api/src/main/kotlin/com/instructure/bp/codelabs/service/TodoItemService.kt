@@ -9,46 +9,25 @@ import java.util.*
 @Service
 class TodoItemService {
 
-    private var todoItems = listOf(
-            TodoItemDto("1", "title1", true, OffsetDateTime.now()),
-            TodoItemDto("2", "title2", true, OffsetDateTime.now()),
-            TodoItemDto("3", "title3", false, OffsetDateTime.now()),
-            TodoItemDto("4", "title4", true, OffsetDateTime.now())
-    )
-
-    fun getAllTodoItems() = todoItems.sortedBy { it.id }
-
-    fun getTodoItem(id: String) = todoItems.first { it.id == id }
-
-    fun createTodoItem(saveTodoItemDto: SaveTodoItemDto): TodoItemDto {
-        val dto = TodoItemDto(
-                nextId(),
-                saveTodoItemDto.title,
-                saveTodoItemDto.completed,
-                OffsetDateTime.now())
-        todoItems += dto
-        return dto
-    }
-
-    fun updateTodoItem(id: String, todoItemDto: TodoItemDto): TodoItemDto {
-        val currentDateTime = OffsetDateTime.now()
-        val oldTodoItem = todoItems.first { it.id == id }
-        val completed = !oldTodoItem.completed && todoItemDto.completed
-        val completedAt = if(completed) currentDateTime else null
-
-        val updatedTodoItem = todoItemDto.copy(
-                id = id,
-                updatedAt = currentDateTime,
-                completedAt = completedAt
+    companion object {
+        val TODO_ITEMS = listOf(
+                TodoItemDto("1", "title1", true, OffsetDateTime.now()),
+                TodoItemDto("2", "title2", true, OffsetDateTime.now()),
+                TodoItemDto("3", "title3", false, OffsetDateTime.now()),
+                TodoItemDto("4", "title4", true, OffsetDateTime.now())
         )
-        todoItems = todoItems.filter { it.id != id } + updatedTodoItem
-        return updatedTodoItem
+        val TODO_ITEM = TODO_ITEMS.first()
+        val ID = TODO_ITEM.id
     }
 
-    fun deleteTodoItem(id: String): String {
-        todoItems = todoItems.filter { it.id != id }
-        return id
-    }
+    fun getAllTodoItems() = TODO_ITEMS
 
-    private fun nextId() = UUID.randomUUID().toString()
+    fun getTodoItem(id: String) = TODO_ITEM
+
+    fun createTodoItem(saveTodoItemDto: SaveTodoItemDto) = TODO_ITEM
+
+    fun updateTodoItem(id: String, todoItemDto: TodoItemDto) = TODO_ITEM
+
+    fun deleteTodoItem(id: String) = ID
+
 }
