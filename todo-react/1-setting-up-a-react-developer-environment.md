@@ -1,3 +1,9 @@
+---
+title: Setting up your React project
+parent: React
+nav_order: 1
+---
+
 # Setting up your React project
 
 In order to simplify things we are going to use the Parcel bundler for compiling, bundling our source code. While Webpack, Rollup and others are very popular choices for such tasks Parcel is unique in a way that it barely needs any configuration for getting up and running.
@@ -55,12 +61,12 @@ Apart from the package name (which equates to your app name) you do not necessar
 
 There are two types of dependencies we are going to install:
 
-* Development dependencies as the name implies are using during our development process. The absolute minimum 
+* Development dependencies as the name implies are using during our development process. The absolute minimum
 * Application dependencies are what your application uses during runtime.
 
 Our development dependencies include:
 
-* Babel - This is a so called "transpiler" that can transform your React JSX code to its final form that is digestible by your browser - though that is not all that it is capable of - it can also enable you to use newer Javascript versions despite browsers not yet supporting particular language features. 
+* Babel - This is a so called "transpiler" that can transform your React JSX code to its final form that is digestible by your browser - though that is not all that it is capable of - it can also enable you to use newer Javascript versions despite browsers not yet supporting particular language features.
 * SASS - Mature and stable CSS extension language. While not necessarily required it makes using CSS a more comfortable experience.
 
 All of the dependencies can be installed using the following command:
@@ -74,7 +80,7 @@ Most developers will go with one of the Babel presets available. The ```env``` p
 Application dependencies we are going to work with:
 
 * React - World famous component framework by Facebook.
-* Instructure UI - our in-house open source React components. Includes a lot of components created by the Canvas folks. 
+* Instructure UI - our in-house open source React components. Includes a lot of components created by the Canvas folks.
 
 Application dependencies can be installed with the following command:
 
@@ -139,7 +145,7 @@ As mentioned previously, the `class-properties` plugin enables the use of static
 class SomeClass {
 
 	static somevar = 1
-	
+
 	static somefun() {}
 
 }
@@ -179,7 +185,7 @@ ReactDOM.render(<App />, $container);
 
 ### Set up the development server
 
-We are going to use development server included in Parcel that compiles and hot-reloads our code. 
+We are going to use development server included in Parcel that compiles and hot-reloads our code.
 
 Issue the following command:
 
@@ -189,6 +195,6 @@ Server running at http://localhost:1234
 ✨  Built in 334ms.
 ```
 
-First time compilation can be somewhat slow but subsequent iterations will be much faster. By default the development server listens at port 1234. You should visit [http://localhost:1234](http://localhost:1234) with your browser and verify that the welcome message is displayed. There also should be zero errors in the developer console (More Tools > Developer Tools in Chrome). 
+First time compilation can be somewhat slow but subsequent iterations will be much faster. By default the development server listens at port 1234. You should visit [http://localhost:1234](http://localhost:1234) with your browser and verify that the welcome message is displayed. There also should be zero errors in the developer console (More Tools > Developer Tools in Chrome).
 
 Any modification in the code will trigger compilation and reload the page in your browser. Your environment is all set for development!
