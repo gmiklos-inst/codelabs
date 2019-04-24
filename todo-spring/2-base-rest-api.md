@@ -141,6 +141,45 @@ Implement the other endpoints similarly to the `GET allTodoItems` implementation
 
 We will handle errors, authorization and filtering in following checkpoint.
 
+## Swagger API
+Wouldn't it be great if we could serve the Swagger documentation for our `RestController`? We can do it with SpringFox!
+
+First, let's add the corresponding dependencis to our `build.gradle` file's `dependencies` block:
+```groovy
+	implementation "io.springfox:springfox-swagger2:2.9.2"
+	implementation "io.springfox:springfox-swagger-ui:2.9.2"
+```
+
+### Enable SpringFox
+As with the custom `Jackson2ObjectMapperBuilder`, we need to configure SpringFox as well. 
+We can do it the same way, in a `Configuration` class, as described in the following snippet:
+```kotlin
+@Configuration
+class SwaggerConfiguration {
+
+    @Bean
+    fun swaggerApi() = Docket(DocumentationType.SWAGGER_2)
+            .select()
+            .apis(RequestHandlerSelectors.basePackage("com.instructure.bp.codelabs"))
+            .paths(PathSelectors.any())
+            .build()
+
+}
+```
+
+Finally, we need to enable Swagger in our `Application` class:
+```kotlin
+@EnableSwagger2
+@SpringBootApplication
+class CodelabsApplication
+```
+
+### Check out the self-served Swagger docs
+* Start our server: `./gradlew bootRun`
+* Wait for Spring to finish initialization
+* Visit `http://localhost:8080/swagger-ui.html`
+* Feel free to try the API endpoints from the UI
+
 ## Checkpoint acceptance criteria
 Before advancing to the next checkpoint, please make sure that you:
 * Implemented the basic REST API with a Spring `RestController`
@@ -148,3 +187,4 @@ Before advancing to the next checkpoint, please make sure that you:
 * You have a Service for business logic and it is injected into the `RestController`
 * Configured Jackson serialization to conform to the Swagger documentation
 * You have tests to make sure that current requirements are met
+* We serve our Swagger API docs with the application
