@@ -24,6 +24,7 @@
     "@inst/bridge-ui-components.avatar": "^13.1.0",
     "@inst/bridge-ui-components.buc-utils": "^13.1.0",
     "@inst/bridge-ui-components.button": "^13.1.0",
+    "@inst/bridge-ui-components.checkbox": "^13.1.0",
     "@inst/bridge-ui-components.chip": "^13.1.0",
     "@inst/bridge-ui-components.focus-indicator": "^13.1.0",
     "@inst/bridge-ui-components.format-message": "^13.1.0",
