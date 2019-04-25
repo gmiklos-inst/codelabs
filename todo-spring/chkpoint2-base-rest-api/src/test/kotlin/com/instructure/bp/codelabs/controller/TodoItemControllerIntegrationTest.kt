@@ -16,7 +16,7 @@ class TodoItemControllerIntegrationTest {
     lateinit var restTemplate: TestRestTemplate
 
     @Test
-    fun `test GET`() {
+    fun `test GET all todoItems`() {
         restTemplate.exchange(
                 "/todos",
                 HttpMethod.GET,
@@ -25,7 +25,16 @@ class TodoItemControllerIntegrationTest {
     }
 
     @Test
-    fun `test POST`() {
+    fun `test GET single todoItem`() {
+        restTemplate.exchange(
+                "/todos/1",
+                HttpMethod.GET,
+                null,
+                Any::class.java).statusCodeValue shouldBe 200
+    }
+
+    @Test
+    fun `test POST todoItem`() {
         restTemplate.exchange(
                 "/todos",
                 HttpMethod.POST,
@@ -34,7 +43,7 @@ class TodoItemControllerIntegrationTest {
     }
 
     @Test
-    fun `test PUT`() {
+    fun `test PUT todoItem`() {
         restTemplate.exchange(
                 "/todos/1",
                 HttpMethod.PUT,
@@ -43,11 +52,11 @@ class TodoItemControllerIntegrationTest {
     }
 
     @Test
-    fun `test DELETE`() {
+    fun `test DELETE todoItem`() {
         restTemplate.exchange(
-                "/todos/1",
+                "/todos/2",
                 HttpMethod.DELETE,
                 null,
-                Any::class.java).statusCodeValue shouldBe 200
+                Any::class.java).statusCodeValue shouldBe 204
     }
 }

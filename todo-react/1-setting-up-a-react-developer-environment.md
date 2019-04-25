@@ -1,3 +1,9 @@
+---
+title: Setting up your React project
+parent: React
+nav_order: 1
+---
+
 # Setting up your React project
 
 In order to simplify things we are going to use the Parcel bundler for compiling, bundling our source code. While Webpack, Rollup and others are very popular choices for such tasks Parcel is unique in a way that it barely needs any configuration for getting up and running.
@@ -55,13 +61,14 @@ Apart from the package name (which equates to your app name) you do not necessar
 
 There are two types of dependencies we are going to install:
 
-* Development dependencies as the name implies are using during our development process. The absolute minimum 
+* Development dependencies as the name implies are used during the development process.
 * Application dependencies are what your application uses during runtime.
 
 Our development dependencies include:
 
-* Babel - This is a so called "transpiler" that can transform your React JSX code to its final form that is digestible by your browser - though that is not all that it is capable of - it can also enable you to use newer Javascript versions despite browsers not yet supporting particular language features. 
+* Babel - This is a so called "transpiler" that can transform your React JSX/TSX code to its final form that is digestible by your browser - though that is not all that it is capable of - it can also enable you to use newer Javascript versions despite browsers not yet supporting particular language features.
 * SASS - Mature and stable CSS extension language. While not necessarily required it makes using CSS a more comfortable experience.
+* Typescript Compiler and Types - We are using Typescript in this tutorial which is a superset of Javascript that provides static typing for extra safety. The `@babel/preset-typescript` enables Typescript language support and the `@types/react` contains type definitions for the React library. These definitions are quite useful to have as the vast majority of libraries are written in Javascript without any type definitions. Installing the definitions enables the compiler to very our React usage.
 
 All of the dependencies can be installed using the following command:
 
@@ -69,17 +76,17 @@ All of the dependencies can be installed using the following command:
 npm install --save-dev @babel/core @babel/plugin-proposal-class-properties @babel/preset-env @babel/preset-react @babel/preset-typescript @types/react @types/react-dom sass
 ```
 
-Most developers will go with one of the Babel presets available. The ```env``` preset will let us to use modern Javascript features (ES2015 and up) while the ```react``` preset contains everything for compiling JSX code. Apart from the presets you can also use additional plugins that enable even more language features - ```plugin-proposal-class-properties``` makes it possible to use static class properties (not required for React to work but we will include it for convenience).
+Most developers will use the presets Babel provides which are collections of sane defaults for frequent use cases. The ```env``` preset will let us to use modern Javascript features (ES2015 and up) while the ```react``` preset contains everything for compiling JSX code. `preset-typescript` is for Typescript support as discussed previously. Apart from the presets you can also use additional plugins that enable even more language features - ```plugin-proposal-class-properties``` makes it possible to use static class properties (not required for React to work but we will include it for convenience).
 
 Application dependencies we are going to work with:
 
 * React - World famous component framework by Facebook.
-* Instructure UI - our in-house open source React components. Includes a lot of components created by the Canvas folks. 
+* Bridge UI Components - our in-house open source React components. Includes a lot of ready to use components.
 
 Application dependencies can be installed with the following command:
 
 ```
-npm install --save @instructure/ui-elements @instructure/ui-layout react react-dom
+npm install --save react react-dom @inst/bridge-ui-components @inst/bridge-ui-components.buc-utils @inst/bridge-ui-components.format-message @inst/bridge-ui-components.icon @inst/bridge-ui-components.svg-props @inst/bridge-ui-components.text-input
 ```
 
 Both commands should go smoothly without any errors. Now that you got your the correct dependencies we can begin developing our application.
@@ -104,7 +111,7 @@ The following is the HTML code for the entry point for our application:
 </html>
 ```
 
-I suggest putting this in a file called ```index.html``` in your workspace. Most of these lines are standard stuff that you might be familiar with - significant lines include the container for the application ```app-container``` where React will render your application and the included JS file ```app.js``` which will contain most our application code. You are free to customize this template however you wish - these are just the absolute bare-bones we need to get the app running.
+I suggest putting this in a file called `index.html` in your workspace. Most of these lines are standard stuff that you might be familiar with - significant lines include the container for the application `app-container` where React will render your application and the included JS file `app.tsx` which will contain most our application code. The .tsx extension in this case denotes that it is a Typescript file with React extensions. You are free to customize this template however you wish - these are just the absolute bare-bones we need to get the app running.
 
 ### Create styles SASS file
 
@@ -133,13 +140,15 @@ const element = <h1>Hello, world!</h1>;
 
 The `@babel/env` preset contains a set of transformations that enable you to use more modern Javascript while developing your appication.
 
+The `@babel/typescript` preset has sane defaults for compiling Typescript code. It also supports React-specific .tsx files.
+
 As mentioned previously, the `class-properties` plugin enables the use of static member methods and fields in classes like this:
 
 ```js
 class SomeClass {
 
 	static somevar = 1
-	
+
 	static somefun() {}
 
 }
@@ -147,10 +156,28 @@ class SomeClass {
 
 This is purely for convenience sake and is not a hard requirement.
 
+### Tweak the Typescript compiler
 
-### Create the application entry point JS file
+Just drop a file named `tsconfig.json` in your workspace root:
 
-Below is the necessary machinery to get React and Instructure UI running. It does not do anything spectacular yet but it should give as a general idea on how we will build our application. I suggest naming this file `app.tsx` and putting it in your workspace root.
+```json
+{
+    "compilerOptions": {
+      "jsx": "react",
+      "noImplicitAny": true,
+      "esModuleInterop": true
+    },
+    "exclude": [
+        "node_modules"
+    ]
+}
+```
+
+Parcel and Babel should pick it up automatically. These settings are here to ensure that we can use the React extensions, do not allow implicit any in  your source code - meaning that you must define types everywhere you are using a variable. The `esModuleInterop` is included for Babel compatibility.
+
+### Create the application entry point TSX file
+
+Below is the necessary machinery to get React and Bridge UI running. It does not do anything spectacular yet but it should give as a general idea on how we will build our application. I suggest naming this file `app.tsx` and putting it in your workspace root.
 
 ```typescript
 import './styles.scss' // parcel will automatically pick up, compile and include this file
@@ -179,7 +206,7 @@ ReactDOM.render(<App />, $container);
 
 ### Set up the development server
 
-We are going to use development server included in Parcel that compiles and hot-reloads our code. 
+We are going to use development server included in Parcel that compiles and hot-reloads our code.
 
 Issue the following command:
 
@@ -189,6 +216,6 @@ Server running at http://localhost:1234
 ✨  Built in 334ms.
 ```
 
-First time compilation can be somewhat slow but subsequent iterations will be much faster. By default the development server listens at port 1234. You should visit [http://localhost:1234](http://localhost:1234) with your browser and verify that the welcome message is displayed. There also should be zero errors in the developer console (More Tools > Developer Tools in Chrome). 
+First time compilation can be somewhat slow but subsequent iterations will be much faster. By default the development server listens at port 1234. You should visit [http://localhost:1234](http://localhost:1234) with your browser and verify that the welcome message is displayed. There also should be zero errors in the developer console (More Tools > Developer Tools in Chrome).
 
 Any modification in the code will trigger compilation and reload the page in your browser. Your environment is all set for development!
