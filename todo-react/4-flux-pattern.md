@@ -1,6 +1,13 @@
+---
+title: Flux architecture and the application state
+parent: React
+nav_order: 4
+---
+
+
 # Flux architecture and the application state
 
-Flux is an application architecture invented by Facebook for building client-side web applications. It is more like a pattern than a framework in which data flows in one direction. 
+Flux is an application architecture invented by Facebook for building client-side web applications. It is more like a pattern than a framework in which data flows in one direction.
 
 Major parts of an application that adheres to the Flux architecture principles:
 * Views - retrieves data from the store and display them.
