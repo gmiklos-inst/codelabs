@@ -7,6 +7,7 @@ has_children: true
 
 ## when in doubt
 * https://ruby-doc.org/
+* https://guides.rubyonrails.org/
 * google / stackoverflow
 
 ## TryRuby
