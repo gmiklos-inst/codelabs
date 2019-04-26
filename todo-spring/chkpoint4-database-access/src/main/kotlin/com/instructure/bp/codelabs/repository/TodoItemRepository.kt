@@ -1,11 +1,8 @@
 package com.instructure.bp.codelabs.repository
 
 import com.instructure.bp.codelabs.entity.TodoItem
+import org.springframework.data.jpa.repository.JpaRepository
+import org.springframework.stereotype.Repository
 
-interface TodoItemRepository {
-    fun findAll(): List<TodoItem>
-
-    fun findOne(id: String): TodoItem?
-
-    fun save(todoItem: TodoItem): TodoItem
-}
+@Repository
+interface TodoItemRepository : JpaRepository<TodoItem, String>
