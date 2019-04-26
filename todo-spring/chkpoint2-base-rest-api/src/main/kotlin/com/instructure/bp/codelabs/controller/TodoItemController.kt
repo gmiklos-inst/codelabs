@@ -1,6 +1,6 @@
 package com.instructure.bp.codelabs.controller
 
-import com.instructure.bp.codelabs.dto.SaveTodoItemDto
+import com.instructure.bp.codelabs.dto.BaseTodoItemDto
 import com.instructure.bp.codelabs.dto.TodoItemDto
 import com.instructure.bp.codelabs.service.TodoItemService
 import org.springframework.beans.factory.annotation.Autowired
@@ -26,8 +26,8 @@ class TodoItemController {
     }
 
     @PostMapping
-    fun addTodoItem(@RequestBody todoItemDto: SaveTodoItemDto): ResponseEntity<TodoItemDto> {
-        val createdTodoItem = todoItemService.createTodoItem(todoItemDto)
+    fun addTodoItem(@RequestBody baseTodoItemDto: BaseTodoItemDto): ResponseEntity<TodoItemDto> {
+        val createdTodoItem = todoItemService.createTodoItem(baseTodoItemDto)
         return ResponseEntity.status(HttpStatus.CREATED).body(createdTodoItem)
     }
 

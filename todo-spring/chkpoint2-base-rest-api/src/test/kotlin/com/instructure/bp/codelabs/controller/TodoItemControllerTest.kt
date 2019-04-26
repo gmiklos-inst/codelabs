@@ -1,6 +1,6 @@
 package com.instructure.bp.codelabs.controller
 
-import com.instructure.bp.codelabs.dto.SaveTodoItemDto
+import com.instructure.bp.codelabs.dto.BaseTodoItemDto
 import com.instructure.bp.codelabs.dto.TodoItemDto
 import com.instructure.bp.codelabs.service.TodoItemService
 import io.kotlintest.shouldBe
@@ -59,7 +59,7 @@ class TodoItemControllerTest {
 
     @Test
     fun `createTodoItem returns the created todoItem`() {
-        val saveTodoItem = SaveTodoItemDto("title", false)
+        val saveTodoItem = BaseTodoItemDto("title", false)
         val expectedTodoItem = TodoItemDto("12345", saveTodoItem.title, saveTodoItem.completed, OffsetDateTime.now())
         `when`(todoItemService.createTodoItem(saveTodoItem)).thenReturn(expectedTodoItem)
 
