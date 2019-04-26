@@ -6,6 +6,7 @@ import org.hibernate.annotations.CreationTimestamp
 import org.hibernate.annotations.GenericGenerator
 import org.hibernate.annotations.UpdateTimestamp
 import java.time.OffsetDateTime
+import javax.persistence.Column
 import javax.persistence.Entity
 import javax.persistence.GeneratedValue
 import javax.persistence.Id
@@ -22,6 +23,7 @@ data class TodoItem(
         val completed: Boolean = false,
 
         @field:CreationTimestamp
+        @Column(updatable = false)
         @JsonFormat(shape = JsonFormat.Shape.STRING)
         val createdAt: OffsetDateTime? = null,
 

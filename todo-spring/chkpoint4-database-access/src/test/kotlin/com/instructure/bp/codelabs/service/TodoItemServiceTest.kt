@@ -18,6 +18,7 @@ import java.time.Clock
 import java.time.OffsetDateTime
 import java.time.Instant
 import java.time.ZoneId
+import java.util.*
 import javax.persistence.EntityNotFoundException
 
 
@@ -83,7 +84,7 @@ class TodoItemServiceTest {
     fun `createTodoItem returns result from repository as DTO`() {
         val saveTodoItemRequest = BaseTodoItemDto("title")
         val entityToSave = TodoItem("", saveTodoItemRequest.title, false)
-        val savedEntity = entityToSave.copy(id="uuid", createdAt = createdAt)
+        val savedEntity = entityToSave.copy(id = "uuid", createdAt = createdAt)
         `when`(todoItemRepository.save(entityToSave)).thenReturn(savedEntity)
         val expectedDto = savedEntity.toDto()
 
@@ -96,7 +97,7 @@ class TodoItemServiceTest {
     fun `createTodoItem saves TodoItem completedAt if completed set to true`() {
         val saveTodoItemRequest = BaseTodoItemDto("title", true)
         val entityToSave = TodoItem("", saveTodoItemRequest.title, true, completedAt = now)
-        val savedEntity = entityToSave.copy(id="uuid", createdAt = createdAt)
+        val savedEntity = entityToSave.copy(id = "uuid", createdAt = createdAt)
         `when`(todoItemRepository.save(entityToSave)).thenReturn(savedEntity)
         val expectedDto = savedEntity.toDto()
 
@@ -108,10 +109,10 @@ class TodoItemServiceTest {
     @Test
     fun `updateTodoItem saves TodoItem via repository`() {
         val id = "id"
-        val dto = BaseTodoItemDto( "title1", false)
+        val dto = BaseTodoItemDto("title1", false)
         val entityToUpdateWith = TodoItem(id, dto.title, dto.completed)
         val updatedEntity = entityToUpdateWith.copy(id = id, updatedAt = updatedAt.plusHours(2))
-        `when`(todoItemRepository.existsById(id)).thenReturn(true)
+        `when`(todoItemRepository.findById(id)).thenReturn(Optional.of(entityToUpdateWith))
         `when`(todoItemRepository.save(entityToUpdateWith)).thenReturn(updatedEntity)
 
         val expectedDto = updatedEntity.toDto()
@@ -124,13 +125,14 @@ class TodoItemServiceTest {
     @Test
     fun `updateTodoItem updates completedAt if todoItem is completed`() {
         val id = "id"
-        val dto = BaseTodoItemDto( "title1", true)
-        val entityToUpdateWith = TodoItem(id, dto.title, dto.completed, completedAt = now)
-        val updatedEntity = entityToUpdateWith.copy(id = id, updatedAt = updatedAt.plusHours(2))
-        `when`(todoItemRepository.existsById(id)).thenReturn(true)
-        `when`(todoItemRepository.save(entityToUpdateWith)).thenReturn(updatedEntity)
+        val dto = BaseTodoItemDto("title1", true)
+        val entityToBeUpdated = TodoItem(id, dto.title, false)
+        val update = TodoItem(id, dto.title, true, completedAt = now)
+        val updateResult = entityToBeUpdated.copy(id = id, updatedAt = updatedAt.plusHours(2))
+        `when`(todoItemRepository.findById(id)).thenReturn(Optional.of(entityToBeUpdated))
+        `when`(todoItemRepository.save(update)).thenReturn(updateResult)
 
-        val expectedDto = updatedEntity.toDto()
+        val expectedDto = updateResult.toDto()
 
         val actualDto = todoItemService.updateTodoItem(id, dto)
 
@@ -140,7 +142,7 @@ class TodoItemServiceTest {
     @Test
     fun `updateTodoItem throws exception if entity not found`() {
         val missingId = "not here"
-        `when`(todoItemRepository.existsById(missingId)).thenReturn(false)
+        `when`(todoItemRepository.findById(missingId)).thenReturn(Optional.empty())
 
         shouldThrow<EntityNotFoundException> {
             todoItemService.updateTodoItem(missingId, BaseTodoItemDto(""))
@@ -166,7 +168,7 @@ class TodoItemServiceTest {
         }
     }
 
-    private fun Clock.setup(){
+    private fun Clock.setup() {
         `when`(instant()).thenReturn(Instant.parse("2007-12-03T10:15:30Z"))
         `when`(zone).thenReturn(ZoneId.of("+02:00"))
     }

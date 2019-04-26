@@ -30,12 +30,11 @@ class TodoItemService {
             ).toDto()
 
     fun updateTodoItem(id: String, baseTodoItemDto: BaseTodoItemDto) =
-            if (todoItemRepository.existsById(id)) {
-                todoItemRepository.save(
-                        baseTodoItemDto.toEntity(id)
-                ).toDto()
-            } else throw EntityNotFoundException()
-
+            todoItemRepository.findById(id).orElseThrow {
+                EntityNotFoundException()
+            }.let { originalTodoItem ->
+                todoItemRepository.save(originalTodoItem.updateWith(baseTodoItemDto))
+            }.toDto()
 
     fun deleteTodoItem(id: String) {
         if (todoItemRepository.existsById(id)) {
@@ -43,10 +42,19 @@ class TodoItemService {
         } else throw EntityNotFoundException()
     }
 
-    private fun BaseTodoItemDto.toEntity(id: String = "") = TodoItem(
-            id = id,
+    private fun BaseTodoItemDto.toEntity() = TodoItem(
+            id = "",
             title = title,
             completed = completed,
-            completedAt = if (completed) OffsetDateTime.now(clock) else null
+            completedAt = completedDate(completed)
     )
+
+    private fun TodoItem.updateWith(baseTodoItemDto: BaseTodoItemDto) =
+            this.copy(
+                    title = baseTodoItemDto.title,
+                    completed = baseTodoItemDto.completed,
+                    completedAt = completedDate(baseTodoItemDto.completed)
+            )
+
+    private fun completedDate(completed: Boolean) = if (completed) OffsetDateTime.now(clock) else null
 }

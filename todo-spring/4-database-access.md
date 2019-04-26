@@ -55,6 +55,7 @@ data class TodoItem(
         val completed: Boolean = false,
 
         @field:CreationTimestamp
+        @Column(updatable = false)
         @JsonFormat(shape = JsonFormat.Shape.STRING)
         val createdAt: OffsetDateTime? = null,
 
