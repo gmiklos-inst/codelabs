@@ -4,7 +4,7 @@ import { App } from './App'
 
 describe('App', () => {
   it('renders the greeting', () => {
-    const { queryByText, getByText, findAllByText } = render(<App />);
+    const { getByText } = render(<App />);
     getByText('Hi!');
   });
 });

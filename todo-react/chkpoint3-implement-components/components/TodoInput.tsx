@@ -8,6 +8,7 @@ export class TodoInput extends Component {
         return <TextInput
         value="TODO item text"
         label="Add new TODO item here"
+        onChange={() => {}}
         icon={<EditIcon />}
       />;
     }

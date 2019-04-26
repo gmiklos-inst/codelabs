@@ -3,6 +3,6 @@ import React from 'react';
 
 import { App } from "./app";
 
-const $container = document.getElementById('app-container');
+const container = document.getElementById('app-container');
 
-ReactDOM.render(<App />, $container);
+ReactDOM.render(<App />, container);
