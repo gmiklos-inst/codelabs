@@ -9,25 +9,29 @@ import { ClearIcon } from '@inst/bridge-ui-components.icon';
 export type TodoItemRowProps = {
   item: TodoItem;
   onToggle: () => void;
+  onDelete: () => void;
 };
 
 export class TodoItemRow extends Component<TodoItemRowProps> {
     render() {
-      const { item, onToggle } = this.props;
+      const { item, onToggle, onDelete } = this.props;
         return <Tr>
           <Td>
             <Checkbox 
               checked={item.completed} 
-              onChange={(event) => {
-                onToggle();
-              }} 
+              onChange={() => onToggle()} 
             />
           </Td>
           <Td>
             {item.title}
           </Td>
           <Td>
-            <IconButton label="Clear" filled icon={<ClearIcon />} />
+            <IconButton 
+              label="Clear" 
+              filled 
+              icon={<ClearIcon />} 
+              onClick={() => onDelete()}
+            />
           </Td>
         </Tr>;
     }

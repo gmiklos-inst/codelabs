@@ -7,11 +7,12 @@ import { TodoItemRow } from './TodoItemRow';
 export type TodoListProps = {
   todoItems: TodoItem[];
   onToggleTodo: (id) => void;
+  onDeleteTodo: (id) => void;
 };
 
 export class TodoList extends Component<TodoListProps> {
   render() {
-    const { onToggleTodo, todoItems } = this.props;
+    const { onToggleTodo, onDeleteTodo, todoItems } = this.props;
     return <div className="todo-list">
       <Table responsive hover>
         <THead>
@@ -30,7 +31,12 @@ export class TodoList extends Component<TodoListProps> {
         <TBody>
           {
             todoItems.map((todoItem) =>
-              <TodoItemRow item={todoItem} key={todoItem.id} onToggle={() => onToggleTodo(todoItem.id) } />
+              <TodoItemRow 
+                item={todoItem} 
+                key={todoItem.id} 
+                onToggle={() => onToggleTodo(todoItem.id) } 
+                onDelete={() => onDeleteTodo(todoItem.id) } 
+              />
             )
           }
         </TBody>
