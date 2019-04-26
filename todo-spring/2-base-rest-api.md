@@ -25,6 +25,22 @@ A typical CRUD workflow consists of the following layers of components:
 * The `Repository` gets data from a database. In our case, from PostgreSQL.
 * It is also worth noting that a `RestController` works with [DTOs](https://martinfowler.com/eaaCatalog/dataTransferObject.html), while a `Repository` works on the `Entity` level.
 
+## TodoItemDto
+Let's create the Dto class that represents a TodoItem that can be (de)serialized from/into JSON format.
+This `TodoItemDto` should look similar to this:
+```kotlin
+data class TodoItemDto(
+        val id: String = "",
+        val title: String,
+        val completed: Boolean = false,
+        val createdAt: OffsetDateTime? = null,
+        val updatedAt: OffsetDateTime? = null,
+        val completedAt: OffsetDateTime? = null)
+```
+
+Using a data class can be useful here. Also, keep in mind that we can use Jackson annotations on 
+our `Dto` if there's a need for that in the future.
+
 ## TodoItemService
 In this section, we are not concerned with database access, thus our `Service` will return dummy in memory `TodoItemDto`s.
 * Create a `TodoItemService` Kotlin class in the `service` package.
