@@ -34,8 +34,8 @@ class TodoItemController {
     @PutMapping("/{id}")
     fun updateTodoItem(
             @PathVariable("id") id: String,
-            @RequestBody todoItemDto: TodoItemDto): TodoItemDto {
-        return todoItemService.updateTodoItem(id, todoItemDto)
+            @RequestBody baseTodoItemDto: BaseTodoItemDto): TodoItemDto {
+        return todoItemService.updateTodoItem(id, baseTodoItemDto)
     }
 
     @DeleteMapping("/{id}")

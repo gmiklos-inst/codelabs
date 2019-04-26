@@ -24,7 +24,7 @@ class TodoItemService {
 
     fun createTodoItem(baseTodoItemDto: BaseTodoItemDto) = TODO_ITEM
 
-    fun updateTodoItem(id: String, todoItemDto: TodoItemDto) = TODO_ITEM
+    fun updateTodoItem(id: String, todoItemDto: BaseTodoItemDto) = TODO_ITEM
 
     fun deleteTodoItem(id: String) {}
 
