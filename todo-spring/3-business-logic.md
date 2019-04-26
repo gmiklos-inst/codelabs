@@ -22,7 +22,10 @@ We need a `TodoItemRepository` interface with a corresponding dummy implementati
 ```kotlin
 interface TodoItemRepository {
     fun findAll(): List<TodoItem>
-    ...
+    fun getOne(id: String): TodoItem
+    fun save(todoItem: TodoItem): TodoItem
+    fun existsById(id: String): Boolean
+    fun deleteById(id: String)
 }
 
 @Repository
@@ -45,3 +48,5 @@ For easy conversion from `Dto` to `Entity` and vice versa, you can create `toEnt
 For this purpose, you can use `companion object`s, extension methods or simple utility methods.
 If in trouble, consult the checkpoint implementation.
 
+## Checkpoint acceptance criteria
+By the end of this checkpoint, you should have a `TodoItemService` implementation that handles all business use cases.
