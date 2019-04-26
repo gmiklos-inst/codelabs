@@ -1,9 +1,8 @@
 import './styles.scss'
 
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
 
-class App extends Component {
+export class App extends Component {
   render() {
     return (
       <div className="app">
@@ -12,7 +11,3 @@ class App extends Component {
     )
   }
 }
-
-const $container = document.getElementById('app-container');
-
-ReactDOM.render(<App />, $container);
