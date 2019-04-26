@@ -1,10 +1,8 @@
 package com.instructure.bp.codelabs.service
 
-import com.instructure.bp.codelabs.dto.SaveTodoItemDto
-import com.instructure.bp.codelabs.dto.TodoItemDto
+import com.instructure.bp.codelabs.dto.BaseTodoItemDto
 import com.instructure.bp.codelabs.entity.TodoItem
 import com.instructure.bp.codelabs.entity.toDto
-import com.instructure.bp.codelabs.exception.TodoItemNotFound
 import com.instructure.bp.codelabs.repository.TodoItemRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
@@ -14,10 +12,7 @@ import java.time.OffsetDateTime
 @Service
 class TodoItemService {
 
-    companion object {
-        val TODO_ITEM = TodoItemDto("1", "title1", true, OffsetDateTime.now())
-        val ID = TODO_ITEM.id
-    }
+    internal class NotFoundException(val missingId: String) : Exception()
 
     @Autowired
     private lateinit var todoItemRepository: TodoItemRepository
@@ -27,19 +22,29 @@ class TodoItemService {
 
     fun getAllTodoItems() = todoItemRepository.findAll().map { it.toDto() }
 
-    fun getTodoItem(id: String) = todoItemRepository.findOne(id)?.toDto()
-            ?: throw TodoItemNotFound(id)
+    fun getTodoItem(id: String) = todoItemRepository.getOne(id).toDto()
 
-    fun createTodoItem(saveTodoItemDto: SaveTodoItemDto) =
+    fun createTodoItem(baseTodoItemDto: BaseTodoItemDto) =
             todoItemRepository.save(
-                    saveTodoItemDto.toEntity()
+                    baseTodoItemDto.toEntity()
             ).toDto()
 
-    fun updateTodoItem(id: String, todoItemDto: TodoItemDto) = TODO_ITEM
+    fun updateTodoItem(id: String, baseTodoItemDto: BaseTodoItemDto) =
+            if (todoItemRepository.exists(id)) {
+                todoItemRepository.save(
+                        baseTodoItemDto.toEntity(id)
+                ).toDto()
+            } else throw NotFoundException(id)
 
-    fun deleteTodoItem(id: String) = ID
 
-    private fun SaveTodoItemDto.toEntity() = TodoItem(
+    fun deleteTodoItem(id: String) {
+        if (todoItemRepository.exists(id)) {
+            todoItemRepository.deleteById(id)
+        } else throw NotFoundException(id)
+    }
+
+    private fun BaseTodoItemDto.toEntity(id: String = "") = TodoItem(
+            id = id,
             title = title,
             completed = completed,
             completedAt = if (completed) OffsetDateTime.now(clock) else null
