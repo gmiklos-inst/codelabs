@@ -30,7 +30,7 @@ class TodoItemService {
             ).toDto()
 
     fun updateTodoItem(id: String, baseTodoItemDto: BaseTodoItemDto) =
-            if (todoItemRepository.exists(id)) {
+            if (todoItemRepository.existsById(id)) {
                 todoItemRepository.save(
                         baseTodoItemDto.toEntity(id)
                 ).toDto()
@@ -38,7 +38,7 @@ class TodoItemService {
 
 
     fun deleteTodoItem(id: String) {
-        if (todoItemRepository.exists(id)) {
+        if (todoItemRepository.existsById(id)) {
             todoItemRepository.deleteById(id)
         } else throw NotFoundException(id)
     }

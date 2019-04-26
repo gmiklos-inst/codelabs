@@ -110,7 +110,7 @@ class TodoItemServiceTest {
         val dto = BaseTodoItemDto( "title1", false)
         val entityToUpdateWith = TodoItem(id, dto.title, dto.completed)
         val updatedEntity = entityToUpdateWith.copy(id = id, updatedAt = updatedAt.plusHours(2))
-        `when`(todoItemRepository.exists(id)).thenReturn(true)
+        `when`(todoItemRepository.existsById(id)).thenReturn(true)
         `when`(todoItemRepository.save(entityToUpdateWith)).thenReturn(updatedEntity)
 
         val expectedDto = updatedEntity.toDto()
@@ -126,7 +126,7 @@ class TodoItemServiceTest {
         val dto = BaseTodoItemDto( "title1", true)
         val entityToUpdateWith = TodoItem(id, dto.title, dto.completed, completedAt = now)
         val updatedEntity = entityToUpdateWith.copy(id = id, updatedAt = updatedAt.plusHours(2))
-        `when`(todoItemRepository.exists(id)).thenReturn(true)
+        `when`(todoItemRepository.existsById(id)).thenReturn(true)
         `when`(todoItemRepository.save(entityToUpdateWith)).thenReturn(updatedEntity)
 
         val expectedDto = updatedEntity.toDto()
@@ -139,7 +139,7 @@ class TodoItemServiceTest {
     @Test
     fun `updateTodoItem throws exception if entity not found`() {
         val missingId = "not here"
-        `when`(todoItemRepository.exists(missingId)).thenReturn(false)
+        `when`(todoItemRepository.existsById(missingId)).thenReturn(false)
 
         val exception = shouldThrow<TodoItemService.NotFoundException> {
             todoItemService.updateTodoItem(missingId, BaseTodoItemDto(""))
@@ -151,7 +151,7 @@ class TodoItemServiceTest {
     @Test
     fun `deleteTodoItem deletes todoItem via repository`() {
         val id = "id"
-        `when`(todoItemRepository.exists(id)).thenReturn(true)
+        `when`(todoItemRepository.existsById(id)).thenReturn(true)
         todoItemService.deleteTodoItem(id)
 
         verify(todoItemRepository).deleteById(id)
@@ -160,7 +160,7 @@ class TodoItemServiceTest {
     @Test
     fun `deleteTodoItem throws exception if entity not found`() {
         val missingId = "not here"
-        `when`(todoItemRepository.exists(missingId)).thenReturn(false)
+        `when`(todoItemRepository.existsById(missingId)).thenReturn(false)
 
         val exception = shouldThrow<TodoItemService.NotFoundException> {
             todoItemService.deleteTodoItem(missingId)

@@ -9,7 +9,7 @@ interface TodoItemRepository {
 
     fun save(todoItem: TodoItem): TodoItem
 
-    fun exists(id: String): Boolean
+    fun existsById(id: String): Boolean
 
     fun deleteById(id: String)
 }

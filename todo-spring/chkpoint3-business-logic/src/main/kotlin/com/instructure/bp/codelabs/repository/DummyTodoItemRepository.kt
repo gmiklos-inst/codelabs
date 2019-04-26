@@ -22,7 +22,7 @@ class DummyTodoItemRepository : TodoItemRepository {
 
     override fun save(todoItem: TodoItem) = TODO_ITEM
 
-    override fun exists(id: String)=true
+    override fun existsById(id: String)=true
 
     override fun deleteById(id: String) {
 
