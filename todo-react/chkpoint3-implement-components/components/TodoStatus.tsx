@@ -9,6 +9,6 @@ export type TodoStatusProps = {
 export class TodoStatus extends Component<TodoStatusProps> {
     render() {
         const label = this.props.itemLeftCount > 1 ? `${this.props.itemLeftCount} items left` : this.props.itemLeftCount === 1 ? `1 item left` : `no items left`;
-        return <Chip label={label} />;
+        return <Chip label={label} data-testid="TodoStatus"/>;
     }
 }

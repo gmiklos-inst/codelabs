@@ -18,6 +18,7 @@ export class TodoFilter extends Component<TodoFilterProps> {
         return <RadioButtonGroup 
           selected={this.props.todoFilterState}
           onChange={() => {}}
+          data-testid="TodoFilter"
         >
           <RadioButton
             label="All"

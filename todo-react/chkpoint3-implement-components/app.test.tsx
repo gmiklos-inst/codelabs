@@ -21,4 +21,14 @@ describe('App', () => {
     getByTestId('TodoList');
   });
 
+  it('renders the status', async () => {
+    const { getByTestId } = render(<App />);
+    getByTestId('TodoStatus');
+  });
+
+  it('renders the filters', async () => {
+    const { getByTestId } = render(<App />);
+    getByTestId('TodoFilter');
+  });
+
 });

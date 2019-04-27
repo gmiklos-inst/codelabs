@@ -21,7 +21,7 @@ export class TodoItemRow extends Component<TodoItemRowProps> {
             {item.title}
           </Td>
           <Td>
-            <IconButton label="Clear" filled icon={<ClearIcon />} />
+            <IconButton label="Remove" filled icon={<ClearIcon />} />
           </Td>
         </Tr>;
     }
