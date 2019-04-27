@@ -1,5 +1,6 @@
 package com.instructure.bp.codelabs.controller
 
+import com.instructure.bp.codelabs.dto.BaseTodoItemDto
 import com.instructure.bp.codelabs.dto.TodoItemDto
 import io.kotlintest.shouldBe
 import org.junit.jupiter.api.Test
@@ -38,7 +39,7 @@ class TodoItemControllerIntegrationTest {
         restTemplate.exchange(
                 "/todos",
                 HttpMethod.POST,
-                HttpEntity(TodoItemDto("1", "title", true)),
+                HttpEntity(BaseTodoItemDto("title", true)),
                 Any::class.java).statusCodeValue shouldBe 201
     }
 
@@ -47,7 +48,7 @@ class TodoItemControllerIntegrationTest {
         restTemplate.exchange(
                 "/todos/1",
                 HttpMethod.PUT,
-                HttpEntity(TodoItemDto("", "title", true)),
+                HttpEntity(BaseTodoItemDto("title", true)),
                 Any::class.java).statusCodeValue shouldBe 200
     }
 

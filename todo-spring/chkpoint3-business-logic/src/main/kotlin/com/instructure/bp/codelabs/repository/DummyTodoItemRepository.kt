@@ -16,10 +16,15 @@ class DummyTodoItemRepository : TodoItemRepository {
         val TODO_ITEM = TODO_ITEMS.first()
         val ID = TODO_ITEM.id
     }
-
     override fun findAll() = TODO_ITEMS
 
-    override fun findOne(id: String) = TODO_ITEM
+    override fun getOne(id: String) = TODO_ITEM
 
     override fun save(todoItem: TodoItem) = TODO_ITEM
+
+    override fun existsById(id: String)=true
+
+    override fun deleteById(id: String) {
+
+    }
 }

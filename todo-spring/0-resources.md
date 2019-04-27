@@ -11,6 +11,7 @@ nav_order: 1
 * [Get a big picture of Spring](https://docs.spring.io/spring/docs/5.2.0.BUILD-SNAPSHOT/spring-framework-reference/overview.html#overview)
 * [Get familiar with Kotlin](https://www.youtube.com/watch?v=X1RVYt2QKQE)
 * [Play with Kotlin Koans](https://play.kotlinlang.org/koans/overview)
+* Create a [Heroku](https://www.heroku.com/) account and install [HerokuCLI](https://devcenter.heroku.com/articles/heroku-cli)
 
 # Resources
 

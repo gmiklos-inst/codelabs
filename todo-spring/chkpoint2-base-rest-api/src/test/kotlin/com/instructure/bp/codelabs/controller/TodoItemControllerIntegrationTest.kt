@@ -39,7 +39,7 @@ class TodoItemControllerIntegrationTest {
         restTemplate.exchange(
                 "/todos",
                 HttpMethod.POST,
-                HttpEntity(TodoItemDto("1", "title", true)),
+                HttpEntity(BaseTodoItemDto("title", true)),
                 Any::class.java).statusCodeValue shouldBe 201
     }
 
