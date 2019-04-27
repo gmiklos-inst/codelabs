@@ -13,9 +13,9 @@ export type TodoItemRowProps = {
 export class TodoItemRow extends Component<TodoItemRowProps> {
     render() {
       const { item } = this.props;
-        return <Tr>
+        return <Tr data-testid="TodoItemRow">
           <Td>
-            <Checkbox checked={item.completed} onChange={() => {}}/>
+            <Checkbox checked={item.completed} onChange={() => {}} data-testid="TodoItemToggle"/>
           </Td>
           <Td>
             {item.title}

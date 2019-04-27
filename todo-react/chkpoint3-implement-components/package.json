@@ -5,6 +5,7 @@
   "main": "app.tsx",
   "scripts": {
     "test": "jest",
+    "tdd": "jest --watch",
     "ts-compile": "tsc"
   },
   "author": "",

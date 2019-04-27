@@ -10,7 +10,7 @@ export type TodoListProps = {
 
 export class TodoList extends Component<TodoListProps> {
   render() {
-    return <div className="todo-list">
+    return <div className="todo-list" data-testid="TodoList">
       <Table responsive hover>
         <THead>
           <Tr>
