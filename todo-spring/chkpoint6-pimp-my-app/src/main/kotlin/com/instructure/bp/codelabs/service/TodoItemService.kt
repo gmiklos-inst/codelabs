@@ -1,11 +1,11 @@
 package com.instructure.bp.codelabs.service
 
 import com.instructure.bp.codelabs.dto.BaseTodoItemDto
-import com.instructure.bp.codelabs.dto.TodoItemDto
 import com.instructure.bp.codelabs.entity.TodoItem
 import com.instructure.bp.codelabs.entity.toDto
 import com.instructure.bp.codelabs.repository.TodoItemRepository
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.data.domain.Pageable
 import org.springframework.stereotype.Service
 import java.time.Clock
 import java.time.OffsetDateTime
@@ -20,7 +20,10 @@ class TodoItemService {
     @Autowired
     private lateinit var clock: Clock
 
-    fun getAllTodoItems() = todoItemRepository.findAll().map { it.toDto() }
+    fun getAllTodoItems(pageable: Pageable) =
+            todoItemRepository
+                    .findAll(pageable)
+                    .map { it.toDto() }
 
     fun getTodoItem(id: String) = todoItemRepository.getOne(id).toDto()
 

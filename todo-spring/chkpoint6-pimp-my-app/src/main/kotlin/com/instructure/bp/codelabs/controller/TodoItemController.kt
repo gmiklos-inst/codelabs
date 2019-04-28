@@ -4,6 +4,7 @@ import com.instructure.bp.codelabs.dto.BaseTodoItemDto
 import com.instructure.bp.codelabs.dto.TodoItemDto
 import com.instructure.bp.codelabs.service.TodoItemService
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.data.domain.Pageable
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
@@ -12,12 +13,20 @@ import org.springframework.web.bind.annotation.*
 @RequestMapping("/todos")
 class TodoItemController {
 
+    private companion object {
+        const val TOTAL_COUNT = "X-Total-Count"
+    }
+
     @Autowired
     private lateinit var todoItemService: TodoItemService
 
     @GetMapping
-    fun getTodoItems(): List<TodoItemDto> {
-        return todoItemService.getAllTodoItems()
+    fun getTodoItems(pageable: Pageable): ResponseEntity<List<TodoItemDto>> {
+        val page = todoItemService.getAllTodoItems(pageable)
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .header(TOTAL_COUNT, "${page.totalElements}")
+                .body(page.toList())
     }
 
     @GetMapping("/{id}")
