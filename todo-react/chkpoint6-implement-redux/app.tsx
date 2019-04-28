@@ -20,6 +20,7 @@ import { TodoStatus } from './components/TodoStatus';
 import { TodoFilter, TodoFilterState } from './components/TodoFilter';
 import { appReducer, AppState } from './reducers';
 import { setTodoTextInput, addTodo, toggleTodo, deleteTodo, setTodoFilterState } from './actions';
+import {createPersistedAppStore} from "../chkpoint4-flux-pattern/store";
 
 class App extends Component<any> {
   render() {
@@ -65,36 +66,6 @@ class App extends Component<any> {
   }
 }
 
-export const loadState = (): AppState | undefined => {
-  try {
-    const serializedState = localStorage.getItem('state');
-    if (serializedState === null) {
-      return undefined;
-    }
-    return JSON.parse(serializedState);
-  } catch (err) {
-    return undefined;
-  }
-}; 
-
-export const saveState = (state: AppState) => {
-  try {
-    const serializedState = JSON.stringify(state);
-    localStorage.setItem('state', serializedState);
-  } catch {
-    // ignore errors
-  }
-};
-
-const store = createStore(appReducer, loadState());
-
-store.subscribe(() => {
-  saveState(store.getState());
-});
-
-
-const container = document.getElementById('app-container');
-
 const mapStateToProps = (state: AppState) => {
   return {
     textInput: state.ui.textInput,
@@ -113,4 +84,5 @@ const mapDispatchToProps = dispatch => ({
 
 const ConnectedApp = connect(mapStateToProps, mapDispatchToProps)(App);
 
-ReactDOM.render(<Provider store={store}><ConnectedApp /></Provider>, container);
+const container = document.getElementById('app-container');
+ReactDOM.render(<Provider store={createPersistedAppStore()}><ConnectedApp /></Provider>, container);

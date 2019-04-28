@@ -40,12 +40,12 @@ export type AppAction =
 export const setTodoTextInput = (textInput: string): AppAction => ({
     type: SET_TODO_TEXT_INPUT,
     textInput,
-})
+});
 
 export const setTodoFilterState = (filterState: TodoFilterState): AppAction => ({
     type: SET_TODO_FILTER_STATE,
     filterState,
-})
+});
 
 export const addTodo = (): AppAction => ({
     type: ADD_TODO,
