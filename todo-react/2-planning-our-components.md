@@ -32,4 +32,3 @@ Shows how many items are in completed state.
 ## TodoFilter
 
 Provides filters for to-do items. "All" should display all items regardless whether they are completed or not. "Active" should display items that need to be completed. "Completed" shows only finished items.
->>>>>>> Tweak step 2
