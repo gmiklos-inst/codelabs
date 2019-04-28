@@ -21,8 +21,20 @@ import { TodoFilter, TodoFilterState } from './components/TodoFilter';
 import { appReducer, AppState } from './reducers';
 import { setTodoTextInput, addTodo, toggleTodo, deleteTodo, setTodoFilterState } from './actions';
 import {createPersistedAppStore} from "../chkpoint4-flux-pattern/store";
+import {TodoItem} from "./model/TodoItem";
 
-class App extends Component<any> {
+type AppProps = {
+    todos: TodoItem[],
+    setTodoTextInput: (string) => void,
+    setTodoFilterState: (TodoFilterState) => void,
+    addTodo: () => void,
+    toggleTodo: (string) => void,
+    deleteTodo: (string) => void
+    textInput: string,
+    filterState: TodoFilterState,
+};
+
+class App extends Component<AppProps> {
   render() {
     const { 
       todos, 
