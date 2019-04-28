@@ -59,11 +59,10 @@ Apart from the package name (which equates to your app name) you do not necessar
 
 ### Set up access for Instructure NPM registry
 
-Some of the dependencies are available only through the Instructure NPM repository which requires authentication. Visit [https://instructure.jfrog.io](https://instructure.jfrog.io) then click on your username in the upper right corner. Under "Authentication Settings" click "Generate API Key" and copy it to your clipboard as you are going to need it for the next two commands:
+Some of the dependencies are available only through the Instructure NPM repository which requires authentication. Visit [https://instructure.jfrog.io](https://instructure.jfrog.io) then click on your username in the upper right corner. Under "Authentication Settings" click "Generate API Key" and copy it to your clipboard as you are going to need for the following command:
 
 ```shell
-$ npm config set registry https://instructure.jfrog.io/instructure/api/npm/npm-cache
-$ npm login
+$ npm login --registry=https://instructure.jfrog.io/instructure/api/npm/internal-npm/ --scope=@inst --always-auth
 Username: <enter your usernanme>
 Password: <enter the API key you have just copied>
 Email: (this IS public) <enter your email>
