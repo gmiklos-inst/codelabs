@@ -20,7 +20,7 @@ import { TodoStatus } from './components/TodoStatus';
 import { TodoFilter, TodoFilterState } from './components/TodoFilter';
 import { appReducer, AppState } from './reducers';
 import { setTodoTextInput, addTodo, toggleTodo, deleteTodo, setTodoFilterState } from './actions';
-import {createPersistedAppStore} from "../chkpoint4-flux-pattern/store";
+import {createPersistedAppStore} from "./store";
 import {TodoItem} from "./model/TodoItem";
 
 type AppProps = {

@@ -242,3 +242,122 @@ Lastly, the default case just returns the current state without any modification
 
 In this example we have created a single, central reducer function but with larger projects we frequently create distinct reducers for separate parts of application state then combine them into a single reducer. See [combineReducers()](https://redux.js.org/api/combinereducers) for more information.
 
+# Store
+
+Finally, we are going to set up our store in a separate module and write some test cases for it.
+
+Create a directory named `store` and put a file named `index.ts` in it with the following contents:
+
+```typescript jsx
+import { createStore } from 'redux';
+import {appReducer, AppState} from "../reducers";
+
+export const createAppStore = (initialState: AppState) => createStore(appReducer, initialState);
+``` 
+
+Creating a store is not ceremonious - you just need to provide your reducer and optionally an initial state for the store.
+
+In the same directory `store` directory create another file named `index.test.ts`:
+
+```typescript jsx
+import 'jest-dom/extend-expect';
+
+import {addTodo, deleteTodo, setTodoFilterState, setTodoTextInput, toggleTodo} from '../actions'
+import {createAppStore} from '.';
+import {TodoFilterState} from "../components/TodoFilter";
+import {AppState} from "../reducers";
+
+const testState = (expandWith: any): AppState => ({
+    ui: {
+        textInput: '',
+        filterState: TodoFilterState.ALL,
+    },
+    todos: [],
+    lastId: 0,
+    ...expandWith
+});
+
+describe('AppStore', () => {
+
+    it('setTodoTextInput sets text input state correctly', async () => {
+        const store = createAppStore(testState({
+            ui: {
+                textInput: "original",
+            }
+        }));
+
+        expect(store.getState().ui.textInput).toBe("original");
+
+        store.dispatch(setTodoTextInput("barackfa"));
+
+        expect(store.getState().ui.textInput).toBe("barackfa");
+    });
+
+    it('setTodoFilterState set filter state correctly', async () => {
+        const store = createAppStore(testState({
+            ui: {
+                filterState: TodoFilterState.ALL
+            }
+        }));
+
+        expect(store.getState().ui.filterState).toBe(TodoFilterState.ALL);
+
+        store.dispatch(setTodoFilterState(TodoFilterState.ACTIVE));
+
+        expect(store.getState().ui.filterState).toBe(TodoFilterState.ACTIVE);
+    });
+
+    it('addTodo adds item correctly', async () => {
+        const store = createAppStore(testState({
+            todos: []
+        }));
+
+        expect(store.getState().todos).toHaveLength(0);
+
+        store.dispatch(setTodoTextInput("barackfa"));
+        store.dispatch(addTodo());
+
+        expect(store.getState().todos).toHaveLength(1);
+        expect(store.getState().todos[0]).toEqual({
+            id: "1",
+            title: "barackfa",
+            completed: false
+        });
+    });
+
+    it('toggleTodo toggles item correctly', async () => {
+        const store = createAppStore(testState({
+            todos: [{
+                id: "1",
+                title: "item",
+                completed: false
+            }]
+        }));
+
+        expect(store.getState().todos[0].completed).toBeFalsy();
+
+        store.dispatch(toggleTodo("1"));
+
+        expect(store.getState().todos[0].completed).toBeTruthy();
+    });
+
+    it('deleteTodo deletes item correctly', async () => {
+        const store = createAppStore(testState({
+            todos: [{
+                id: "1",
+                title: "item",
+                completed: false
+            }]
+        }));
+
+        expect(store.getState().todos).toHaveLength(1);
+
+        store.dispatch(deleteTodo("1"));
+
+        expect(store.getState().todos).toHaveLength(0);
+    });
+
+});
+```
+
+As you can see, most of these tests presume a know initial state, dispatch an action and assert on the changes that have been effected by these actions.
