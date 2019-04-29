@@ -9,9 +9,17 @@ import org.springframework.data.domain.Pageable
 import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder
 import java.time.Clock
 import org.springframework.data.web.config.PageableHandlerMethodArgumentResolverCustomizer
+import net.kaczmarzyk.spring.data.jpa.web.SpecificationArgumentResolver
+import org.springframework.web.method.support.HandlerMethodArgumentResolver
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer
+
 
 @Configuration
-class WebConfiguration {
+class WebConfiguration: WebMvcConfigurer {
+
+    override fun addArgumentResolvers(argumentResolvers: MutableList<HandlerMethodArgumentResolver>) {
+        argumentResolvers.add(SpecificationArgumentResolver())
+    }
 
     @Bean
     fun jacksonBuilder() = Jackson2ObjectMapperBuilder().apply {

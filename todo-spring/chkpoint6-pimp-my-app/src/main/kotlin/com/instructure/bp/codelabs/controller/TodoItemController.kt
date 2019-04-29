@@ -2,9 +2,15 @@ package com.instructure.bp.codelabs.controller
 
 import com.instructure.bp.codelabs.dto.BaseTodoItemDto
 import com.instructure.bp.codelabs.dto.TodoItemDto
+import com.instructure.bp.codelabs.entity.TodoItem
 import com.instructure.bp.codelabs.service.TodoItemService
+import net.kaczmarzyk.spring.data.jpa.domain.Equal
+import net.kaczmarzyk.spring.data.jpa.domain.Like
+import net.kaczmarzyk.spring.data.jpa.web.annotation.And
+import net.kaczmarzyk.spring.data.jpa.web.annotation.Spec
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.data.domain.Pageable
+import org.springframework.data.jpa.domain.Specification
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
@@ -22,8 +28,13 @@ class TodoItemController {
     private lateinit var todoItemService: TodoItemService
 
     @GetMapping
-    fun getTodoItems(pageable: Pageable): ResponseEntity<List<TodoItemDto>> {
-        val page = todoItemService.getAllTodoItems(pageable)
+    fun getTodoItems(
+            @And(value = [
+                Spec(path = "title", spec = Like::class),
+                Spec(path = "completed", spec = Equal::class)])
+            todoItemSpec: Specification<TodoItem>?,
+            pageable: Pageable): ResponseEntity<List<TodoItemDto>> {
+        val page = todoItemService.getAllTodoItems(todoItemSpec, pageable)
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .header(TOTAL_COUNT, "${page.totalElements}")
