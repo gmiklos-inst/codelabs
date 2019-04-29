@@ -17,13 +17,13 @@ $ npm i --save react-redux
 In order to make the Redux store available to all our components the following two changes need to be made in `index.tsx`:
 
 * Import the application store and the `<Provider/>` tag: 
-```tsx
+```typescript
 import {createAppStore} from "./store";
 import { Provider } from 'react-redux';
 ```
 
 * Wrap the application component with the provider tag:
-```tsx
+```typescript
 ReactDOM.render(<Provider store={createAppStore()}><App /></Provider>, container);
 ```
 
@@ -35,7 +35,7 @@ While you can connect and wrap an arbitrary number of components for the purpose
 
 Our first steps integrating Redux with `App` component involve defining the properties we are going to use for retrieving application state from our store and dispatch actions. 
 
-```tsx
+```typescript
 type AppProps = {
     todos: TodoItem[],
     textInput: string,
@@ -64,7 +64,7 @@ Each of the components need to be wired piece by piece. Lets start by wiring up 
 
 In order to make things a little bit less verbose we unwrap all the properties at the beginning of the `render()` method:
 
-```tsx
+```typescript
 const { 
   todos, 
   setTodoTextInput, 
@@ -79,7 +79,7 @@ const {
 
 ### TodoInput
 
-```tsx
+```typescript
 <TodoInput 
   onSubmit={() => addTodo()} 
   onChange={text => setTodoTextInput(text)} 
@@ -91,7 +91,7 @@ The value of the `textInput` property is simply bound to the `value` property of
 
 ### TodoList
 
-```tsx
+```typescript
 <TodoList 
   todoItems={todos.filter((todo) => {
     switch (filterState) {
@@ -112,7 +112,7 @@ Passing `todoItems` as is to the `todoItems` property of `TodoList` would not su
 
 ### TodoStatus
 
-```tsx
+```typescript
 <TodoStatus itemLeftCount={todos.filter(todo => !todo.completed).length} />
 ```
 
@@ -120,7 +120,7 @@ The only thing we need in this case is the number of to-do items left to be done
 
 ### TodoFilter
 
-```tsx
+```typescript
 <TodoFilter
           todoFilterState={filterState} 
           onChange={filterState => setTodoFilterState(filterState)}
@@ -133,7 +133,7 @@ The filter component needs the current filter state to be passed in (`filterStat
 
 None of the properties mentioned while wiring up the components would exist if it there was not a mechanism that would pass them in. The properties we were using purely for their value was `textInput`, `filterState` and `todos`. We need to tell Redux how to map the application state to these properties:
 
-```tsx
+```typescript
 const mapStateToProps = (state: AppState) => {
   return {
     textInput: state.ui.textInput,
@@ -147,7 +147,7 @@ const mapStateToProps = (state: AppState) => {
 
 We also had multiple components where the event handlers relied on properties that contained functions to invoke when a certain event happens. This is the mechanism where we can dispatch actions towards our store - the properties mapped here will be passed to the `App` component as simple functions that dispatch these actions.
 
-```tsx
+```typescript
 const mapDispatchToProps = dispatch => ({
   setTodoTextInput: text => dispatch(setTodoTextInput(text)),
   setTodoFilterState: id => dispatch(setTodoFilterState(id)),
@@ -161,7 +161,7 @@ const mapDispatchToProps = dispatch => ({
 
 The last and most important thing to do is to wrap the `App` component in a so called container using `connect()`:
 
-```tsx
+```typescript
 export const App = connect(mapStateToProps, mapDispatchToProps)(AppComponent);
 ```
 
@@ -172,7 +172,7 @@ Congratulations! Now your application performs all the basic functionality that 
 
 ## Full code listing for the `App` component (`app.tsx`):
 
-```tsx
+```typescript
 import React, { Component } from 'react';
 import { TodoInput } from './components/TodoInput';
 import { TodoList } from './components/TodoList';
