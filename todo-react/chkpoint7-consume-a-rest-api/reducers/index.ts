@@ -1,7 +1,8 @@
-import { AppAction, SET_TODO_TEXT_INPUT, ADD_TODO, TOGGLE_TODO, DELETE_TODO, SET_TODO_FILTER_STATE, SET_TODOS, ADD_TODO_ITEM, DELETE_TODO_ITEM, TOGGLE_TODO_ITEM } from "../actions";
+import { SET_TODO_TEXT_INPUT, SET_TODO_FILTER_STATE, SET_TODOS, ADD_TODO_ITEM, DELETE_TODO_ITEM, TOGGLE_TODO_ITEM, AppSyncAction } from "../actions";
 import { TodoItem } from "../model/todoItem";
 import { TodoStatus } from "../components/TodoStatus";
 import { TodoFilterState } from "../components/TodoFilter";
+import { Action } from "redux";
 
 export type AppState = {
     ui: {
@@ -27,7 +28,8 @@ export const initialState: AppState = {
     }],
 };
 
-export const appReducer = (state: AppState = initialState, action: AppAction): AppState => {
+export const appReducer = (state: AppState = initialState, anyAction: Action<any>): AppState => {
+    const action = anyAction as AppSyncAction;
     switch (action.type) {
         case SET_TODO_TEXT_INPUT:
             return {...state, ui: {...state.ui, textInput: action.textInput}};

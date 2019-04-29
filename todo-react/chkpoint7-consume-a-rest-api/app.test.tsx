@@ -1,13 +1,14 @@
 import React from 'react'
-import {createStore} from 'redux'
-import {Provider} from 'react-redux'
+import { createStore, applyMiddleware } from 'redux'
+import { Provider } from 'react-redux'
 import { render as rtlRender, cleanup } from 'react-testing-library'
 import { App } from './App'
 import { appReducer, initialState } from './reducers';
+import thunk from 'redux-thunk';
 
 function render(
   ui,
-  {store = createStore(appReducer, initialState)} = {},
+  {store = createStore(appReducer, initialState, applyMiddleware(thunk))} = {},
 ) {
   return {
     ...rtlRender(<Provider store={store}>{ui}</Provider>),
@@ -18,11 +19,6 @@ function render(
 describe('App', () => {
   
   afterEach(cleanup);
-
-  it('renders the greeting', () => {
-    const { getByText } = render(<App />);
-    getByText('Hi!');
-  });
 
   it('renders the input', () => {
     const { getByTestId } = render(<App />);
