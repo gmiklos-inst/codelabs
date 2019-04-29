@@ -4,8 +4,7 @@ import { TodoList } from './components/TodoList';
 import { TodoStatus } from './components/TodoStatus';
 import { TodoFilter, TodoFilterState } from './components/TodoFilter';
 
-import { setTodoTextInput, addTodo, toggleTodo, deleteTodo, setTodoFilterState } from './actions';
-import {createPersistedAppStore} from "./store";
+import { setTodoTextInput, addTodo, toggleTodo, deleteTodo, setTodoFilterState, loadTodos } from './actions';
 import {TodoItem} from "./model/TodoItem";
 
 import { connect } from 'react-redux';
@@ -19,10 +18,17 @@ type AppProps = {
     setTodoFilterState: (TodoFilterState) => void,
     addTodo: () => void,
     toggleTodo: (string) => void,
-    deleteTodo: (string) => void
+    deleteTodo: (string) => void,
+    loadTodos: () => void,
 };
 
 class AppComponent extends Component<AppProps> {
+
+  componentDidMount() {
+    const { loadTodos } = this.props;
+    loadTodos();
+  }
+
   render() {
     const { 
       todos, 
@@ -79,6 +85,7 @@ const mapDispatchToProps = dispatch => ({
   addTodo: () => dispatch(addTodo()),
   toggleTodo: id => dispatch(toggleTodo(id)),
   deleteTodo: id => dispatch(deleteTodo(id)),
+  loadTodos: () => dispatch(loadTodos()),
 });
 
 export const App = connect(mapStateToProps, mapDispatchToProps)(AppComponent);

@@ -4,7 +4,8 @@
     "noImplicitAny": false,
     "esModuleInterop": true,
     "lib": ["es6", "dom"],
-    "outDir": "dist"
+    "outDir": "dist",
+    "resolveJsonModule": true
   },
   "exclude": [
     "node_modules"

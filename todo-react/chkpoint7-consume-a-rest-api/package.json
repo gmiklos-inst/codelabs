@@ -42,10 +42,12 @@
     "@inst/bridge-ui-components.table": "^13.1.0",
     "@inst/bridge-ui-components.text-input": "^13.1.0",
     "@inst/bridge-ui-components.tooltip": "^13.1.0",
+    "axios": "^0.18.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-redux": "^7.0.2",
-    "redux": "^4.0.1"
+    "redux": "^4.0.1",
+    "redux-thunk": "^2.3.0"
   },
   "alias": {
     "buc/format-message": "@inst/bridge-ui-components.format-message"

@@ -1,5 +1,6 @@
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 import {appReducer, AppState} from "../reducers";
+import thunk from 'redux-thunk';
 
 export const loadState = (): AppState | undefined => {
     try {
@@ -22,7 +23,7 @@ export const saveState = (state: AppState) => {
     }
 };
 
-export const createAppStore = (initialState: AppState) => createStore(appReducer, initialState);
+export const createAppStore = (initialState: AppState) => createStore(appReducer, initialState, applyMiddleware(thunk));
 
 export const createPersistedAppStore = () => {
     const store = createAppStore(loadState());

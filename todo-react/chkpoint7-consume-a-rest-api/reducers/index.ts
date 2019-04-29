@@ -1,4 +1,4 @@
-import { AppAction, SET_TODO_TEXT_INPUT, ADD_TODO, TOGGLE_TODO, DELETE_TODO, SET_TODO_FILTER_STATE } from "../actions";
+import { AppAction, SET_TODO_TEXT_INPUT, ADD_TODO, TOGGLE_TODO, DELETE_TODO, SET_TODO_FILTER_STATE, SET_TODOS } from "../actions";
 import { TodoItem } from "../model/todoItem";
 import { TodoStatus } from "../components/TodoStatus";
 import { TodoFilterState } from "../components/TodoFilter";
@@ -61,6 +61,11 @@ export const appReducer = (state: AppState = initialState, action: AppAction): A
             return {
                 ...state,
                 todos: state.todos.filter(todo => todo.id !== action.id),
+            };
+        case SET_TODOS:
+            return {
+                ...state,
+                todos: action.todos,
             };
         default:
             return state;
