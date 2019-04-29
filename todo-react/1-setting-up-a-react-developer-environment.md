@@ -189,7 +189,7 @@ Parcel and Babel should pick it up automatically. These settings are here to ens
 
 The simplest possible component looks like this:
 
-```typescript jsx
+```tsx
 import React, { Component } from 'react';
 
 export class App extends Component {
