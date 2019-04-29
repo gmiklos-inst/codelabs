@@ -6,8 +6,8 @@ import { TodoItemRow } from './TodoItemRow';
 
 export type TodoListProps = {
   todoItems: TodoItem[];
-  onToggleTodo: (id) => void;
-  onDeleteTodo: (id) => void;
+  onToggleTodo?: (id) => void;
+  onDeleteTodo?: (id) => void;
 };
 
 export class TodoList extends Component<TodoListProps> {
@@ -34,8 +34,8 @@ export class TodoList extends Component<TodoListProps> {
               <TodoItemRow 
                 item={todoItem} 
                 key={todoItem.id} 
-                onToggle={() => onToggleTodo(todoItem.id) } 
-                onDelete={() => onDeleteTodo(todoItem.id) } 
+                  onToggle={() => onToggleTodo && onToggleTodo(todoItem.id) }
+                  onDelete={() => onDeleteTodo && onDeleteTodo(todoItem.id) }
               />
             )
           }

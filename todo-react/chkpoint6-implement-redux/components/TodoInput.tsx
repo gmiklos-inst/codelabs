@@ -4,9 +4,9 @@ import { default as TextInput } from '@inst/bridge-ui-components.text-input';
 import { EditIcon } from '@inst/bridge-ui-components.icon';
 
 export type TodoInputProps = {
-  onChange: (text: string) => void;
-  onSubmit: () => void;
-  value: string;
+    onChange?: (text: string) => void;
+    onSubmit?: () => void;
+    value?: string;
 };
 
 export class TodoInput extends Component<TodoInputProps> {
@@ -14,11 +14,11 @@ export class TodoInput extends Component<TodoInputProps> {
       const { onChange, onSubmit, value } = this.props;
       return <TextInput
         data-testid="TodoInput"
-        value={value}
-        onChange={event => onChange(event.target.value)}
+        value={value || ""}
+        onChange={event => onChange && onChange(event.target.value)}
         onKeyUp={(event) => {
           if (event.charCode === 13 || event.keyCode === 13) {
-            onSubmit();
+            onSubmit && onSubmit();
           }
         }}
         label="Add new TODO item here"

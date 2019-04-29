@@ -6,10 +6,13 @@ import { TodoItemRow } from './TodoItemRow';
 
 export type TodoListProps = {
   todoItems: TodoItem[];
+  onToggleTodo?: (id) => void;
+  onDeleteTodo?: (id) => void;
 };
 
 export class TodoList extends Component<TodoListProps> {
   render() {
+    const { onToggleTodo, onDeleteTodo, todoItems } = this.props;
     return <div className="todo-list" data-testid="TodoList">
       <Table responsive hover>
         <THead>
@@ -27,8 +30,13 @@ export class TodoList extends Component<TodoListProps> {
         </THead>
         <TBody>
           {
-            this.props.todoItems.map((todoItem) =>
-              <TodoItemRow item={todoItem} key={todoItem.id} />
+            todoItems.map((todoItem) =>
+              <TodoItemRow
+                  item={todoItem}
+                  key={todoItem.id}
+                  onToggle={() => onToggleTodo && onToggleTodo(todoItem.id) }
+                  onDelete={() => onDeleteTodo && onDeleteTodo(todoItem.id) }
+              />
             )
           }
         </TBody>
