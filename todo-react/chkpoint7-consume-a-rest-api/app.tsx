@@ -4,7 +4,7 @@ import { TodoList } from './components/TodoList';
 import { TodoStatus } from './components/TodoStatus';
 import { TodoFilter, TodoFilterState } from './components/TodoFilter';
 
-import { setTodoTextInput, addTodo, toggleTodo, deleteTodo, setTodoFilterState, loadTodos } from './actions';
+import { setTodoTextInput, addTodoAsync, toggleTodoAsync, deleteTodoAsync, setTodoFilterState, loadTodosAsync } from './actions';
 import {TodoItem} from "./model/TodoItem";
 
 import { connect } from 'react-redux';
@@ -82,10 +82,10 @@ const mapStateToProps = (state: AppState) => {
 const mapDispatchToProps = dispatch => ({
   setTodoTextInput: text => dispatch(setTodoTextInput(text)),
   setTodoFilterState: id => dispatch(setTodoFilterState(id)),
-  addTodo: () => dispatch(addTodo()),
-  toggleTodo: id => dispatch(toggleTodo(id)),
-  deleteTodo: id => dispatch(deleteTodo(id)),
-  loadTodos: () => dispatch(loadTodos()),
+  addTodo: () => dispatch(addTodoAsync()),
+  toggleTodo: id => dispatch(toggleTodoAsync(id)),
+  deleteTodo: id => dispatch(deleteTodoAsync(id)),
+  loadTodos: () => dispatch(loadTodosAsync()),
 });
 
 export const App = connect(mapStateToProps, mapDispatchToProps)(AppComponent);

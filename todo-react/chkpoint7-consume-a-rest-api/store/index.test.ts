@@ -1,6 +1,6 @@
 import 'jest-dom/extend-expect';
 
-import { setTodoFilterState, setTodoTextInput, addTodoItem, toggleTodoItem, deleteTodoItem } from '../actions'
+import { setTodoFilterState, setTodoTextInput, addTodo, toggleTodo, deleteTodo } from '../actions'
 import { createAppStore } from '.';
 import { TodoFilterState } from '../components/TodoFilter';
 import { AppState } from '../reducers';
@@ -52,7 +52,7 @@ describe('AppStore', () => {
 
         expect(store.getState().todos).toHaveLength(0);
 
-        store.dispatch(addTodoItem({
+        store.dispatch(addTodo({
             id: '1',
             title: 'barackfa',
             completed: false
@@ -77,7 +77,7 @@ describe('AppStore', () => {
 
         expect(store.getState().todos[0].completed).toBeFalsy();
 
-        store.dispatch(toggleTodoItem('1'));
+        store.dispatch(toggleTodo('1'));
 
         expect(store.getState().todos[0].completed).toBeTruthy();
     });
@@ -93,7 +93,7 @@ describe('AppStore', () => {
 
         expect(store.getState().todos).toHaveLength(1);
 
-        store.dispatch(deleteTodoItem('1'));
+        store.dispatch(deleteTodo('1'));
 
         expect(store.getState().todos).toHaveLength(0);
     });

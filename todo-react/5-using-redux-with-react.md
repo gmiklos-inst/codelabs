@@ -180,7 +180,6 @@ import { TodoStatus } from './components/TodoStatus';
 import { TodoFilter, TodoFilterState } from './components/TodoFilter';
 
 import { setTodoTextInput, addTodo, toggleTodo, deleteTodo, setTodoFilterState } from './actions';
-import {createPersistedAppStore} from "./store";
 import {TodoItem} from "./model/TodoItem";
 
 import { connect } from 'react-redux';

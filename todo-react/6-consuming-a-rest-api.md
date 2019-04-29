@@ -42,8 +42,9 @@ We will also need to bring in `axios` and `redux-thunk` as new application depen
 ```
 $ npm i --save axios redux-thunk
 ```
+# Loading to-do items from the backend
 
-# Synchronous and asynchronous actions
+## Synchronous and asynchronous actions
 
 Before delving deeper into using thunks we must elaborate a bit on the differences between the types of actions:
 
@@ -57,7 +58,7 @@ Redux-Thunk is a so-called middleware that lets us define asynchronous actions. 
 
 For the purposes of this tutorial we will only handle the successful outcome. It is left for the reader to implement loading or error states for the application.
 
-# Creating actions for loading to-do items
+## Creating actions for loading to-do items
 
 Not implementing the load and load error states will require us to only create a single synchronous action for setting the to-do items. 
 
@@ -94,45 +95,39 @@ import config from '../app-config.json';
 import { setTodos } from '.';
 export const LOAD_TODOS = 'LOAD_TODOS';
 
-type LoadTodosAction = (dispatch) => void;
-
-export type AsyncAction = LoadTodosAction;
+export type AsyncAction = (dispatch, getState) => void;
 
 const AUTH = {
-    Authentication: config.apiKey,
+    'x-api-key': config.apiKey,
 }
 
-export const loadTodos = (): LoadTodosAction => {
+export const loadTodosAsync = (): AsyncAction => {
     return dispatch => {
+        dispatch(setTodoTextInput(''));
         axios
-            .get(`${config.apiBaseUrl}/todos/`, {
-                headers: {...AUTH},
+            .get(`${config.apiBaseUrl}/todos/?page_size=1000`, {
+                headers: { ...AUTH },
             } as any)
             .then((response) => {
-                dispatch(setTodos(response.data));
+                dispatch(setTodos(response.data
+                    .map(item => ({
+                        id: item.id,
+                        title: item.title,
+                        completed: item.completed,
+                        createdAt: item.created_at,
+                    }))
+                    .sort((i1: TodoItem, i2: TodoItem) => i1.createdAt < i2.createdAt ? 1 : -1)
+                ));
             });
     };
-}
+};
 ```
 
 We define the action as a lambda that takes the dispatch function from Redux as the parameter. In order to successfully communicate with the backend we need to retrieve the `apiKey` value from app configuration and include in our request headers. Similarly important is to get the `apiBaseUrl` to the direct the requests towards the correct host.
 
-The action creator for this async action is where we fire off the HTTP GET request to retrieve to-do items - when that request successfully completes the `setTodos` will be dispatched that will carry the items from the response data.
+The action creator for this async action is where we fire off the HTTP GET request to retrieve to-do items - when that request successfully completes the `setTodos` will be dispatched that will carry the items from the response data. As the REST API has a slightly different naming convention with underscores we need to peform some mapping on the data. We also sort the items by the creation date.
 
-One minor thing to adjust in `actions/index.ts` is to include our async action union type (`AsyncAction`) that we have created in the union type that lists all our application actions:
-
-```typescript
-export type AppAction = 
-    SetTodoTextInputAction | 
-    SetTodoFilterStateAction | 
-    AddTodoAction | 
-    ToggleTodoAction | 
-    DeleteTodoAction |
-    SetTodosAction |
-    AsyncAction;
-``` 
-
-# Expanding the reducer
+## Expanding the reducer
 
 The asynchronous action itself does not need to be handled in the reducer but the synchronous actions still do need an implementation. Open `reducers/index.ts` and add the following to handle the `setTodos` action:
 
@@ -144,7 +139,7 @@ case SET_TODOS:
     };
 ``` 
 
-# Enhancing the store with the thunk middleware
+## Enhancing the store with the thunk middleware
 
 Just so that our store can handle asynchronous events we need to include the thunk middleware while creating the store in `store/index.ts`:
 
@@ -155,7 +150,7 @@ import thunk from 'redux-thunk';
 export const createAppStore = (initialState: AppState) => createStore(appReducer, initialState, applyMiddleware(thunk));
 ```
 
-# Loading the items on application load
+## Loading the items on application load
 
 Some small changes still need to be done on the main application component so that asynchronous actions will be dispatched on startup.
 
@@ -193,8 +188,162 @@ const mapDispatchToProps = dispatch => ({
   addTodo: () => dispatch(addTodo()),
   toggleTodo: id => dispatch(toggleTodo(id)),
   deleteTodo: id => dispatch(deleteTodo(id)),
-  loadTodos: () => dispatch(loadTodos()),
+  loadTodos: () => dispatch(loadTodosAsync()),
 });
 ``` 
 
 By now, you should have the to-do items loaded from the backend.
+
+# Adding a to-do item using the REST API
+
+Some general changes need to be done to the way we are currently handling the addition of todo-items as we are going to get IDs from the server side when the item gets created.
+
+## Tweak existing synchronous action
+
+Change the `AddTodo` action in `actions/index.ts` to include the actual to-do item:
+
+```typescript
+type AddTodoAction = {
+    type: typeof ADD_TODO;
+    todoItem: TodoItem;
+};
+```
+
+Also update the action creator for this action:
+
+```typescript
+export const addTodo = (todoItem: TodoItem): AppAction => ({
+    type: ADD_TODO,
+    todoItem,
+});
+```
+
+## Create an asynchronous action
+
+Lets expand `actions/asyncActions.ts` with a new action:
+
+```typescript
+export const addTodoAsync = (): AsyncAction => {
+    return (dispatch, getState) => {
+        const { ui } = getState();
+        axios
+            .post(`${config.apiBaseUrl}/todos/`, {
+                title: ui.textInput,
+                completed: false,
+            },{
+                headers: { ...AUTH },
+            } as any)
+            .then((response) => {
+                dispatch(addTodo(response.data));
+            });
+    };
+};
+```
+
+Somewhat similarly to the `loadTodoAsync` action it sends a HTTP POST request to the appropriate endpoint and then dispatches an `addTodo` action with the response data. It is worth to note that asynchronous actions can also base their logic on the current state - you can query the current state using the `getState()` function which gets passed in to the returned function.
+
+## Tweak the reducer
+
+Remove all instances of the `lastId` field in the `AppState` type and the `initialState` constant object as we no longer need it.
+
+The item dispatched in the data can be merged into our list of items as is. We need to update our reducer in `reducers/index.ts` to do so:
+
+```typescript
+case ADD_TODO:
+    return {
+        ...state, 
+        ui: {...state.ui, textInput: ''},
+        todos: [action.todoItem, ...state.todos],
+    };
+```
+
+Be sure to prepend that item to the list.
+
+## Update dispatch mapping
+
+Instead of simply calling into `addTodo()` we now need to call `addTodoSync()` at the dispatch to props mapping in `app.tsx`:
+
+```typescript
+const mapDispatchToProps = dispatch => ({
+  // ...
+  addTodo: () => dispatch(addTodoSync()),
+  // ...
+});
+``` 
+
+With these changes the to-do items should be persisted to the REST API service.
+
+# Deleting a to-do item through the REST API
+
+With the current machinery in place implementing deletion is rather simple.
+
+## Create an async action
+
+Extend `actions/asyncActions.ts` with the following code:
+
+```typescript
+export const deleteTodoAsync = (id: string): AsyncAction => {
+    return dispatch => {
+        dispatch(deleteTodo(id));
+        axios
+            .delete(`${config.apiBaseUrl}/todos/${id}`, {
+                headers: { ...AUTH },
+            } as any);
+    };
+};
+```
+
+In a similar fashion as before we send a HTTP DELETE request and dispatch an action to delete that item from the list.
+
+## Update dispatch mapping
+
+A slight change is required to the mappings in `app.tsx`:
+
+```typescript
+const mapDispatchToProps = dispatch => ({
+  // ...
+  deleteTodo: id => dispatch(deleteTodoAsync(id)),
+  // ...
+});
+``` 
+
+Item deletion is now propagated towards the REST API service.
+
+# Persist toggling in the REST API service
+
+Persisting the toggled state is similarly easy as deletion.
+
+## Create async action
+
+Extend `actions/asyncActions.ts` with the following code:
+
+```typescript
+export const toggleTodoAsync = (id: string): AsyncAction => {
+    return (dispatch, getState) => {
+        const { todos } = getState();
+        dispatch(toggleTodo(id));
+        axios
+            .put(`${config.apiBaseUrl}/todos/${id}`, {
+                completed: !todos.filter(todo => todo.id === id)[0].completed,
+            }, {
+                headers: { ...AUTH },
+            } as any);
+    };
+};
+```
+
+You know the drill - we send a HTTP PUT request and dispatch the corresponding synchronous action that toggles that specific ID.
+
+## Update dispatch mapping
+
+Update the mappings in `app.tsx`:
+
+```typescript
+const mapDispatchToProps = dispatch => ({
+  // ...
+  toggleTodo: id => dispatch(toggleTodoAsync(id)),
+  // ...
+});
+``` 
+
+We now have a fully working to-do application that persists its data using a REST API service.

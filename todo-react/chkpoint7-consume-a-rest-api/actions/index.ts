@@ -4,13 +4,13 @@ import { TodoItem } from "../model/todoItem";
 
 export const SET_TODO_TEXT_INPUT = 'SET_TODO_TEXT_INPUT';
 export const SET_TODO_FILTER_STATE = 'SET_TODO_FILTER_STATE';
-export const ADD_TODO_ITEM = 'ADD_TODO_ITEM';
-export const TOGGLE_TODO_ITEM = 'TOGGLE_TODO_ITEM';
-export const DELETE_TODO_ITEM = 'DELETE_TODO_ITEM';
+export const ADD_TODO = 'ADD_TODO';
+export const TOGGLE_TODO = 'TOGGLE_TODO';
+export const DELETE_TODO = 'DELETE_TODO';
 
 export const SET_TODOS = 'SET_TODOS';
 
-export { loadTodos, addTodo, deleteTodo, toggleTodo } from './asyncActions';
+export { loadTodosAsync, addTodoAsync, deleteTodoAsync, toggleTodoAsync } from './asyncActions';
 
 type SetTodoTextInputAction = {
     type: typeof SET_TODO_TEXT_INPUT;
@@ -22,18 +22,18 @@ type SetTodoFilterStateAction = {
     filterState: TodoFilterState;
 };
 
-type AddTodoItemAction = {
-    type: typeof ADD_TODO_ITEM;
+type AddTodoAction = {
+    type: typeof ADD_TODO;
     todoItem: TodoItem;
 };
 
-type ToggleTodoItemAction = {
-    type: typeof TOGGLE_TODO_ITEM;
+type ToggleTodoAction = {
+    type: typeof TOGGLE_TODO;
     id: string;
 };
 
-type DeleteTodoItemAction = {
-    type: typeof DELETE_TODO_ITEM;
+type DeleteTodoAction = {
+    type: typeof DELETE_TODO;
     id: string;
 };
 
@@ -42,44 +42,40 @@ type SetTodosAction = {
     todos: TodoItem[];
 };
 
-export type AppSyncAction = 
-    SetTodoTextInputAction | 
-    SetTodoFilterStateAction | 
-    AddTodoItemAction | 
-    ToggleTodoItemAction | 
-    DeleteTodoItemAction |
+export type AppAction =
+    SetTodoTextInputAction |
+    SetTodoFilterStateAction |
+    AddTodoAction |
+    ToggleTodoAction |
+    DeleteTodoAction |
     SetTodosAction;
 
-export type AppAction = 
-    AppSyncAction |
-    AsyncAction;
-
-export const setTodoTextInput = (textInput: string): SetTodoTextInputAction => ({
+export const setTodoTextInput = (textInput: string): AppAction => ({
     type: SET_TODO_TEXT_INPUT,
     textInput,
 });
 
-export const setTodoFilterState = (filterState: TodoFilterState): SetTodoFilterStateAction => ({
+export const setTodoFilterState = (filterState: TodoFilterState): AppAction => ({
     type: SET_TODO_FILTER_STATE,
     filterState,
 });
 
-export const addTodoItem = (todoItem: TodoItem): AddTodoItemAction => ({
-    type: ADD_TODO_ITEM,
+export const addTodo = (todoItem: TodoItem): AppAction => ({
+    type: ADD_TODO,
     todoItem,
 });
 
-export const toggleTodoItem = (id: string): ToggleTodoItemAction => ({
-    type: TOGGLE_TODO_ITEM,
+export const toggleTodo = (id: string): AppAction => ({
+    type: TOGGLE_TODO,
     id,
 });
 
-export const deleteTodoItem = (id: string): DeleteTodoItemAction => ({
-    type: DELETE_TODO_ITEM,
+export const deleteTodo = (id: string): AppAction => ({
+    type: DELETE_TODO,
     id,
 });
 
-export const setTodos = (todos: TodoItem[]): SetTodosAction => ({
+export const setTodos = (todos: TodoItem[]): AppAction => ({
     type: SET_TODOS,
     todos,
 });

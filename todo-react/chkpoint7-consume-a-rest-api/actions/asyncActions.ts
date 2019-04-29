@@ -1,22 +1,15 @@
 import axios from 'axios';
 import config from '../app-config.json';
-import { setTodos, AppSyncAction, addTodoItem, setTodoTextInput, deleteTodoItem, toggleTodoItem } from '.';
-import { ThunkAction } from 'redux-thunk';
-import { AppState } from '../reducers/index.js';
-import { TodoItem } from '../model/todoItem.js';
-
-export const LOAD_TODOS = 'LOAD_TODOS';
-export const ADD_TODO = 'ADD_TODO';
-export const DELETE_TODO = 'DELETE_TODO';
-export const TOGGLE_TODO = 'TOGGLE_TODO';
-
-export type AsyncAction = ThunkAction<void, AppState, {}, AppSyncAction>;
+import {addTodo, deleteTodo, setTodos, setTodoTextInput, toggleTodo} from '.';
+import {TodoItem} from '../model/todoItem';
 
 const AUTH = {
     'x-api-key': config.apiKey,
-}
+};
 
-export const loadTodos = (): AsyncAction => {
+export type AsyncAction = (dispatch, getState) => void;
+
+export const loadTodosAsync = (): AsyncAction => {
     return dispatch => {
         dispatch(setTodoTextInput(''));
         axios
@@ -37,7 +30,7 @@ export const loadTodos = (): AsyncAction => {
     };
 };
 
-export const addTodo = (): AsyncAction => {
+export const addTodoAsync = (): AsyncAction => {
     return (dispatch, getState) => {
         const { ui } = getState();
         axios
@@ -48,14 +41,14 @@ export const addTodo = (): AsyncAction => {
                 headers: { ...AUTH },
             } as any)
             .then((response) => {
-                dispatch(addTodoItem(response.data));
+                dispatch(addTodo(response.data));
             });
     };
 };
 
-export const deleteTodo = (id: string): AsyncAction => {
+export const deleteTodoAsync = (id: string): AsyncAction => {
     return dispatch => {
-        dispatch(deleteTodoItem(id));
+        dispatch(deleteTodo(id));
         axios
             .delete(`${config.apiBaseUrl}/todos/${id}`, {
                 headers: { ...AUTH },
@@ -63,10 +56,10 @@ export const deleteTodo = (id: string): AsyncAction => {
     };
 };
 
-export const toggleTodo = (id: string): AsyncAction => {
+export const toggleTodoAsync = (id: string): AsyncAction => {
     return (dispatch, getState) => {
         const { todos } = getState();
-        dispatch(toggleTodoItem(id));
+        dispatch(toggleTodo(id));
         axios
             .put(`${config.apiBaseUrl}/todos/${id}`, {
                 completed: !todos.filter(todo => todo.id === id)[0].completed,
