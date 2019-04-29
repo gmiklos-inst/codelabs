@@ -1,6 +1,6 @@
 import 'jest-dom/extend-expect';
 
-import { addTodo, deleteTodo, setTodoFilterState, setTodoTextInput, toggleTodo, addTodoItem, toggleTodoItem, deleteTodoItem } from '../actions'
+import { setTodoFilterState, setTodoTextInput, addTodoItem, toggleTodoItem, deleteTodoItem } from '../actions'
 import { createAppStore } from '.';
 import { TodoFilterState } from '../components/TodoFilter';
 import { AppState } from '../reducers';
