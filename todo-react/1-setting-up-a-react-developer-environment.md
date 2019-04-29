@@ -119,7 +119,7 @@ The following is the HTML code for the entry point for our application:
   <body>
     <div id="app-container"></div> <!-- This is the container that React uses to render our application -->
 
-    <script src="app.tsx" charset="utf-8"></script> <!-- Parcel will automatically pick up and compile this file. This is where most of our work will be done. -->
+    <script src="index.tsx" charset="utf-8"></script> <!-- Parcel will automatically pick up and compile this file. This is where most of our work will be done. -->
   </body>
 </html>
 ```
@@ -188,33 +188,41 @@ Just drop a file named `tsconfig.json` in your workspace root:
 
 Parcel and Babel should pick it up automatically. These settings are here to ensure that we can use the React extensions, do not allow implicit any in  your source code - meaning that you must define types everywhere you are using a variable. The `esModuleInterop` is included for Babel compatibility.
 
-### Create the application entry point TSX file
+### Create the application component file
 
-Below is the necessary machinery to get React and Bridge UI running. It does not do anything spectacular yet but it should give as a general idea on how we will build our application. I suggest naming this file `app.tsx` and putting it in your workspace root.
+The simplest possible component looks like this:
 
-```typescript
-import './styles.scss' // parcel will automatically pick up, compile and include this file
+```typescript jsx
+import './styles.scss'
 
-// Import key React components
-import React, { Component } from 'react'
-import ReactDOM from 'react-dom'
+import React, { Component } from 'react';
 
-// This is our root component that will get rendered first and bring in all the other components
-class App extends Component {
+export class App extends Component {
   render() {
     return (
       <div className="app">
-      	<h1>Hi!</h1>
+        <h1>Hi!</h1>
       </div>
     )
   }
 }
+```
 
-// Find the container...
-const $container = document.getElementById('app-container');
+This file is going to serve as the root component encompassing our entire application.
 
-// ... and begin rendering our app
-ReactDOM.render(<App />, $container);
+### Create the application entry point TSX file
+
+Below is the necessary machinery to get React and Bridge UI running. It does not do anything spectacular yet but it should give as a general idea on how we will build our application. I suggest naming this file `index.tsx` and putting it in your workspace root.
+
+```typescript jsx
+import ReactDOM from 'react-dom';
+import React from 'react';
+
+import { App } from "./app";
+
+const container = document.getElementById('app-container');
+
+ReactDOM.render(<App />, container);
 ```
 
 ### Set up tests
