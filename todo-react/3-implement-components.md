@@ -1,5 +1,5 @@
 ---
-title: Implementing a component using BUC
+title: Implementing our components
 parent: React
 nav_order: 3
 ---
