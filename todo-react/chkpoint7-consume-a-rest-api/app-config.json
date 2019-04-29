@@ -1,4 +1,4 @@
 {
-  "apiBaseUrl": "https://virtserver.swaggerhub.com/henko/todo/1.0.0",
+  "apiBaseUrl": "https://instructure-rails-workshop.herokuapp.com",
   "apiKey": "such-secret-much-wow"
 }

@@ -1,4 +1,4 @@
-import { AppAction, SET_TODO_TEXT_INPUT, ADD_TODO, TOGGLE_TODO, DELETE_TODO, SET_TODO_FILTER_STATE, SET_TODOS } from "../actions";
+import { AppAction, SET_TODO_TEXT_INPUT, ADD_TODO, TOGGLE_TODO, DELETE_TODO, SET_TODO_FILTER_STATE, SET_TODOS, ADD_TODO_ITEM, DELETE_TODO_ITEM } from "../actions";
 import { TodoItem } from "../model/todoItem";
 import { TodoStatus } from "../components/TodoStatus";
 import { TodoFilterState } from "../components/TodoFilter";
@@ -9,7 +9,6 @@ export type AppState = {
         filterState: TodoFilterState;
     },
     todos: TodoItem[];
-    lastId: number;
 };
 
 export const initialState: AppState = {
@@ -26,7 +25,6 @@ export const initialState: AppState = {
         title: "item2",
         completed: true,
     }],
-    lastId: 2,
 };
 
 export const appReducer = (state: AppState = initialState, action: AppAction): AppState => {
@@ -35,16 +33,11 @@ export const appReducer = (state: AppState = initialState, action: AppAction): A
             return {...state, ui: {...state.ui, textInput: action.textInput}};
         case SET_TODO_FILTER_STATE:
             return {...state, ui: {...state.ui, filterState: action.filterState}};
-        case ADD_TODO:
+        case ADD_TODO_ITEM:
             return {
                 ...state, 
                 ui: {...state.ui, textInput: ''},
-                todos: [...state.todos, {
-                    id: (state.lastId + 1).toString(),
-                    title: state.ui.textInput,
-                    completed: false,
-                }],
-                lastId: state.lastId + 1,
+                todos: [...state.todos, action.todoItem],
             };
         case TOGGLE_TODO:
             return {
@@ -57,7 +50,7 @@ export const appReducer = (state: AppState = initialState, action: AppAction): A
                     }
                 }),
             };
-        case DELETE_TODO:
+        case DELETE_TODO_ITEM:
             return {
                 ...state,
                 todos: state.todos.filter(todo => todo.id !== action.id),
