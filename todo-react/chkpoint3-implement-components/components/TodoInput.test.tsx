@@ -7,7 +7,7 @@ describe('TodoInput', () => {
   afterEach(cleanup);
 
   it('renders the input', () => {
-    const { getByDisplayValue } = render(<TodoInput />);
+    const { getByDisplayValue } = render(<TodoInput value="TODO item text" />);
     getByDisplayValue('TODO item text');
   });
 });

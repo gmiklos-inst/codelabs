@@ -11,13 +11,14 @@ export enum TodoFilterState {
 
 export type TodoFilterProps = {
   todoFilterState: TodoFilterState;
+  onChange?: (filterState: TodoFilterState) => void;
 };
 
 export class TodoFilter extends Component<TodoFilterProps> {
     render() {
         return <RadioButtonGroup 
           selected={this.props.todoFilterState}
-          onChange={() => {}}
+          onChange={filterState => this.props.onChange && this.props.onChange(filterState)}
           data-testid="TodoFilter"
         >
           <RadioButton
