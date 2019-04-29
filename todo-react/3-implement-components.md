@@ -30,7 +30,8 @@ In order to fix a compilation problem while using parcel you need to add an alia
 
 At this point of the tutorial we will only create the presentational parts of the components - state, properties and events - everything that makes our components interactive will be added later on. 
 
-## TodoInput (components/TodoInput.tsx)
+## TodoInput
+*Can be found under components/TodoInput.tsx*
 
 Using the Component class comprises a large bulk of work that we will going to do with React. TodoInput in this case is a very simple composite component that wraps a TextInput with some custom icons.
 
@@ -42,25 +43,53 @@ import React, { Component } from 'react';
 import { default as TextInput } from '@inst/bridge-ui-components.text-input';
 import { EditIcon } from '@inst/bridge-ui-components.icon';
 
-export class TodoInput extends Component {
+export type TodoInputProps = {
+    onChange?: (text: string) => void;
+    onSubmit?: () => void;
+    value?: string;
+};
+
+export class TodoInput extends Component<TodoInputProps> {
     render() {
-      return <TextInput data-testid="TodoInput"
-        value="TODO item text"
+      const { onChange, onSubmit, value } = this.props;
+      return <TextInput
+        value={value || ""}
         label="Add new TODO item here"
-        onChange={() => {}}
         icon={<EditIcon />}
+        onChange={event => onChange && onChange(event.target.value)}
+        onKeyUp={(event) => {
+          if (event.charCode === 13 || event.keyCode === 13) {
+            onSubmit && onSubmit();
+          }
+        }}
+       data-testid="TodoInput"
       />;
     }
 }
 ```
 
-After importing the components that are needed we to tell React how to render our component in the `render()` method which always return an element that holds the visual representation of our component.
+Most of the components we are going to write are subclasses of the React.Component class which also has a type parameter specifying the properties associated with this component. Properties on a particular component can be set using attributes:
+```typescript jsx
+<TodoInput value="some value" />
+```
+You can specify an arbitrary amount of properties for a single component.
+
+In our case the TodoInput component needs to have the following properties:
+* value - the value entered in the text field
+* onChange (optional) - event handler to call when the value in the text field changes
+* onSubmit (optional) - event handler invoked when the user presses Enter
+
+Next, we need to tell React how to render our component in the `render()` method which always return an element that holds the visual representation of our component. We are going to wrap a BUC `<TextInput />` component and enhance it with a few new features.
 
 Setting the `value` property on TextInput will set its text. As this is a constant value the TextInput field will be read-only, but later on when we introduce state the field will be editable by the user.
 
 The `label` property just sets the floating label that is visible on the `TextInput`.
 
 The `icon` property accepts an arbitrary component to display as an icon. The UI library contains an `<EditIcon />` component that can be used as-is here. Notice that in this case we need to use braces to pass a component as the property value - we are passing an actual element there not just a string.
+
+The lambda set on the `onChange` property will be invoked whenever the value of the text field changes - e.g. when the user types in something new. We are going to delegate this event handler to a higher level and invoke it only when this property is actually set to a value (notice the ? for marking it nullable in the props definition).
+
+The lambda set on the `onKeyUp` property will be invoked on each keypress received by the `TextInput` component. The only key we are interested in this case is the Enter key, which will invoke the function defined by the `onSubmit` property on our component if it is not null (`onSubmit` was marked for nullability just like `onChange`).
 
 In order to ensure that our `TodoInput` component loads properly we are going to add this simple test. Create a file named `TodoInput.test.tsx` with the following contents:
 
@@ -74,7 +103,7 @@ describe('TodoInput', () => {
   afterEach(cleanup);
 
   it('renders the input', () => {
-    const { getByDisplayValue } = render(<TodoInput />);
+    const { getByDisplayValue } = render(<TodoInput value="TODO item text" />);
     getByDisplayValue('TODO item text');
   });
 });
@@ -109,7 +138,8 @@ const element = (
 
 As you can see this feels much more natural, especially when having to add multiple levels of children to your element.
 
-## TodoItemRow (components/TodoItemRow.tsx)
+## TodoItemRow
+*Can be found under components/TodoItemRow.tsx*
 
 Before we are able to implement the TodoList component we need to have a component for the actual items. Because we're using TypeScript we also need to define what those items look like structurally. Create a directory named `model` and create a file named `TodoItem.ts` with the following contents:
 
@@ -144,20 +174,26 @@ import { ClearIcon } from '@inst/bridge-ui-components.icon';
 
 export type TodoItemRowProps = {
   item: TodoItem;
+  onToggle?: () => void;
+  onDelete?: () => void;
 };
 
 export class TodoItemRow extends Component<TodoItemRowProps> {
     render() {
-      const { item } = this.props;
-        return <Tr>
+      const { item, onToggle, onDelete } = this.props;
+        return <Tr data-testid="TodoItemRow">
           <Td>
-            <Checkbox checked={item.completed} />
+            <Checkbox checked={item.completed} onChange={() => onToggle && onToggle()} data-testid="TodoItemToggle"/>
           </Td>
           <Td>
-            {item.title}
+            {
+              item.completed ?
+                (<del>{item.title}</del>) :
+                item.title
+            }
           </Td>
           <Td>
-            <IconButton label="Clear" filled icon={<ClearIcon />} />
+            <IconButton label="Remove" filled icon={<ClearIcon />} onClick={() => onDelete && onDelete()} />
           </Td>
         </Tr>;
     }
@@ -168,20 +204,17 @@ More complex components in React receive data using components. When using Types
 
 ```typescript
 export type TodoItemRowProps = {
-  item: TodoItem;
+    item: TodoItem;
+    onToggle?: () => void;
+    onDelete?: () => void;
 };
 ``` 
 
-As you can see this component only has a single property named `item` that is of the `TodoItem` type that we had defined previously. 
+The properties list here have the following purpose:
+* item - the item to be displayed
+* onToggle (optional) - invoked when the to-do item is toggled for completion
+* onDelete (optional) - invoked when the user clicks on the delete button
 
-The TodoItemRow component uses a `<tr>` tag to display itself and has a `item` property that lets users of this component to pass in the actual data for the item. You can specify an arbitrary amount of properties for a single component. 
-
-All of the properties that are passed to this component can be accessed using the `this.props` class variable. This usually takes the form of:
- 
-```jsx
- <TodoItemRow item={someitem} />
-```
- 
  Whenever you reference properties in your `render()` method your component will bind that property and know when to re-render due to changes. As you can see from the source the `checked` property of the `Checkbox` component is bound to the `completed` field of the item property. 
 
 If you'd like to display text inline you can just put an expression with curly braces in the content part of tag:
@@ -262,6 +295,7 @@ describe('TodoItemRow', () => {
 ```
 
 ## TodoList
+*Can be found under components/TodoList.tsx*
 
 Now that we have the presentational part of the items that we are going to display done we also need a list component that takes these items as a property and then displays them as a part of a list.
 
@@ -275,10 +309,13 @@ import { TodoItemRow } from './TodoItemRow';
 
 export type TodoListProps = {
   todoItems: TodoItem[];
+  onToggleTodo?: (id) => void;
+  onDeleteTodo?: (id) => void;
 };
 
 export class TodoList extends Component<TodoListProps> {
   render() {
+    const { onToggleTodo, onDeleteTodo, todoItems } = this.props;
     return <div className="todo-list" data-testid="TodoList">
       <Table responsive hover>
         <THead>
@@ -296,8 +333,13 @@ export class TodoList extends Component<TodoListProps> {
         </THead>
         <TBody>
           {
-            this.props.todoItems.map((todoItem) =>
-              <TodoItemRow item={todoItem} key={todoItem.id} />
+            todoItems.map((todoItem) =>
+              <TodoItemRow
+                  item={todoItem}
+                  key={todoItem.id}
+                  onToggle={() => onToggleTodo && onToggleTodo(todoItem.id) }
+                  onDelete={() => onDeleteTodo && onDeleteTodo(todoItem.id) }
+              />
             )
           }
         </TBody>
@@ -311,21 +353,31 @@ First, we start by defining how our properties will look:
 ```typescript
 export type TodoListProps = {
   todoItems: TodoItem[];
+  onToggleTodo?: (id) => void;
+  onDeleteTodo?: (id) => void;
 };
 ```
 
-This specifies that only a single property named `todoItems` is passed in which is an array of TodoItem types.
+Each of these properties have the following purpose:
+* todoItems - the actual list of to-do items to display.
+* onToggleTodo (optional) - invoked when the user toggles a particular to-do item.
+* onDeleteTodo (optional) - invoked when the user attempts to delete a particular to-do item.
 
-Then we build a table that displays all the to-do items that were passed in as properties. Given that this property is just an array it is a frequent pattern to just use the `.map()` function to transform these items into actual components:
+What we are going to do is to build a table that displays all the to-do items that were passed in as properties. Given that this property is just an array it is a frequent pattern to just use the `.map()` function to transform these items into actual components:
 ```typescript jsx
 {
-this.props.todoItems.map((todoItem) =>
-  <TodoItemRow item={todoItem} key={todoItem.id} />
+todoItems.map((todoItem) =>
+  <TodoItemRow
+      item={todoItem}
+      key={todoItem.id}
+      onToggle={() => onToggleTodo && onToggleTodo(todoItem.id) }
+      onDelete={() => onDeleteTodo && onDeleteTodo(todoItem.id) }
+  />
 )
 }
 ```
 
-Returning an array in a curly braces will render all the elements produced by that expression. It is important to note that in components that maintain a list of items, the `key` attribute is very important - this needs to be a unique id for each item that React will use to efficiently render and update these items.
+Returning an array in a curly braces will render all the elements produced by that expression. It is important to note that in components that maintain a list of items, the `key` attribute is very important - this needs to be a unique id for each item that React will use to efficiently render and update these items. The `onToggle` and `onDelete` properties are just delegated to a higher level with additionally specifying the particular to-do item it was invoked for.
 
 We also include some tests to ensure that the component renders properly (`TodoList.test.tsx`):
 
@@ -379,7 +431,6 @@ As per the specification in the previous chapter we also need a component which 
 We are going to name the file for this component as `TodoFilter.tsx` and put it under the `components` directory:
 
 ```typescript jsx
-
 import React, { Component } from 'react';
 
 import { RadioButtonGroup, default as RadioButton  } from '@inst/bridge-ui-components.radio-button';
@@ -392,13 +443,14 @@ export enum TodoFilterState {
 
 export type TodoFilterProps = {
   todoFilterState: TodoFilterState;
+  onChange?: (filterState: TodoFilterState) => void;
 };
 
 export class TodoFilter extends Component<TodoFilterProps> {
     render() {
         return <RadioButtonGroup 
           selected={this.props.todoFilterState}
-          onChange={() => {}}
+          onChange={filterState => this.props.onChange && this.props.onChange(filterState)}
           data-testid="TodoFilter"
         >
           <RadioButton
@@ -435,12 +487,15 @@ After the definition we can elaborate on how our properties will look:
 ```typescript jsx
 export type TodoFilterProps = {
   todoFilterState: TodoFilterState;
+  onChange?: (filterState: TodoFilterState) => void;
 };
 ```
 
-We only need a single property that specifies the currently active filter.
+The purpose of these properties are the following:
+* todoFilterState - holds the current filter state.
+* onChange (optional) - invoked when value of radio group changes.
 
-Our `render()` method mostly deals with grouping the radio buttons into a single value. Whichever filter type was passed in as the property will determine the currently selected radio button in this group.
+Our `render()` method mostly deals with grouping the radio buttons into a single value. In order to make the group fully functional we bind the `todoFilterState` property to the `RadioButtonGroup` `selected` property. Similarly as with other event handler properties in previous components the `onChange` property just delegates the event to a higher level.
 
 The following tests ensure that this component renders as intended (`TodoFilter.test.tsx`):
 ```typescript jsx
