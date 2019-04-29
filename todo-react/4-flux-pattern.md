@@ -248,7 +248,7 @@ Finally, we are going to set up our store in a separate module and write some te
 
 Create a directory named `store` and put a file named `index.ts` in it with the following contents:
 
-```typescript jsx
+```tsx
 import { createStore } from 'redux';
 import {appReducer, AppState} from "../reducers";
 
@@ -259,7 +259,7 @@ Creating a store is not ceremonious - you just need to provide your reducer and 
 
 In the same directory `store` directory create another file named `index.test.ts`:
 
-```typescript jsx
+```tsx
 import 'jest-dom/extend-expect';
 
 import {addTodo, deleteTodo, setTodoFilterState, setTodoTextInput, toggleTodo} from '../actions'

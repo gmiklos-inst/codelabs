@@ -209,7 +209,7 @@ This file is going to serve as the root component encompassing our entire applic
 
 Below is the necessary machinery to get React and Bridge UI running. It does not do anything spectacular yet but it should give as a general idea on how we will build our application. I suggest naming this file `index.tsx` and putting it in your workspace root.
 
-```typescript jsx
+```tsx
 import ReactDOM from 'react-dom';
 import React from 'react';
 
@@ -224,7 +224,7 @@ ReactDOM.render(<App />, container);
 
 Create a file named `app.test.tsx` in your workspace root:
 
-```typescript jsx
+```tsx
 import React from 'react'
 import { render } from 'react-testing-library'
 import { App } from './App'

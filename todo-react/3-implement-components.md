@@ -29,7 +29,7 @@ In order to fix a compilation problem while using parcel you need to add an alia
 ```  
 
 There also some CSS styles for the BUC components that you need to import. Put these lines at the top of `index.ts`:
-```typescript jsx
+```tsx
 import '@inst/bridge-ui-components.svg-props/dist/main.css'
 import '@inst/bridge-ui-components.text-input/dist/main.css'
 import '@inst/bridge-ui-components.table/dist/main.css'
@@ -51,7 +51,7 @@ Using the Component class comprises a large bulk of work that we will going to d
 
 Make a directory named `compomnents` and create a file named `TodoInput.tsx` with the following contents:  
 
-```typescript jsx
+```tsx
 import React, { Component } from 'react';
 
 import { default as TextInput } from '@inst/bridge-ui-components.text-input';
@@ -83,7 +83,7 @@ export class TodoInput extends Component<TodoInputProps> {
 ```
 
 Most of the components we are going to write are subclasses of the React.Component class which also has a type parameter specifying the properties associated with this component. Properties on a particular component can be set using attributes:
-```typescript jsx
+```tsx
 <TodoInput value="some value" />
 ```
 You can specify an arbitrary amount of properties for a single component.
@@ -107,7 +107,7 @@ The lambda set on the `onKeyUp` property will be invoked on each keypress receiv
 
 In order to ensure that our `TodoInput` component loads properly we are going to add this simple test. Create a file named `TodoInput.test.tsx` with the following contents:
 
-```typescript jsx
+```tsx
 import React from 'react'
 import { render, cleanup, getByTestId } from 'react-testing-library'
 import { TodoInput } from './TodoInput';
@@ -177,7 +177,7 @@ export interface TodoItem {
 This is also going to be the common representation that the frontend and backend parts use data exchange.
 
 Just as with the previous component create a file named `TodoItemRow.tsx` in the `components` directory:
-```typescript jsx
+```tsx
 import React, { Component } from 'react';
 
 import { TodoItem } from '../model/todoItem';
@@ -248,7 +248,7 @@ Just as before, passing an element to an attribute is done by using braces inste
 Later on, this `IconButton` will enable us to delete this to-do item.
 
 A more involved test case for making sure that this component loads and renders properly looks like this:
-```typescript jsx
+```tsx
 import React from 'react'
 import { render, cleanup, getByText } from 'react-testing-library'
 import { TodoItemRow } from './TodoItemRow';
@@ -314,7 +314,7 @@ describe('TodoItemRow', () => {
 Now that we have the presentational part of the items that we are going to display done we also need a list component that takes these items as a property and then displays them as a part of a list.
 
 Routinely as before, create a file named `TodoList.tsx` in `components`:
-```typescript jsx
+```tsx
 import React, { Component } from 'react';
 
 import { default as Table, THead, Tr, Th, TBody } from '@inst/bridge-ui-components.table';
@@ -378,7 +378,7 @@ Each of these properties have the following purpose:
 * onDeleteTodo (optional) - invoked when the user attempts to delete a particular to-do item.
 
 What we are going to do is to build a table that displays all the to-do items that were passed in as properties. Given that this property is just an array it is a frequent pattern to just use the `.map()` function to transform these items into actual components:
-```typescript jsx
+```tsx
 {
 todoItems.map((todoItem) =>
   <TodoItemRow
@@ -395,7 +395,7 @@ Returning an array in a curly braces will render all the elements produced by th
 
 We also include some tests to ensure that the component renders properly (`TodoList.test.tsx`):
 
-```typescript jsx
+```tsx
 import React from 'react'
 import { render, cleanup, getByText } from 'react-testing-library'
 import { TodoList } from './TodoList';
@@ -444,7 +444,7 @@ As per the specification in the previous chapter we also need a component which 
 
 We are going to name the file for this component as `TodoFilter.tsx` and put it under the `components` directory:
 
-```typescript jsx
+```tsx
 import React, { Component } from 'react';
 
 import { RadioButtonGroup, default as RadioButton  } from '@inst/bridge-ui-components.radio-button';
@@ -489,7 +489,7 @@ export class TodoFilter extends Component<TodoFilterProps> {
 
 We start by defining the components' properties as before but in order to do that we need to define an enum which holds all the possible filter values:
 
-```typescript jsx
+```tsx
 export enum TodoFilterState {
   ALL,
   ACTIVE,
@@ -498,7 +498,7 @@ export enum TodoFilterState {
 ```
 
 After the definition we can elaborate on how our properties will look:
-```typescript jsx
+```tsx
 export type TodoFilterProps = {
   todoFilterState: TodoFilterState;
   onChange?: (filterState: TodoFilterState) => void;
@@ -512,7 +512,7 @@ The purpose of these properties are the following:
 Our `render()` method mostly deals with grouping the radio buttons into a single value. In order to make the group fully functional we bind the `todoFilterState` property to the `RadioButtonGroup` `selected` property. Similarly as with other event handler properties in previous components the `onChange` property just delegates the event to a higher level.
 
 The following tests ensure that this component renders as intended (`TodoFilter.test.tsx`):
-```typescript jsx
+```tsx
 import React from 'react'
 import { render, cleanup } from 'react-testing-library'
 import { TodoFilter, TodoFilterState } from './TodoFilter';
@@ -555,7 +555,7 @@ The last of our user interface components to develop is the status display that 
 
 This component should be put in a file named `TodoStatus.tsx` under `components`:
 
-```typescript jsx
+```tsx
 import React, { Component } from 'react';
 
 import { default as Chip } from '@inst/bridge-ui-components.chip';
@@ -580,7 +580,7 @@ The `Chip` tag is just a small visual component that displays text with a rounde
 
 In order to verify rendering we create the following testcases (`TodoStatus.test.tsx`):
 
-```typescript jsx
+```tsx
 import React from 'react'
 import { render, cleanup, getByTestId } from 'react-testing-library'
 import { TodoStatus } from './TodoStatus';
@@ -613,7 +613,7 @@ describe('TodoStatus', () => {
 
 For showcasing purposes and to illustrate how properties are passed into specific components, lets expand the `App` component with some example data (`app.tsx`):
 
-```typescript jsx
+```tsx
 import React, { Component } from 'react';
 import { TodoInput } from './components/TodoInput';
 import { TodoList } from './components/TodoList';
