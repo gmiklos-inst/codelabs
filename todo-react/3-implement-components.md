@@ -28,6 +28,20 @@ In order to fix a compilation problem while using parcel you need to add an alia
 }
 ```  
 
+There also some CSS styles for the BUC components that you need to import. Put these lines at the top of `index.ts`:
+```typescript jsx
+import '@inst/bridge-ui-components.svg-props/dist/main.css'
+import '@inst/bridge-ui-components.text-input/dist/main.css'
+import '@inst/bridge-ui-components.table/dist/main.css'
+import '@inst/bridge-ui-components.chip/dist/main.css'
+import '@inst/bridge-ui-components.radio-button/dist/main.css'
+import '@inst/bridge-ui-components.checkbox/dist/main.css'
+import '@inst/bridge-ui-components.button/dist/main.css'
+import '@inst/bridge-ui-components.icon-button/dist/main.css'
+import '@inst/bridge-ui-components.icon/dist/main.css'
+import '@inst/bridge-ui-components.tooltip/dist/main.css'
+```
+
 At this point of the tutorial we will only create the presentational parts of the components - state, properties and events - everything that makes our components interactive will be added later on. 
 
 ## TodoInput

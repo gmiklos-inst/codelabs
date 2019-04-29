@@ -170,14 +170,16 @@ Just drop a file named `tsconfig.json` in your workspace root:
 
 ```json
 {
-    "compilerOptions": {
-      "jsx": "react",
-      "noImplicitAny": true,
-      "esModuleInterop": true
-    },
-    "exclude": [
-        "node_modules"
-    ]
+  "compilerOptions": {
+    "jsx": "react",
+    "noImplicitAny": false,
+    "esModuleInterop": true,
+    "lib": ["es6", "dom"],
+    "outDir": "dist"
+  },
+  "exclude": [
+    "node_modules"
+  ]
 }
 ```
 

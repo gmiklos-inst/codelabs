@@ -1,4 +1,3 @@
-import './styles.css'
 import '@inst/bridge-ui-components.svg-props/dist/main.css'
 import '@inst/bridge-ui-components.text-input/dist/main.css'
 import '@inst/bridge-ui-components.table/dist/main.css'
