@@ -15,7 +15,7 @@ export type TodoItemRowProps = {
 export class TodoItemRow extends Component<TodoItemRowProps> {
     render() {
       const { item, onToggle, onDelete } = this.props;
-        return <Tr>
+        return <Tr data-testid="TodoItemRow">
           <Td>
             <Checkbox 
               checked={item.completed} 
@@ -23,11 +23,15 @@ export class TodoItemRow extends Component<TodoItemRowProps> {
             />
           </Td>
           <Td>
-            {item.title}
+            {
+              item.completed ? 
+                (<del>{item.title}</del>) : 
+                item.title
+            }
           </Td>
           <Td>
             <IconButton 
-              label="Clear" 
+              label="Remove" 
               filled 
               icon={<ClearIcon />} 
               onClick={() => onDelete()}

@@ -17,6 +17,7 @@ export type TodoFilterProps = {
 export class TodoFilter extends Component<TodoFilterProps> {
     render() {
         return <RadioButtonGroup 
+          data-testid="TodoFilter"
           selected={this.props.todoFilterState}
           onChange={filterState => this.props.onChange(filterState)}
         >

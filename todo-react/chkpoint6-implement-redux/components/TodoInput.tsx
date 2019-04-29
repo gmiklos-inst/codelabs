@@ -13,6 +13,7 @@ export class TodoInput extends Component<TodoInputProps> {
     render() {
       const { onChange, onSubmit, value } = this.props;
       return <TextInput
+        data-testid="TodoInput"
         value={value}
         onChange={event => onChange(event.target.value)}
         onKeyUp={(event) => {

@@ -12,7 +12,7 @@ export type AppState = {
     lastId: number;
 };
 
-const initialState: AppState = {
+export const initialState: AppState = {
     ui: {
         textInput: '',
         filterState: TodoFilterState.ALL,
