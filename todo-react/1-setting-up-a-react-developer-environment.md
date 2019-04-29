@@ -79,14 +79,13 @@ There are two types of dependencies we are going to install:
 Our development dependencies include:
 
 * Babel - This is a so called "transpiler" that can transform your React JSX/TSX code to its final form that is digestible by your browser - though that is not all that it is capable of - it can also enable you to use newer Javascript versions despite browsers not yet supporting particular language features.
-* SASS - Mature and stable CSS extension language. While not necessarily required it makes using CSS a more comfortable experience.
 * Typescript Compiler and Types - We are using Typescript in this tutorial which is a superset of Javascript that provides static typing for extra safety. The `@babel/preset-typescript` enables Typescript language support and the `@types/react` contains type definitions for the React library. These definitions are quite useful to have as the vast majority of libraries are written in Javascript without any type definitions. Installing the definitions enables the compiler to very our React usage.
 * Jest - Test runner for running our tests. Simple to use, easy to integrate.
 
 All of the dependencies can be installed using the following command:
 
 ```
-npm install --save-dev @babel/core @babel/plugin-proposal-class-properties @babel/preset-env @babel/preset-react @babel/preset-typescript @types/react @types/react-dom @types/jest typescript sass jest jest-dom react-testing-library
+npm install --save-dev @babel/core @babel/plugin-proposal-class-properties @babel/preset-env @babel/preset-react @babel/preset-typescript @types/react @types/react-dom @types/jest typescript jest jest-dom react-testing-library
 ```
 
 Most developers will use the presets Babel provides which are collections of sane defaults for frequent use cases. The ```env``` preset will let us to use modern Javascript features (ES2015 and up) while the ```react``` preset contains everything for compiling JSX code. `preset-typescript` is for Typescript support as discussed previously. Apart from the presets you can also use additional plugins that enable even more language features - ```plugin-proposal-class-properties``` makes it possible to use static class properties (not required for React to work but we will include it for convenience).
@@ -125,10 +124,6 @@ The following is the HTML code for the entry point for our application:
 ```
 
 I suggest putting this in a file called `index.html` in your workspace. Most of these lines are standard stuff that you might be familiar with - significant lines include the container for the application `app-container` where React will render your application and the included JS file `app.tsx` which will contain most our application code. The .tsx extension in this case denotes that it is a Typescript file with React extensions. You are free to customize this template however you wish - these are just the absolute bare-bones we need to get the app running.
-
-### Create styles SASS file
-
-SASS is very similar to CSS as it is a superset of the former. We do not need anything fancy for now - just create an empty file named `styles.scss` in your workspace root.
 
 ### Setting up Babel
 
@@ -193,8 +188,6 @@ Parcel and Babel should pick it up automatically. These settings are here to ens
 The simplest possible component looks like this:
 
 ```typescript jsx
-import './styles.scss'
-
 import React, { Component } from 'react';
 
 export class App extends Component {
