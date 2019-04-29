@@ -11,6 +11,8 @@ import org.mockito.InjectMocks
 import org.mockito.Mock
 import org.mockito.Mockito.*
 import org.mockito.junit.jupiter.MockitoExtension
+import org.springframework.data.domain.PageImpl
+import org.springframework.data.domain.Pageable
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import java.time.OffsetDateTime
@@ -39,11 +41,27 @@ class TodoItemControllerTest {
 
     @Test
     fun `getTodoItems returns all the todoItems`() {
-        `when`(todoItemService.getAllTodoItems()).thenReturn(todoItems)
+        val pageable = mock(Pageable::class.java)
+        `when`(todoItemService.getAllTodoItems(pageable)).thenReturn(PageImpl(todoItems))
 
-        val actualTodoItems = todoItemController.getTodoItems()
+        val actualTodoItems = todoItemController.getTodoItems(pageable).body
 
         actualTodoItems shouldBe todoItems
+    }
+
+    @Test
+    fun `getTodoItems returns the total number of todoItems`() {
+        val pageable = mock(Pageable::class.java)
+        val totalCount = 1000L
+        val page = PageImpl(listOf<TodoItemDto>(), pageable, totalCount)
+        `when`(todoItemService.getAllTodoItems(pageable)).thenReturn(page)
+
+        val actualTotalCount = todoItemController
+                .getTodoItems(pageable)
+                .headers["X-Total-Count"]
+                ?.firstOrNull()
+
+        actualTotalCount shouldBe totalCount.toString()
     }
 
     @Test
@@ -78,7 +96,7 @@ class TodoItemControllerTest {
 
         val actualTodoItem = todoItemController.updateTodoItem(id, requestTodoItem)
 
-        actualTodoItem shouldBe  expectedTodoItem
+        actualTodoItem shouldBe expectedTodoItem
     }
 
     @Test

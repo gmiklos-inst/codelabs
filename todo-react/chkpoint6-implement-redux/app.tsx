@@ -5,11 +5,24 @@ import { TodoStatus } from './components/TodoStatus';
 import { TodoFilter, TodoFilterState } from './components/TodoFilter';
 
 import { setTodoTextInput, addTodo, toggleTodo, deleteTodo, setTodoFilterState } from './actions';
+import {createPersistedAppStore} from "./store";
+import {TodoItem} from "./model/TodoItem";
 
 import { connect } from 'react-redux';
 import { AppState } from './reducers';
 
-class AppComponent extends Component<any> {
+type AppProps = {
+    todos: TodoItem[],
+    setTodoTextInput: (string) => void,
+    setTodoFilterState: (TodoFilterState) => void,
+    addTodo: () => void,
+    toggleTodo: (string) => void,
+    deleteTodo: (string) => void
+    textInput: string,
+    filterState: TodoFilterState,
+};
+
+class AppComponent extends Component<AppProps> {
   render() {
     const { 
       todos, 

@@ -5,8 +5,10 @@ import com.fasterxml.jackson.databind.PropertyNamingStrategy
 import com.fasterxml.jackson.databind.SerializationFeature
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
+import org.springframework.data.domain.Pageable
 import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder
 import java.time.Clock
+import org.springframework.data.web.config.PageableHandlerMethodArgumentResolverCustomizer
 
 @Configuration
 class WebConfiguration {
@@ -22,4 +24,9 @@ class WebConfiguration {
 
     @Bean
     fun clock() = Clock.systemDefaultZone()
+
+    @Bean
+    fun pageableResolverCustomizer() = PageableHandlerMethodArgumentResolverCustomizer { pageableResolver ->
+        pageableResolver.setFallbackPageable(Pageable.unpaged())
+    }
 }

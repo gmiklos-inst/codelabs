@@ -57,6 +57,18 @@ Is this OK? (yes) y
 
 Apart from the package name (which equates to your app name) you do not necessarily need to customize anything else.
 
+### Set up access for Instructure NPM registry
+
+Some of the dependencies are available only through the Instructure NPM repository which requires authentication. Visit [https://instructure.jfrog.io](https://instructure.jfrog.io) then click on your username in the upper right corner. Under "Authentication Settings" click "Generate API Key" and copy it to your clipboard as you are going to need for the following command:
+
+```shell
+$ npm login --registry=https://instructure.jfrog.io/instructure/api/npm/internal-npm/ --scope=@inst --always-auth
+Username: <enter your usernanme>
+Password: <enter the API key you have just copied>
+Email: (this IS public) <enter your email>
+Logged in as gmiklos on https://instructure.jfrog.io/instructure/api/npm/npm-cache.
+```
+
 ### Install dependencies
 
 There are two types of dependencies we are going to install:
@@ -69,11 +81,12 @@ Our development dependencies include:
 * Babel - This is a so called "transpiler" that can transform your React JSX/TSX code to its final form that is digestible by your browser - though that is not all that it is capable of - it can also enable you to use newer Javascript versions despite browsers not yet supporting particular language features.
 * SASS - Mature and stable CSS extension language. While not necessarily required it makes using CSS a more comfortable experience.
 * Typescript Compiler and Types - We are using Typescript in this tutorial which is a superset of Javascript that provides static typing for extra safety. The `@babel/preset-typescript` enables Typescript language support and the `@types/react` contains type definitions for the React library. These definitions are quite useful to have as the vast majority of libraries are written in Javascript without any type definitions. Installing the definitions enables the compiler to very our React usage.
+* Jest - Test runner for running our tests. Simple to use, easy to integrate.
 
 All of the dependencies can be installed using the following command:
 
 ```
-npm install --save-dev @babel/core @babel/plugin-proposal-class-properties @babel/preset-env @babel/preset-react @babel/preset-typescript @types/react @types/react-dom sass
+npm install --save-dev @babel/core @babel/plugin-proposal-class-properties @babel/preset-env @babel/preset-react @babel/preset-typescript @types/react @types/react-dom @types/jest typescript sass jest jest-dom react-testing-library
 ```
 
 Most developers will use the presets Babel provides which are collections of sane defaults for frequent use cases. The ```env``` preset will let us to use modern Javascript features (ES2015 and up) while the ```react``` preset contains everything for compiling JSX code. `preset-typescript` is for Typescript support as discussed previously. Apart from the presets you can also use additional plugins that enable even more language features - ```plugin-proposal-class-properties``` makes it possible to use static class properties (not required for React to work but we will include it for convenience).
@@ -202,6 +215,53 @@ const $container = document.getElementById('app-container');
 
 // ... and begin rendering our app
 ReactDOM.render(<App />, $container);
+```
+
+### Set up tests
+
+Create a file named `app.test.tsx` in your workspace root:
+
+```typescript jsx
+import React from 'react'
+import { render } from 'react-testing-library'
+import { App } from './App'
+
+describe('App', () => {
+  it('renders the greeting', () => {
+    const { getByText } = render(<App />);
+    getByText('Hi!');
+  });
+});
+```
+
+This is the simplest possible test to ensure that the application loads. If the test framework fails to find the specified text ("Hi!") the test case will fail.
+
+In order to make it easier to run tests we add the following lines to package.json:
+
+```json
+{
+  "scripts": {
+    "test": "jest"
+  }
+}
+```
+
+This enables us to just type `npm test` to run tests.
+
+```
+# npm test
+> todo@1.0.0 test /Users/gmiklos/Desktop/codelabs/todo-react/chkpoint1-setting-up-a-react-dev-environment
+> jest
+
+ PASS  ./app.test.tsx
+  App
+    ✓ renders the greeting (14ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       1 passed, 1 total
+Snapshots:   0 total
+Time:        1.036s, estimated 2s
+Ran all test suites.
 ```
 
 ### Set up the development server
