@@ -13,13 +13,13 @@ import { AppState } from './reducers';
 
 type AppProps = {
     todos: TodoItem[],
+    textInput: string,
+    filterState: TodoFilterState,
     setTodoTextInput: (string) => void,
     setTodoFilterState: (TodoFilterState) => void,
     addTodo: () => void,
     toggleTodo: (string) => void,
     deleteTodo: (string) => void
-    textInput: string,
-    filterState: TodoFilterState,
 };
 
 class AppComponent extends Component<AppProps> {
@@ -36,7 +36,6 @@ class AppComponent extends Component<AppProps> {
     } = this.props;
     return (
       <div className="app">
-        <h1>Hi!</h1>
         <TodoInput 
           onSubmit={() => addTodo()} 
           onChange={text => setTodoTextInput(text)} 
