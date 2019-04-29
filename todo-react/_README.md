@@ -4,11 +4,11 @@
 
 ### 2. [Planning our components](./2-planning-our-components.md)
 
-### 3. [Implement components](./3-implement-components.md)
+### 3. [Imlement React components](./3-implement-components.md)
 
-### 4. [The Flux pattern](./4-flux-pattern.md)
+### 4. [Introducing the application state, the Flux pattern, planning actions]
 
-### 5. [Using React with Redux](./5-using-redux-with-react.md)
+### 5. [Install Redux, implement the Store, actions, reducers]
 
 ### 6. [Connect App with the store with Provider, TodoInput works]
 

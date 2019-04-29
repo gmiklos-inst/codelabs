@@ -1,3 +1,9 @@
+---
+title: Pre-flight
+parent: React
+nav_order: 1
+---
+
 # Pre-flight
 
 Make sure you have the correct tools installed. We would like you to complete these before the lab but if you need assistance we are very happy to help you.
