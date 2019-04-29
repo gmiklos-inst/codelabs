@@ -5,12 +5,12 @@ import { TodoItem } from "../model/todoItem";
 export const SET_TODO_TEXT_INPUT = 'SET_TODO_TEXT_INPUT';
 export const SET_TODO_FILTER_STATE = 'SET_TODO_FILTER_STATE';
 export const ADD_TODO_ITEM = 'ADD_TODO_ITEM';
-export const TOGGLE_TODO = 'TOGGLE_TODO';
+export const TOGGLE_TODO_ITEM = 'TOGGLE_TODO_ITEM';
 export const DELETE_TODO_ITEM = 'DELETE_TODO_ITEM';
 
 export const SET_TODOS = 'SET_TODOS';
 
-export { loadTodos, addTodo, deleteTodo } from './asyncActions';
+export { loadTodos, addTodo, deleteTodo, toggleTodo } from './asyncActions';
 
 type SetTodoTextInputAction = {
     type: typeof SET_TODO_TEXT_INPUT;
@@ -27,8 +27,8 @@ type AddTodoItemAction = {
     todoItem: TodoItem;
 };
 
-type ToggleTodoAction = {
-    type: typeof TOGGLE_TODO;
+type ToggleTodoItemAction = {
+    type: typeof TOGGLE_TODO_ITEM;
     id: string;
 };
 
@@ -46,7 +46,7 @@ export type AppSyncAction =
     SetTodoTextInputAction | 
     SetTodoFilterStateAction | 
     AddTodoItemAction | 
-    ToggleTodoAction | 
+    ToggleTodoItemAction | 
     DeleteTodoItemAction |
     SetTodosAction;
 
@@ -69,8 +69,8 @@ export const addTodoItem = (todoItem: TodoItem): AddTodoItemAction => ({
     todoItem,
 });
 
-export const toggleTodo = (id: string): ToggleTodoAction => ({
-    type: TOGGLE_TODO,
+export const toggleTodoItem = (id: string): ToggleTodoItemAction => ({
+    type: TOGGLE_TODO_ITEM,
     id,
 });
 

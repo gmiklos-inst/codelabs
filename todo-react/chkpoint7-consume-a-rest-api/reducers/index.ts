@@ -1,4 +1,4 @@
-import { AppAction, SET_TODO_TEXT_INPUT, ADD_TODO, TOGGLE_TODO, DELETE_TODO, SET_TODO_FILTER_STATE, SET_TODOS, ADD_TODO_ITEM, DELETE_TODO_ITEM } from "../actions";
+import { AppAction, SET_TODO_TEXT_INPUT, ADD_TODO, TOGGLE_TODO, DELETE_TODO, SET_TODO_FILTER_STATE, SET_TODOS, ADD_TODO_ITEM, DELETE_TODO_ITEM, TOGGLE_TODO_ITEM } from "../actions";
 import { TodoItem } from "../model/todoItem";
 import { TodoStatus } from "../components/TodoStatus";
 import { TodoFilterState } from "../components/TodoFilter";
@@ -37,9 +37,9 @@ export const appReducer = (state: AppState = initialState, action: AppAction): A
             return {
                 ...state, 
                 ui: {...state.ui, textInput: ''},
-                todos: [...state.todos, action.todoItem],
+                todos: [action.todoItem, ...state.todos],
             };
-        case TOGGLE_TODO:
+        case TOGGLE_TODO_ITEM:
             return {
                 ...state,
                 todos: state.todos.map((todo) => {
