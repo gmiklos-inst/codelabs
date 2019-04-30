@@ -10,12 +10,4 @@
 
 ### 5. [Using React with Redux](./5-using-redux-with-react.md)
 
-### 6. [Connect App with the store with Provider, TodoInput works]
-
-### 7. [Side effects, async actions, (Redux-Thunk), implement adding TODO item]
-
-### 8. [Fetching data from API at start]
-
-### 9. [implement Complete, Delete item]
-
-### 10. [implement filtering]
+### 6. [Consuming a REST API](./6-consuming-a-rest-api.md)
