@@ -16,6 +16,7 @@ import org.mockito.Mockito.*
 import org.mockito.junit.jupiter.MockitoExtension
 import org.springframework.data.domain.PageImpl
 import org.springframework.data.domain.Pageable
+import org.springframework.data.jpa.domain.Specification
 import java.time.Clock
 import java.time.OffsetDateTime
 import java.time.Instant
@@ -51,13 +52,14 @@ class TodoItemServiceTest {
 
     @Test
     fun `getAllTodoItems returns result from repository as DTO`() {
+        val specification = mock(Specification::class.java) as Specification<TodoItem>
         val pageable = mock(Pageable::class.java)
         val entities = listOf(
                 TodoItem("id1", "title1", false, createdAt, updatedAt, completedAt),
                 TodoItem("id2", "title2", true),
                 TodoItem("id3", "title3")
         )
-        `when`(todoItemRepository.findAll(pageable)).thenReturn(PageImpl(entities))
+        `when`(todoItemRepository.findAll(specification, pageable)).thenReturn(PageImpl(entities))
 
         val expectedDtos = listOf(
                 TodoItemDto("id1", "title1", false, createdAt, updatedAt, completedAt),
@@ -65,7 +67,7 @@ class TodoItemServiceTest {
                 TodoItemDto("id3", "title3")
         )
 
-        val actualDtos = todoItemService.getAllTodoItems(pageable).toList()
+        val actualDtos = todoItemService.getAllTodoItems(specification, pageable).toList()
 
         actualDtos shouldBe expectedDtos
     }

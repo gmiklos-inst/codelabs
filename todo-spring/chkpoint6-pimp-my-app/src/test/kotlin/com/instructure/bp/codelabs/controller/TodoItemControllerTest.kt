@@ -2,6 +2,7 @@ package com.instructure.bp.codelabs.controller
 
 import com.instructure.bp.codelabs.dto.BaseTodoItemDto
 import com.instructure.bp.codelabs.dto.TodoItemDto
+import com.instructure.bp.codelabs.entity.TodoItem
 import com.instructure.bp.codelabs.service.TodoItemService
 import io.kotlintest.shouldBe
 import org.junit.jupiter.api.BeforeEach
@@ -13,6 +14,7 @@ import org.mockito.Mockito.*
 import org.mockito.junit.jupiter.MockitoExtension
 import org.springframework.data.domain.PageImpl
 import org.springframework.data.domain.Pageable
+import org.springframework.data.jpa.domain.Specification
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import java.time.OffsetDateTime
@@ -41,23 +43,25 @@ class TodoItemControllerTest {
 
     @Test
     fun `getTodoItems returns all the todoItems`() {
+        val specification = mock(Specification::class.java) as Specification<TodoItem>
         val pageable = mock(Pageable::class.java)
-        `when`(todoItemService.getAllTodoItems(pageable)).thenReturn(PageImpl(todoItems))
+        `when`(todoItemService.getAllTodoItems(specification, pageable)).thenReturn(PageImpl(todoItems))
 
-        val actualTodoItems = todoItemController.getTodoItems(pageable).body
+        val actualTodoItems = todoItemController.getTodoItems(specification, pageable).body
 
         actualTodoItems shouldBe todoItems
     }
 
     @Test
     fun `getTodoItems returns the total number of todoItems`() {
+        val specification = mock(Specification::class.java) as Specification<TodoItem>
         val pageable = mock(Pageable::class.java)
         val totalCount = 1000L
         val page = PageImpl(listOf<TodoItemDto>(), pageable, totalCount)
-        `when`(todoItemService.getAllTodoItems(pageable)).thenReturn(page)
+        `when`(todoItemService.getAllTodoItems(specification, pageable)).thenReturn(page)
 
         val actualTotalCount = todoItemController
-                .getTodoItems(pageable)
+                .getTodoItems(specification, pageable)
                 .headers["X-Total-Count"]
                 ?.firstOrNull()
 
