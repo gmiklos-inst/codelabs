@@ -54,6 +54,10 @@
     },
     "setupFiles": [
       "<rootDir>/jest.init.js"
+    ],
+    "testPathIgnorePatterns": [
+      "/node_modules/",
+      "/dist/"
     ]
   }
 }

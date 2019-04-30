@@ -19,11 +19,6 @@ describe('App', () => {
   
   afterEach(cleanup);
 
-  it('renders the greeting', () => {
-    const { getByText } = render(<App />);
-    getByText('Hi!');
-  });
-
   it('renders the input', () => {
     const { getByTestId } = render(<App />);
     getByTestId('TodoInput');
