@@ -1,4 +1,6 @@
-### Front-End - Steps
+### React & Redux
+
+### 0. [Pre-flight](./0-pre-flight.md)
 
 ### 1. [Setting up your React project](./1-setting-up-a-react-developer-environment.md)
 
