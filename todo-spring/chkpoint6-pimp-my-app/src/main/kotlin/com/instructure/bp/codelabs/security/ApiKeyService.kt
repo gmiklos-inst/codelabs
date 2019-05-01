@@ -10,5 +10,4 @@ class ApiKeyService {
     private lateinit var correctApiKey: String
 
     fun isApiKeyValid(apiKey: String) = (apiKey == correctApiKey)
-
 }

@@ -12,10 +12,6 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity
 import org.springframework.security.authentication.ProviderManager
 import org.springframework.security.authentication.AuthenticationManager
 
-
-
-
-
 @Configuration
 @EnableWebSecurity
 class SecurityConfiguration: WebSecurityConfigurerAdapter() {
