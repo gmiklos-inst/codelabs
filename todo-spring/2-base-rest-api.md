@@ -202,6 +202,10 @@ class CodelabsApplication
 * Visit `http://localhost:8080/swagger-ui.html`
 * Feel free to try the API endpoints from the UI
 
+## Heroku for the curious
+If you are eager to see your application running in the cloud, feel free to take a sneak peak at the 
+`Deploy to Heroku` section and make those dynos running!
+
 ## Checkpoint acceptance criteria
 Before advancing to the next checkpoint, please make sure that you:
 * Implemented the basic REST API with a Spring `RestController`
