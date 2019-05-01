@@ -1,5 +1,5 @@
 ---
-title: Prerequisites
+title: Setting up your Spring project
 parent: Spring Boot & Kotlin
 nav_order: 2
 ---
