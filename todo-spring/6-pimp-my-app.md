@@ -111,6 +111,7 @@ In Spring terminologies, this is called a [Pre-authentication scenario](https://
 
 * For the time being, we will store our single API key in our `application.properties` file.
     * Create a new property there: `codelabs.security.apikey=such-secret-much-wow`
+    * Don't forget to add it to your test `application.properties` file too!
 * We will need a custom `AuthenticationProvider` that will decide if an `Authentication` is valid or not.
 In the valid case, it returns an `AuthenticationToken` with the `CAN_ACCESS_TODO` authority.
 
