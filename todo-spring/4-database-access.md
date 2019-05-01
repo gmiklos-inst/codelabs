@@ -12,7 +12,16 @@ Follow the instructions on [how to install PostgreSQL](http://postgresguide.com/
 Verify your installation by typing `psql` in the terminal. (Type `exit` to quit.)
 
 ## DB Dependencies
-Let's add the database dependencies to our `build.gradle`:
+
+Add the kotlin jpa plugin to our `build.gradle`:
+```groovy
+plugins {
+    ...
+	id 'org.jetbrains.kotlin.plugin.jpa' version '1.2.71'
+	...
+}
+```
+Let's add the database dependencies too:
 
 ```groovy
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
