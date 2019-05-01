@@ -48,7 +48,8 @@ To enable arbitrary filtering on `Entity` fields, the easiest way to go is with 
 fun findAll(todoItemSpec: Specification<TodoItem>?, pageable: Pageable): Page<TodoItem>
 ```
 
-* Make sure to send the `Specification` all the way down to the `Repository`, also update your tests, because they will start failing.
+* Make sure to send the `Specification` all the way down to the `Repository`
+* Update your tests, because they will start failing
 * Make the following changes in `WebConfiguration`
     * extend from `WebMvcConfigurer`
     * add the following method that will resolve our `Specification`s
@@ -63,5 +64,39 @@ override fun addArgumentResolvers(argumentResolvers: MutableList<HandlerMethodAr
 Btw, [interesting reading](https://blog.tratif.com/2017/11/23/effective-restful-search-api-in-spring/) on this topic.
 
 ## Error handling
+
+We would love to handle `Exception`s that occur in our `Controller`s or in other components they call
+and have a unified/controlled Error response to that. Fortunately, we can do so with the `@ControllerAdvice` and `@ExceptionHandler` annotations!
+
+* Our error message format is going to look like this:
+
+```kotlin
+data class ErrorResponseDto(val errors: List<ErrorDto>)
+
+data class ErrorDto(val code: Int, val title: String)
+```
+
+* Create a new class that will look something like this:
+
+```kotlin
+@ControllerAdvice
+class ControllerExceptionHandler {
+
+   @ExceptionHandler(Exception::class)
+   fun handleException(ex: Exception, request: WebRequest): ResponseEntity<ErrorResponseDto> = 
+           TODO("implement me")
+
+   private fun responseEntity(status: HttpStatus, errorCode: Int, errorMessage: String) =
+           ResponseEntity
+                   .status(status)
+                   .body(ErrorResponseDto(listOf(
+                           ErrorDto(errorCode, errorMessage)
+                   )))
+}
+```
+
+* Think of what kind of exceptions can occur
+* Discuss what tests should be written
+* For inspiration, you have a look at the `ControllerExceptionHandlerTest` and `ControllerExceptionHandler` classes
 
 ## Securing with an API token
