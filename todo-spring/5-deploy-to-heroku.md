@@ -11,8 +11,8 @@ Follow the steps below:
 ```bash
 $ cd {root-of-spring-project}
 $ heroku login
-$ heroku create inst-spring-workshop
-$ heroku addons:create heroku-postgresql --app inst-spring-workshop
+$ heroku create
+$ heroku addons:create heroku-postgresql --app {your-app-name}
 ```
 
 Create an `application-prod.properties` file next to the `application.properties` file with the following content:
