@@ -32,7 +32,7 @@ spring.jpa.properties.hibernate.dialect = org.hibernate.dialect.PostgreSQLDialec
 ```
 
 You can also create a separate `application.properties` file under `test/resources` to use a separate 
-database when running your integrationt tests.
+database when running your integrationt tests. The checkpoints will use a database called `integrationtest`.
 
 ## Apply these changes
 It is time we start using a real `Repository`!
