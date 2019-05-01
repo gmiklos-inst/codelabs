@@ -1,5 +1,5 @@
 ---
-title: Setting up your Spring project
+title: Project setup
 parent: Spring Boot & Kotlin
 nav_order: 2
 ---
