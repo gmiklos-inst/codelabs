@@ -7,7 +7,7 @@ nav_order: 2
 # Setting up your Spring project
 
 ## Spring Initializr
-A great way to get started with a Spring boot application is by visiting the [https://start.spring.io/](Spring Initializr website) and choose the following options:
+A great way to get started with a Spring boot application is by visiting the [Spring Initializr website](https://start.spring.io/) and choose the following options:
 * Project: `Gradle Project`
 * Language: `Kotlin`
 * Spring Boot: `2.1.4`
