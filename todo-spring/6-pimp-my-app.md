@@ -53,6 +53,7 @@ fun findAll(todoItemSpec: Specification<TodoItem>?, pageable: Pageable): Page<To
     * extend from `WebMvcConfigurer`
     * add the following method that will resolve our `Specification`s
 
+
 ```kotlin
 override fun addArgumentResolvers(argumentResolvers: MutableList<HandlerMethodArgumentResolver>) {
   argumentResolvers.add(SpecificationArgumentResolver())
