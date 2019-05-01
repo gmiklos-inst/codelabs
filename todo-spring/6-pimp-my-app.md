@@ -97,6 +97,128 @@ class ControllerExceptionHandler {
 
 * Think of what kind of exceptions can occur
 * Discuss what tests should be written
-* For inspiration, you have a look at the `ControllerExceptionHandlerTest` and `ControllerExceptionHandler` classes
+* For inspiration, have a look at the `ControllerExceptionHandlerTest` and `ControllerExceptionHandler` classes
 
-## Securing with an API token
+## Securing with an API key
+In our scenario, we would like to limit our API endpoints only to those clients who know our secret API key.
+In Spring terminologies, this is called a [Pre-authentication scenario](https://docs.spring.io/spring-security/site/docs/5.2.0.BUILD-SNAPSHOT/reference/htmlsingle/#preauth).
+
+* As a first step, we need to add `Spring Security` to our project
+
+```groovy
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+```
+
+* For the time being, we will store our single API key in our `application.properties` file.
+    * Create a new property there: `codelabs.security.apikey=such-secret-much-wow`
+* We will need a custom `AuthenticationProvider` that will decide if an `Authentication` is valid or not.
+In the valid case, it returns an `AuthenticationToken` with the `CAN_ACCESS_TODO` authority.
+
+```kotlin
+@Component
+class ApiKeyAuthenticationProvider : AuthenticationProvider {
+
+    @Autowired
+    private lateinit var apiKeyService: ApiKeyService
+
+    override fun authenticate(authentication: Authentication): Authentication? {
+
+        val token = authentication.credentials.toString()
+
+        return if (apiKeyService.isApiKeyValid(token)) {
+            PreAuthenticatedAuthenticationToken(null, null, listOf(SimpleGrantedAuthority("CAN_ACCESS_TODO"))).apply {
+                isAuthenticated = true
+            }
+        } else {
+            null
+        }
+    }
+
+    override fun supports(authentication: Class<*>): Boolean {
+        return authentication == PreAuthenticatedAuthenticationToken::class.java
+    }
+}
+```
+
+The corresponding `Service`
+
+```kotlin
+@Service
+class ApiKeyService {
+
+    @Value("\${codelabs.security.apikey}")
+    private lateinit var correctApiKey: String
+
+    fun isApiKeyValid(apiKey: String) = (apiKey == correctApiKey)
+}
+```
+
+* Now we need to wire things together with a Security configuration component. The key points are:
+    * We make all endpoints require authorization with a `CAN_ACCESS_TODO` authority.
+    * We add a `preAuthenticationFilter` to the Spring Security Auth chain that will check the 
+    http headers and look for an API key under `"x-api-key"`
+    * We switch off sessions and go stateless.
+
+```kotlin
+@Configuration
+@EnableWebSecurity
+class SecurityConfiguration: WebSecurityConfigurerAdapter() {
+
+    @Autowired
+    private lateinit var apiKeyAuthenticationProvider: ApiKeyAuthenticationProvider
+
+    override fun configure(http: HttpSecurity) {
+        http.antMatcher("/**")
+                .addFilter(preAuthenticationFilter())
+                .authorizeRequests().anyRequest().hasAuthority("CAN_ACCESS_TODO")
+                .and()
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .and()
+                .csrf().disable()
+    }
+
+    override fun authenticationManager(): AuthenticationManager {
+        return ProviderManager(listOf(apiKeyAuthenticationProvider))
+    }
+
+    @Bean
+    fun preAuthenticationFilter() = RequestHeaderAuthenticationFilter().apply {
+        setPrincipalRequestHeader("x-api-key")
+        setCredentialsRequestHeader("x-api-key")
+        setAuthenticationManager(authenticationManager())
+        setExceptionIfHeaderMissing(false)
+    }
+}
+```
+
+* Update our integration tests, since they are not yet configured to use the API key.
+
+## CORS support
+
+Enabling [CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS) is pretty easy in Spring:
+* If you use Spring Security, enable it when you configure your `HttpSecurity`
+
+```kotlin
+@Configuration
+@EnableWebSecurity
+class SecurityConfiguration: WebSecurityConfigurerAdapter() {
+
+    @Autowired
+    private lateinit var apiKeyAuthenticationProvider: ApiKeyAuthenticationProvider
+
+    override fun configure(http: HttpSecurity) {
+        http.cors()
+    }
+}
+```
+
+* Annotate your `Controoler`s with `@CrossOrigin`.
+
+```kotlin
+@CrossOrigin
+@RestController
+@RequestMapping("/todos")
+class TodoItemController {
+    ...
+}
+```
