@@ -31,6 +31,9 @@ spring.jpa.hibernate.ddl-auto=update
 spring.jpa.properties.hibernate.dialect = org.hibernate.dialect.PostgreSQLDialect
 ```
 
+You can also create a separate `application.properties` file under `test/resources` to use a separate 
+database when running your integrationt tests.
+
 ## Apply these changes
 It is time we start using a real `Repository`!
 * Delete the `DummyTodoItemRepository`
