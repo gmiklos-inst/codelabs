@@ -6,12 +6,6 @@ nav_order: 7
 
 # Pimp my App
 
-## Error handling
-
-
-## Filtering
-
-
 ## Paging
 In order to make our API pageable, we need to make the following changes:
 * Add a `Pageable` parameter to our `GET allTodoItems` endpoint.
@@ -33,4 +27,36 @@ fun pageableResolverCustomizer() = PageableHandlerMethodArgumentResolverCustomiz
 }
 ``` 
 
-## Using an API token
+## Filtering
+
+To enable arbitrary filtering on `Entity` fields, the easiest way to go is with `Specification`s.
+
+* As a first step, add `implementation 'net.kaczmarzyk:specification-arg-resolver:2.1.1'` as implementation dependency.
+
+* Then add the following argument to the `Controller`'s `getAllTodoItems` method, next to the `Pageable` parameter:
+    ```kotlin
+    @And(value = [
+         Spec(path = "title", spec = Like::class),
+         Spec(path = "completed", spec = Equal::class)])
+         todoItemSpec: Specification<TodoItem>?
+    ```
+
+* Define the following function in `TodoItemRepository`:
+
+`fun findAll(todoItemSpec: Specification<TodoItem>?, pageable: Pageable): Page<TodoItem>`
+
+* Make sure to send the `Specification` all the way down to the `Repository`, also update your tests, because they will start failing.
+* Make the following changes in `WebConfiguration`
+    * extend from `WebMvcConfigurer`
+    * add the following method that will resolve our `Specification`s
+        ```kotlin
+        WebMvcConfigurer {
+              override fun addArgumentResolvers(argumentResolvers: MutableList<HandlerMethodArgumentResolver>) {
+                  argumentResolvers.add(SpecificationArgumentResolver())
+              }```
+
+Btw, [interesting reading](https://blog.tratif.com/2017/11/23/effective-restful-search-api-in-spring/) on this topic.
+
+## Error handling
+
+## Securing with an API token
