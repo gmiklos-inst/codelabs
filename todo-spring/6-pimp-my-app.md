@@ -85,13 +85,6 @@ class ControllerExceptionHandler {
    @ExceptionHandler(Exception::class)
    fun handleException(ex: Exception, request: WebRequest): ResponseEntity<ErrorResponseDto> = 
            TODO("implement me")
-
-   private fun responseEntity(status: HttpStatus, errorCode: Int, errorMessage: String) =
-           ResponseEntity
-                   .status(status)
-                   .body(ErrorResponseDto(listOf(
-                           ErrorDto(errorCode, errorMessage)
-                   )))
 }
 ```
 
