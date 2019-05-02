@@ -16,16 +16,16 @@ Verify your installation by typing `psql` in the terminal. (Type `exit` to quit.
 Add the kotlin jpa plugin to our `build.gradle`:
 ```groovy
 plugins {
-    ...
-	id 'org.jetbrains.kotlin.plugin.jpa' version '1.2.71'
-	...
+...
+id 'org.jetbrains.kotlin.plugin.jpa' version '1.2.71'
+...
 }
 ```
 Let's add the database dependencies too:
 
 ```groovy
-	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-    runtimeOnly 'org.postgresql:postgresql'
+implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+runtimeOnly 'org.postgresql:postgresql'
 ```
 
 ## Database access configuration
@@ -41,7 +41,7 @@ spring.jpa.properties.hibernate.dialect = org.hibernate.dialect.PostgreSQLDialec
 ```
 
 You can also create a separate `application.properties` file under `test/resources` to use a separate 
-database when running your integrationt tests. The checkpoints will use a database called `integrationtest`.
+database when running your integrationt tests. This guide will use a database called `integrationtest`.
 
 ## Apply these changes
 It is time we start using a real `Repository`!
@@ -84,22 +84,22 @@ in the DB in order to be able to serve update/delete/getById requests.
 
 This should suffice:
 ```kotlin
-    @Autowired
-    lateinit var todoItemRepository: TodoItemRepository
+@Autowired
+lateinit var todoItemRepository: TodoItemRepository
 
-    lateinit var persistedEntities: List<TodoItem>
+lateinit var persistedEntities: List<TodoItem>
 
-    @BeforeEach
-    fun init() {
-        persistedEntities = todoItemRepository.saveAll(listOf(
-                TodoItem(title = "title1"),
-                TodoItem(title = "title2"),
-                TodoItem(title = "title3", completed = true)
-        ))
-    }
+@BeforeEach
+fun init() {
+    persistedEntities = todoItemRepository.saveAll(listOf(
+            TodoItem(title = "title1"),
+            TodoItem(title = "title2"),
+            TodoItem(title = "title3", completed = true)
+    ))
+}
 
-    @AfterEach
-    fun tearDown() {
-        todoItemRepository.deleteAll()
-    }
+@AfterEach
+fun tearDown() {
+    todoItemRepository.deleteAll()
+}
 ```

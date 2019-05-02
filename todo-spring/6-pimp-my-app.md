@@ -106,7 +106,7 @@ In Spring terminologies, this is called a [Pre-authentication scenario](https://
 * As a first step, we need to add `Spring Security` to our project
 
 ```groovy
-	implementation 'org.springframework.boot:spring-boot-starter-security'
+implementation 'org.springframework.boot:spring-boot-starter-security'
 ```
 
 * For the time being, we will store our single API key in our `application.properties` file.

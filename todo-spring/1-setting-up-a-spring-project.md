@@ -7,7 +7,7 @@ nav_order: 2
 # Setting up your Spring project
 
 ## Spring Initializr
-A great way to get started with a Spring boot application is by visiting the [Spring Initializr website](https://start.spring.io/) and choose the following options:
+A great way to get started with a Spring boot application is to visit the [Spring Initializr website](https://start.spring.io/) and choose the following options:
 * Project: `Gradle Project`
 * Language: `Kotlin`
 * Spring Boot: `2.1.4`
@@ -80,7 +80,7 @@ $ ./gradlew bootRun
 
 Alternatively, you can run your `jar` file directly and get the same output as with `./gradlew bootRun`.
 ```bash
-$ java -jar build/libs/codelabs-0.0.1-SNAPSHOT.jar 
+java -jar build/libs/codelabs-0.0.1-SNAPSHOT.jar 
 ```
 
 ## Checkpoint acceptance criteria
