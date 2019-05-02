@@ -20,12 +20,12 @@ Click `Generate Project` and save/extract the downloaded zip file.
 ## JUnit5 and Mockito
 Locate your `build.gradle` file and add the following dependencies:
 ```groovy
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.2.0'
-    testImplementation 'org.junit.jupiter:junit-jupiter-params:5.2.0'
-    testImplementation 'org.mockito:mockito-core:2.+'
-    testImplementation 'org.mockito:mockito-junit-jupiter:2.18.3'
-	testImplementation 'io.kotlintest:kotlintest-assertions:3.3.2'
-    testRuntime 'org.junit.jupiter:junit-jupiter-engine:5.2.0'
+testImplementation 'org.junit.jupiter:junit-jupiter-api:5.2.0'
+testImplementation 'org.junit.jupiter:junit-jupiter-params:5.2.0'
+testImplementation 'org.mockito:mockito-core:2.+'
+testImplementation 'org.mockito:mockito-junit-jupiter:2.18.3'
+testImplementation 'io.kotlintest:kotlintest-assertions:3.3.2'
+testRuntime 'org.junit.jupiter:junit-jupiter-engine:5.2.0'
 ```
 
 We need to enable Gradle's JUnit5 support:
