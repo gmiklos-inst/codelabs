@@ -71,8 +71,11 @@ In `spec/rails_helper.rb`:
 ```ruby
 # spec/rails_helper.rb
 
-# require database cleaner at the top level
+# require dependencies at the top level
+require 'rspec/rails'
 require 'database_cleaner'
+require 'shoulda-matchers'
+require 'factory_bot'
 
 # [...]
 # configure shoulda matchers to use rspec as the test framework and full matcher libraries for rails
