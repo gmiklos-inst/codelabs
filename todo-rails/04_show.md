@@ -105,7 +105,7 @@ Todo.where(completed: true).count
 Now that we have our model, we can create a controller and implement `GET /todos/:id`:
 
 ```ruby
-# spec/routing/todo_spec.rb
+# spec/routing/todos_spec.rb
 
 RSpec.describe 'todos' do
   it 'GET todos/:id is routed to todos#show' do
