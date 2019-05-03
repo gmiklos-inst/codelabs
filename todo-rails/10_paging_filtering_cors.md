@@ -1,5 +1,5 @@
 ---
-title: Grape and Swagger
+title: Paging, filtering, CORS
 parent: Rails
 nav_order: 10
 ---

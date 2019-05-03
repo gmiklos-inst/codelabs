@@ -75,7 +75,7 @@ In `spec/rails_helper.rb`:
 require 'rspec/rails'
 require 'database_cleaner'
 require 'shoulda-matchers'
-require 'factory_bot'
+require 'factory_bot_rails'
 
 # [...]
 # configure shoulda matchers to use rspec as the test framework and full matcher libraries for rails
@@ -120,6 +120,9 @@ AllCops:
   Exclude:
     - 'db/schema.rb'
     - 'bin/*'
+
+Metrics/BlockLength:
+  ExcludedMethods: ['describe', 'context']
 
 Metrics/LineLength:
   Max: 130
