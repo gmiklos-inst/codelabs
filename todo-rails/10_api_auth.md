@@ -4,7 +4,7 @@ parent: Rails
 nav_order: 10
 ---
 
-Install `dotenv-rails` gem (dev & test dependency).
+Add the `dotenv-rails` gem to the `Gemfile` as a dev & test dependency.
 
 ```ruby
 # config/application.rb
