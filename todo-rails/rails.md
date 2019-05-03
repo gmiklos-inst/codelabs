@@ -3,6 +3,10 @@ title: Rails
 has_children: true
 ---
 
+# Reference repo
+
+https://github.com/mikkabouzu/instructure_rails_workshop_docs
+
 # Prerequisites
 
 ## when in doubt
